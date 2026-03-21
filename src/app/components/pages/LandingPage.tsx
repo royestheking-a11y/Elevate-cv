@@ -95,13 +95,13 @@ export default function LandingPage() {
             <span className="text-sm font-medium text-[#3B2F2F]">AI-Powered Resume Builder</span>
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
             <TypewriterText text="Build a " />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D6A85F] to-[#3B2F2F]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D6A85F] to-[#3B2F2F] whitespace-nowrap">
               <TypewriterText text="Job-Winning" />
             </span>
-            <br />
-            <TypewriterText text="Resume in Minutes" />
+            <br className="hidden sm:block" />
+            <TypewriterText text=" Resume in Minutes" />
           </h1>
           
           <motion.p

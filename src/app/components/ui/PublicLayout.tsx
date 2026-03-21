@@ -23,7 +23,7 @@ export function PublicLayout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDFBF7] text-[#3B2F2F] font-sans selection:bg-[#D6A85F] selection:text-white">
+    <div className="min-h-screen w-full overflow-x-hidden flex flex-col bg-[#FDFBF7] text-[#3B2F2F] font-sans selection:bg-[#D6A85F] selection:text-white">
       {/* Navigation */}
       <nav className="fixed top-0 inset-x-0 z-50 bg-white/70 backdrop-blur-xl border-b border-[#3B2F2F]/10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
