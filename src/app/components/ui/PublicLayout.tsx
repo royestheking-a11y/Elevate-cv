@@ -156,9 +156,9 @@ export function PublicLayout() {
                 Build job-winning resumes, cover letters, and outreach emails with our premium AI-powered tools. Designed to help you land your dream job faster.
               </p>
               <div className="flex items-center space-x-4">
-                <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Twitter size={18} /></a>
-                <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Linkedin size={18} /></a>
-                <a href="#" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Github size={18} /></a>
+                <a href="https://x.com/Rizqaratech" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Twitter size={18} /></a>
+                <a href="http://linkedin.com/company/rizqara-tech" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Linkedin size={18} /></a>
+                <a href="https://github.com/royestheking-a11y" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#D6A85F] hover:text-white transition-colors"><Github size={18} /></a>
               </div>
             </div>
             
@@ -202,7 +202,9 @@ export function PublicLayout() {
           </div>
           
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/40">
-            <p>© {new Date().getFullYear()} ElevateCV. All rights reserved.</p>
+            <p>
+              © {new Date().getFullYear()} ElevateCV. All rights reserved. &nbsp;|&nbsp; Product of <a href="https://www.rizqara.tech" target="_blank" rel="noopener noreferrer" className="hover:text-white hover:underline transition-colors">Rizqara Tech</a>
+            </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

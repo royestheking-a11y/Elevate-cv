@@ -438,7 +438,7 @@ export default function LandingPage() {
                   <div>
                     <h4 className="font-bold text-xl text-[#3B2F2F]">Call us</h4>
                     <p className="text-gray-500 text-sm mb-2">Mon-Fri from 9am to 6pm EST.</p>
-                    <a href="tel:+18005551234" className="text-[#D6A85F] font-semibold hover:underline text-lg">+1 (800) 555-1234</a>
+                    <a href="tel:01343042761" className="text-[#D6A85F] font-semibold hover:underline text-lg">01343042761</a>
                   </div>
                 </div>
 
@@ -450,8 +450,8 @@ export default function LandingPage() {
                   <div className="relative z-10">
                     <h4 className="font-bold text-xl text-white">Visit us</h4>
                     <p className="text-white/70 text-sm leading-relaxed mt-1">
-                      123 Career Avenue, Suite 400<br />
-                      New York, NY 10001
+                      Nikunja 2, Dhaka.<br />
+                      Bangladesh
                     </p>
                   </div>
                 </div>
