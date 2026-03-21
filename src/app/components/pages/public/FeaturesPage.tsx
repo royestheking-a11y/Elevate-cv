@@ -2,7 +2,14 @@ import { motion } from "motion/react";
 import { LayoutTemplate, PenTool, Wrench, Zap, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
 import { Link } from "react-router";
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function FeaturesPage() {
+  useSEO({
+    title: "CV Builder Features | Resume Repair, Cover Letter & Email Generator",
+    description: "Explore ElevateCV's powerful features including an AI resume builder, resume repair, auto cover letter generation, and professional email writing.",
+    keywords: "cv builder features, resume repair, cover letter generator, email generator, ai resume builder"
+  });
   const features = [
     {
       id: "builder",

@@ -24,7 +24,14 @@ const TUTORIALS = [
   }
 ];
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function TutorialsPage() {
+  useSEO({
+    title: "Resume & Career Tutorials | ElevateCV Resources",
+    description: "Master your job search with expert tutorials on writing resumes, passing ATS filters, and networking.",
+    keywords: "career advice, resume tips, ats guide, job search tutorial"
+  });
   return (
     <div className="pt-12 pb-24">
       <div className="max-w-4xl mx-auto px-6">

@@ -63,7 +63,14 @@ const FAQS = [
   { question: "Is my data secure?", answer: "We take privacy seriously. All your data is stored securely in your browser's local storage using Zustand, meaning we don't keep your personal information on our servers." },
 ];
 
+import { useSEO } from "../../hooks/useSEO";
+
 export default function LandingPage() {
+  useSEO({
+    title: "Free CV Builder Online | Create Professional Resume in Minutes – ElevateCV",
+    description: "Build professional CVs, cover letters, and job emails instantly with ElevateCV. Choose templates, customize design, and download in PDF or Word format for free.",
+    keywords: "cv builder, resume builder, free cv maker, resume templates, cover letter generator, job email generator, online cv builder, resume builder Bangladesh"
+  });
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [activeStep, setActiveStep] = useState(0);
 

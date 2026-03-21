@@ -51,7 +51,14 @@ const COVER_LETTER_TEMPLATES = [
   { id: "cl-simple", name: "Simple Clean", img: imgBlackAndWhiteSimpleCvResume1 },
 ];
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function TemplatesPage() {
+  useSEO({
+    title: "Free Resume Templates | Professional CV Designs – ElevateCV",
+    description: "Choose from professional resume templates and create a job-winning CV in minutes. Fully customizable and ATS-friendly templates available.",
+    keywords: "resume templates, cv templates, professional resume design, free cv template"
+  });
   const [activeTab, setActiveTab] = useState<"cv" | "cover">("cv");
 
   return (

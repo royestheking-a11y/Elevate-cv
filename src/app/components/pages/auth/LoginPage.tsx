@@ -7,7 +7,13 @@ import { Logo } from "../../ui/Logo";
 import { useAuth } from "../../../context/AuthContext";
 import { TimeIllustration } from "../../auth/TimeIllustration";
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function LoginPage() {
+  useSEO({
+    title: "Log in to ElevateCV | Resume & CV Builder",
+    description: "Log in to your ElevateCV account to manage your resumes, cover letters, and track your career progress."
+  });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

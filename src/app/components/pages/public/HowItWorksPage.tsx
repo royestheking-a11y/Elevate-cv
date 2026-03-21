@@ -3,7 +3,14 @@ import { Link } from "react-router";
 import { ArrowRight, UserPlus, Upload, FileEdit, DownloadCloud, Sparkles, Send } from "lucide-react";
 import { useRef } from "react";
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function HowItWorksPage() {
+  useSEO({
+    title: "How It Works | ElevateCV Step-by-Step Guide",
+    description: "Learn how to build a professional ATS-friendly resume in 4 easy steps using ElevateCV's drag and drop builder.",
+    keywords: "how to make a cv, resume guide, elevatecv guide, ats resume tutorial"
+  });
   const timelineRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({

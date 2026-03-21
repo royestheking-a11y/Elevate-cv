@@ -7,7 +7,13 @@ import { useAuth } from "../../../context/AuthContext";
 import { AnimatePresence, motion } from "motion/react";
 import { TimeIllustration } from "../../auth/TimeIllustration";
 
+import { useSEO } from "../../../hooks/useSEO";
+
 export default function SignupPage() {
+  useSEO({
+    title: "Sign up for Free | ElevateCV Resume Builder",
+    description: "Create a free ElevateCV account to start building professional, ATS-friendly resumes and cover letters in minutes."
+  });
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
