@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 4 - Emerald Corporate</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --green: #2D6A4F;
+    --green-light: #40916C;
+    --green-pale: #D8F3DC;
+    --bg: #F9FAFB;
+    --text: #1B2028;
+    --text-mid: #4A5568;
+    --border: #E2E8F0;
+    --accent: #95D5B2;
+  }
+  body { font-family: 'DM Sans', sans-serif; background: #e5ebe6; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 860px; }
+  .cv { background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.18); }
+
+  /* TOP HEADER */
+  .cv-top { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 40px 50px 30px; border-bottom: 3px solid var(--green); }
+  .name-block .full-name { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--text); }
+  .name-block .profession { font-size: 14px; color: var(--green); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .contact-block { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; justify-content: flex-end; }
+  .cline { font-size: 12.5px; color: var(--text-mid); display: flex; align-items: center; gap: 6px; }
+  .cline span { color: var(--green); font-size: 13px; }
+
+  /* BODY */
+  .cv-body { display: grid; grid-template-columns: 1fr 260px; }
+
+  /* LEFT MAIN */
+  .main-col { padding: 35px 40px 40px; border-right: 1px solid var(--border); }
+  .m-section { margin-bottom: 28px; }
+  .m-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--green); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .m-title::before { content: ''; width: 18px; height: 2px; background: var(--green); }
+
+  .profile-text { font-size: 13.5px; line-height: 1.75; color: var(--text-mid); }
+
+  .exp-item { margin-bottom: 20px; }
+  .exp-chip { display: inline-block; background: var(--green-pale); color: var(--green); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 3px; margin-bottom: 5px; }
+  .exp-role { font-size: 14px; font-weight: 700; color: var(--text); }
+  .exp-co { font-size: 12.5px; color: var(--text-mid); margin: 2px 0 6px; }
+  .exp-list { padding-left: 14px; }
+  .exp-list li { font-size: 13px; color: var(--text-mid); line-height: 1.65; margin-bottom: 3px; }
+
+  /* RIGHT SIDEBAR */
+  .side-col { padding: 35px 28px; background: var(--bg); }
+  .s-section { margin-bottom: 24px; }
+  .s-title { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; color: var(--green); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--accent); }
+
+  .edu-card { margin-bottom: 14px; }
+  .edu-degree { font-size: 13px; font-weight: 700; color: var(--text); }
+  .edu-school { font-size: 12px; color: var(--green-light); font-weight: 500; }
+  .edu-dates { font-size: 11px; color: var(--text-mid); margin-top: 2px; }
+  .edu-gpa { font-size: 11px; color: var(--text-mid); }
+
+  .skill-tag { display: inline-block; background: #fff; border: 1px solid var(--green); color: var(--green); font-size: 11.5px; padding: 4px 9px; border-radius: 20px; margin: 3px 3px 3px 0; font-weight: 500; }
+
+  .lang-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 12.5px; color: var(--text-mid); }
+  .lang-dot-group { display: flex; gap: 3px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+  .dot.filled { background: var(--green); }
+
+  .cert-item { font-size: 12.5px; color: var(--text-mid); margin-bottom: 6px; display: flex; gap: 8px; }
+  .cert-item::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+  @media (max-width: 660px) {
+    .cv-top { grid-template-columns: 1fr; }
+    .contact-block { align-items: flex-start; }
+    .cv-body { grid-template-columns: 1fr; }
+    .side-col { border-top: 1px solid var(--border); }
+    .main-col { padding: 25px 20px; }
+    .side-col { padding: 20px; }
+    .cv-top { padding: 25px 20px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <header class="cv-top">
+    <div class="name-block">
+      <div class="full-name">Estelle Darcy</div>
+      <div class="profession">Administrative Manager</div>
+    </div>
+    <div class="contact-block">
+      <div class="cline"><span>✉</span> hello@reallygreatsite.com</div>
+      <div class="cline"><span>☎</span> 123-456-7890</div>
+      <div class="cline"><span>📍</span> 123 Anywhere St., Any City</div>
+      <div class="cline"><span>🌐</span> www.reallygreatsite.com</div>
+    </div>
+  </header>
+
+  <div class="cv-body">
+    <main class="main-col">
+      <div class="m-section">
+        <div class="m-title">Profile Summary</div>
+        <p class="profile-text">Detail-oriented administrative professional with over three years of experience providing comprehensive support to executive teams and office operations. Proven track record of managing administrative tasks efficiently and maintaining strict confidentiality. Strong organizational skills coupled with excellent communication abilities.</p>
+      </div>
+
+      <div class="m-section">
+        <div class="m-title">Work Experience</div>
+        <div class="exp-item">
+          <span class="exp-chip">Oct 2023 – Present</span>
+          <div class="exp-role">Administrative Assistant</div>
+          <div class="exp-co">Arowwai Industries</div>
+          <ul class="exp-list">
+            <li>Managed executive calendars, scheduled meetings, and coordinated travel arrangements.</li>
+            <li>Maintained office supplies inventory, optimizing cost efficiency by 15%.</li>
+            <li>Assisted in organizing company events, ensuring seamless execution.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <span class="exp-chip">Jan 2022 – Sept 2023</span>
+          <div class="exp-role">Office Coordinator</div>
+          <div class="exp-co">Borcelle</div>
+          <ul class="exp-list">
+            <li>Provided administrative support to a team of 20+ employees.</li>
+            <li>Acted as a liaison between departments, fostering effective communication.</li>
+            <li>Assisted in onboarding new employees, facilitating orientation sessions.</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <span class="exp-chip">Apr 2021 – Dec 2021</span>
+          <div class="exp-role">Administrative Intern</div>
+          <div class="exp-co">Salford & Co Corporation</div>
+          <ul class="exp-list">
+            <li>Supported senior executives with administrative tasks and correspondence.</li>
+            <li>Assisted in planning and execution of corporate events and client meetings.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side-col">
+      <div class="s-section">
+        <div class="s-title">Education</div>
+        <div class="edu-card">
+          <div class="edu-degree">B.A. Business Administration</div>
+          <div class="edu-school">University of Business Excellence</div>
+          <div class="edu-dates">Jan 2019 – Feb 2021</div>
+          <div class="edu-gpa">Major: International Business · CGPA: 3.90</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">Foundation in Business Admin</div>
+          <div class="edu-school">Borcelle University</div>
+          <div class="edu-dates">Jan 2018 – Dec 2018</div>
+          <div class="edu-gpa">CGPA: 3.80</div>
+        </div>
+      </div>
+
+      <div class="s-section">
+        <div class="s-title">Skills</div>
+        <span class="skill-tag">Office Suite</span>
+        <span class="skill-tag">Data Entry</span>
+        <span class="skill-tag">Problem Solving</span>
+        <span class="skill-tag">Customer Service</span>
+        <span class="skill-tag">Time Management</span>
+        <span class="skill-tag">Attention to Detail</span>
+        <span class="skill-tag">Corporate Comms</span>
+      </div>
+
+      <div class="s-section">
+        <div class="s-title">Languages</div>
+        <div class="lang-row">
+          <span>English</span>
+          <div class="lang-dot-group">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span>Mandarin</span>
+          <div class="lang-dot-group">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span>Spanish</span>
+          <div class="lang-dot-group">
+            <div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-section">
+        <div class="s-title">Certifications</div>
+        <div class="cert-item">MS Office Specialist</div>
+        <div class="cert-item">Project Management Fundamentals</div>
+        <div class="cert-item">Business Communication</div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</body>
+</html>

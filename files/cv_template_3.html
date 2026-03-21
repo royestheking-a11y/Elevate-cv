@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 3 - ATS Clean Minimal</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #1A3C5E;
+    --accent: #2E7D9B;
+    --text: #222;
+    --text-mid: #555;
+    --divider: #dce4ec;
+    --bg: #F2F5F8;
+  }
+  body { font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 820px; }
+  .cv { background: #fff; box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
+
+  /* HEADER */
+  .cv-header { background: var(--primary); color: #fff; padding: 40px 50px; display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  .header-left .full-name { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+  .header-left .job-title { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.7); margin-top: 4px; letter-spacing: 1px; }
+  .header-right { text-align: right; }
+  .hdr-contact { font-size: 12.5px; color: rgba(255,255,255,0.75); line-height: 1.8; }
+  .hdr-contact a { color: rgba(255,255,255,0.75); text-decoration: none; }
+
+  /* CONTENT */
+  .cv-body { padding: 40px 50px; }
+  .section { margin-bottom: 30px; }
+  .section-row { display: flex; gap: 30px; }
+  .section-label { width: 120px; flex-shrink: 0; }
+  .label-text { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); padding-top: 3px; }
+  .section-content { flex: 1; border-top: 1.5px solid var(--divider); padding-top: 12px; }
+
+  .summary-text { font-size: 13.5px; line-height: 1.75; color: var(--text-mid); }
+
+  .exp-item { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed var(--divider); }
+  .exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .exp-top { display: flex; justify-content: space-between; align-items: baseline; }
+  .exp-role { font-size: 14px; font-weight: 600; color: var(--text); }
+  .exp-period { font-size: 11.5px; color: var(--accent); font-weight: 600; }
+  .exp-company { font-size: 13px; color: var(--text-mid); margin: 2px 0 6px; }
+  .exp-bullets { padding-left: 16px; }
+  .exp-bullets li { font-size: 13px; color: var(--text-mid); line-height: 1.65; margin-bottom: 3px; }
+
+  .edu-item { margin-bottom: 14px; }
+  .edu-top { display: flex; justify-content: space-between; }
+  .edu-degree { font-size: 14px; font-weight: 600; color: var(--text); }
+  .edu-period { font-size: 11.5px; color: var(--accent); font-weight: 600; }
+  .edu-meta { font-size: 12.5px; color: var(--text-mid); margin-top: 2px; }
+
+  .skills-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; }
+  .skill-line { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-mid); }
+  .skill-line::before { content: '▹'; color: var(--accent); font-size: 11px; }
+
+  .refs-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ref-name { font-size: 13.5px; font-weight: 600; color: var(--text); }
+  .ref-company { font-size: 12px; color: var(--accent); margin: 2px 0; }
+  .ref-info { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+
+  /* FOOTER STRIP */
+  .cv-footer { background: var(--primary); height: 6px; }
+
+  @media (max-width: 600px) {
+    .cv-header { flex-direction: column; }
+    .header-right { text-align: left; }
+    .section-row { flex-direction: column; gap: 8px; }
+    .section-label { width: auto; }
+    .skills-two-col, .refs-two-col { grid-template-columns: 1fr; }
+    .cv-body { padding: 25px 20px; }
+    .cv-header { padding: 25px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <header class="cv-header">
+    <div class="header-left">
+      <div class="full-name">ESTELLE DARCY</div>
+      <div class="job-title">Administrative Manager</div>
+    </div>
+    <div class="header-right">
+      <div class="hdr-contact">
+        hello@reallygreatsite.com<br>
+        123-456-7890<br>
+        123 Anywhere St., Any City
+      </div>
+    </div>
+  </header>
+
+  <div class="cv-body">
+    <div class="section">
+      <div class="section-row">
+        <div class="section-label"><div class="label-text">Summary</div></div>
+        <div class="section-content">
+          <p class="summary-text">Detail-oriented administrative professional with over three years of experience providing comprehensive support to executive teams and office operations. Proven track record of managing administrative tasks efficiently and maintaining strict confidentiality. Strong organizational skills coupled with excellent communication abilities to coordinate office activities and facilitate smooth workflow.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-row">
+        <div class="section-label"><div class="label-text">Experience</div></div>
+        <div class="section-content">
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-role">Administrative Assistant</div>
+              <div class="exp-period">Oct 2023 – Present</div>
+            </div>
+            <div class="exp-company">Arowwai Industries</div>
+            <ul class="exp-bullets">
+              <li>Managed executive calendars, schedule meetings, and coordinate travel arrangements.</li>
+              <li>Maintained office supplies inventory and order supplies as needed, optimizing cost efficiency.</li>
+              <li>Assisted in organizing company events, ensuring seamless execution.</li>
+            </ul>
+          </div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-role">Office Coordinator</div>
+              <div class="exp-period">Jan 2022 – Sept 2023</div>
+            </div>
+            <div class="exp-company">Borcelle</div>
+            <ul class="exp-bullets">
+              <li>Provided administrative support to a team of 20+ employees, including calendar management, expense reporting, and meeting coordination.</li>
+              <li>Acted as a liaison between departments, fostering effective communication and collaboration.</li>
+              <li>Assisted in onboarding new employees, facilitating orientation sessions.</li>
+            </ul>
+          </div>
+          <div class="exp-item">
+            <div class="exp-top">
+              <div class="exp-role">Internship</div>
+              <div class="exp-period">Apr 2021 – Dec 2021</div>
+            </div>
+            <div class="exp-company">Salford & Co Corporation</div>
+            <ul class="exp-bullets">
+              <li>Supported senior executives with administrative tasks, including scheduling meetings, managing correspondence, and preparing reports.</li>
+              <li>Assisted in the planning and execution of corporate events and client meetings.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-row">
+        <div class="section-label"><div class="label-text">Education</div></div>
+        <div class="section-content">
+          <div class="edu-item">
+            <div class="edu-top">
+              <div class="edu-degree">Bachelor of Business Administration</div>
+              <div class="edu-period">Jan 2019 – Feb 2021</div>
+            </div>
+            <div class="edu-meta">University of Business Excellence · Major in International Business · CGPA: 3.90</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-top">
+              <div class="edu-degree">Foundation in Business Administration</div>
+              <div class="edu-period">Jan 2018 – Dec 2018</div>
+            </div>
+            <div class="edu-meta">Borcelle University · CGPA: 3.80</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-row">
+        <div class="section-label"><div class="label-text">Key Skills</div></div>
+        <div class="section-content">
+          <div class="skills-two-col">
+            <div class="skill-line">Office Suite Software</div>
+            <div class="skill-line">Problem Solving</div>
+            <div class="skill-line">Data Entry</div>
+            <div class="skill-line">Customer Service</div>
+            <div class="skill-line">Organizational & Time Management</div>
+            <div class="skill-line">Attention to Details</div>
+            <div class="skill-line">Corporate Communications</div>
+            <div class="skill-line">Fluent in English and Mandarin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-row">
+        <div class="section-label"><div class="label-text">References</div></div>
+        <div class="section-content">
+          <div class="refs-two-col">
+            <div>
+              <div class="ref-name">Harumi Kobayashi</div>
+              <div class="ref-company">Salford & Co. / CEO</div>
+              <div class="ref-info">Phone: 123-456-7890<br>Email: hello@reallygreatsite.com</div>
+            </div>
+            <div>
+              <div class="ref-name">Bailey Dupont</div>
+              <div class="ref-company">Arowwai Industries / CEO</div>
+              <div class="ref-info">Phone: 123-456-7890<br>Email: hello@reallygreatsite.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-footer"></div>
+</div>
+</div>
+</body>
+</html>

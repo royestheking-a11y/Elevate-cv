@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Horizon</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800&family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--h:#0F766E;--hl:rgba(15,118,110,.08);--ink:#1C2B3A;--bg:#F9FAFB;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#BFC9CE;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Nunito Sans',sans-serif;}
+
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:28px;height:28px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 2px 5px rgba(0,0,0,.15);}
+.swatch:hover{transform:scale(1.1);}
+.swatch.active{border-color:#fff;}
+
+.resume{
+  width:794px;min-height:1123px;
+  background:var(--bg);
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+  display:flex;flex-direction:column;
+  overflow:hidden;
+}
+
+/* HEADER */
+.cv-head{
+  background:var(--ink);
+  padding:32px 50px;
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cv-head::before{
+  content:'';position:absolute;
+  right:-40px;top:-40px;
+  width:180px;height:180px;
+  border-radius:50%;
+  background:rgba(255,255,255,.03);
+}
+.h-photo{
+  width:70px;height:70px;
+  border-radius:50%;
+  border:2px solid var(--h);
+  background:rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0;
+}
+.h-photo img{width:100%;height:100%;object-fit:cover;}
+.h-initial{font-family:'Rufina',serif;font-size:26px;color:rgba(255,255,255,.4);}
+.h-mid{flex:1;padding:0 28px;}
+.cv-name{font-family:'Rufina',serif;font-size:32px;font-weight:700;color:#fff;line-height:1.1;}
+.cv-name span{color:var(--h);}
+.cv-title{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;margin-top:5px;}
+.h-contacts{display:flex;flex-direction:column;gap:5px;align-items:flex-end;}
+.hc{font-size:11px;color:rgba(255,255,255,.55);}
+
+/* ACCENT STRIP */
+.accent-strip{height:4px;background:linear-gradient(90deg,var(--h),transparent);}
+
+/* BODY */
+.cv-body{display:grid;grid-template-columns:1fr 230px;flex:1;}
+
+/* MAIN */
+.main{padding:30px 36px 30px 50px;}
+.section{margin-bottom:22px;}
+.sec-h{
+  font-size:10px;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--h);margin-bottom:13px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-h::after{content:'';flex:1;height:1px;background:#E5E7EB;}
+
+.profile-text{font-size:12px;line-height:1.78;color:#4B5563;font-weight:400;}
+
+.job{display:grid;grid-template-columns:72px 1fr;gap:0 16px;margin-bottom:15px;}
+.job:last-child{margin-bottom:0;}
+.j-left{text-align:right;padding-top:2px;}
+.j-dates{font-size:10px;font-weight:700;color:var(--h);line-height:1.4;}
+.j-co-sm{font-size:9.5px;color:#9CA3AF;margin-top:3px;line-height:1.3;}
+.j-right{border-left:2px solid var(--h);padding-left:14px;}
+.j-role{font-size:13px;font-weight:700;color:var(--ink);}
+.j-pts li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;list-style:none;padding-left:10px;position:relative;}
+.j-pts li::before{content:'›';position:absolute;left:0;color:var(--h);font-weight:800;}
+
+/* skill bars */
+.skill-2col{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;}
+.sk-row{display:flex;align-items:center;gap:8px;}
+.sk-label{font-size:11px;color:#555;min-width:90px;flex-shrink:0;}
+.sk-bar{flex:1;height:3px;background:#E5E7EB;border-radius:2px;}
+.sk-fill{height:100%;background:var(--h);border-radius:2px;}
+
+/* SIDEBAR */
+.side{
+  background:var(--hl);
+  padding:28px 28px 28px 24px;
+  border-left:1px solid rgba(15,118,110,.12);
+}
+.s-sec{margin-bottom:22px;}
+.s-head{
+  font-size:9px;font-weight:800;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--h);
+  margin-bottom:12px;padding-bottom:5px;
+  border-bottom:1px solid rgba(15,118,110,.2);
+}
+
+.edu-e{margin-bottom:12px;}
+.edu-d{font-size:12px;font-weight:700;color:var(--ink);line-height:1.3;}
+.edu-s{font-size:11px;color:#6B7280;}
+.edu-y{font-size:10px;color:var(--h);font-weight:600;margin-top:1px;}
+
+.tag-wrap{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{
+  font-size:10px;font-weight:600;
+  padding:3px 9px;
+  background:#fff;border:1px solid rgba(15,118,110,.25);
+  color:var(--ink);border-radius:4px;
+}
+
+.lang-r{display:flex;justify-content:space-between;margin-bottom:7px;align-items:center;}
+.l-name{font-size:11.5px;color:var(--ink);}
+.l-bar{width:50px;height:3px;background:#E5E7EB;border-radius:2px;}
+.l-fill{height:100%;background:var(--h);border-radius:2px;}
+
+.cert-e{font-size:11px;color:#555;margin-bottom:6px;display:flex;gap:6px;}
+.cert-e::before{content:'✓';color:var(--h);font-weight:700;flex-shrink:0;}
+
+.ref-e{margin-bottom:12px;}
+.r-name{font-size:12px;font-weight:700;color:var(--ink);}
+.r-role{font-size:10.5px;color:var(--h);}
+.r-contact{font-size:10px;color:#9CA3AF;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#0F766E" onclick="setH('#0F766E','rgba(15,118,110,.08)',this)"></div>
+  <div class="swatch" style="background:#1D4ED8" onclick="setH('#1D4ED8','rgba(29,78,216,.08)',this)"></div>
+  <div class="swatch" style="background:#7C3AED" onclick="setH('#7C3AED','rgba(124,58,237,.08)',this)"></div>
+  <div class="swatch" style="background:#B91C1C" onclick="setH('#B91C1C','rgba(185,28,28,.08)',this)"></div>
+  <div class="swatch" style="background:#92400E" onclick="setH('#92400E','rgba(146,64,14,.08)',this)"></div>
+  <div class="swatch" style="background:#1E3A5F" onclick="setH('#1E3A5F','rgba(30,58,95,.08)',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <header class="cv-head">
+    <div class="h-photo"><span class="h-initial">JK</span></div>
+    <div class="h-mid">
+      <div class="cv-name">James <span>Kim</span></div>
+      <div class="cv-title">Product Manager · Growth Specialist</div>
+    </div>
+    <div class="h-contacts">
+      <div class="hc">j.kim@product.io</div>
+      <div class="hc">+1 (628) 555-0190</div>
+      <div class="hc">San Francisco, CA</div>
+      <div class="hc">linkedin.com/in/jkim</div>
+    </div>
+  </header>
+  <div class="accent-strip"></div>
+
+  <div class="cv-body">
+    <main class="main">
+      <div class="section">
+        <div class="sec-h">Summary</div>
+        <p class="profile-text">Product manager with 9 years driving growth at consumer tech companies. Shipped products used by 50M+ users, led cross-functional teams of up to 30, and consistently delivered features on time and on budget. Data-obsessed, user-centric, and comfortable from zero-to-one to scaling to the enterprise.</p>
+      </div>
+
+      <div class="section">
+        <div class="sec-h">Experience</div>
+        <div class="job">
+          <div class="j-left"><div class="j-dates">2021<br>Now</div><div class="j-co-sm">Airbnb</div></div>
+          <div class="j-right">
+            <div class="j-role">Senior Product Manager — Growth</div>
+            <ul class="j-pts">
+              <li>Owned conversion funnel for 90M annual bookings; lifted checkout by 18%.</li>
+              <li>Launched Flexible Dates feature, contributing $240M incremental revenue.</li>
+              <li>Led 8-person PM+Eng+Design team through 3 major feature cycles.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="j-left"><div class="j-dates">2018<br>2021</div><div class="j-co-sm">Uber</div></div>
+          <div class="j-right">
+            <div class="j-role">Product Manager — Rider Experience</div>
+            <ul class="j-pts">
+              <li>Redesigned post-trip flow; improved 5-star ratings by 12 points.</li>
+              <li>Launched in-app tipping feature globally; generated $40M/yr driver income.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="job">
+          <div class="j-left"><div class="j-dates">2015<br>2018</div><div class="j-co-sm">Pinterest</div></div>
+          <div class="j-right">
+            <div class="j-role">Associate Product Manager</div>
+            <ul class="j-pts"><li>Built recommendations engine increasing weekly active users by 22%.</li></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-h">Skills</div>
+        <div class="skill-2col">
+          <div class="sk-row"><span class="sk-label">Product Strategy</span><div class="sk-bar"><div class="sk-fill" style="width:95%"></div></div></div>
+          <div class="sk-row"><span class="sk-label">Data Analysis</span><div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div></div>
+          <div class="sk-row"><span class="sk-label">A/B Testing</span><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div></div>
+          <div class="sk-row"><span class="sk-label">SQL / Python</span><div class="sk-bar"><div class="sk-fill" style="width:78%"></div></div></div>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side">
+      <div class="s-sec">
+        <div class="s-head">Education</div>
+        <div class="edu-e">
+          <div class="edu-d">MBA — Product & Strategy</div>
+          <div class="edu-s">MIT Sloan School</div>
+          <div class="edu-y">2013 – 2015</div>
+        </div>
+        <div class="edu-e">
+          <div class="edu-d">B.E. Computer Science</div>
+          <div class="edu-s">UC Berkeley</div>
+          <div class="edu-y">2009 – 2013</div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Tools</div>
+        <div class="tag-wrap">
+          <span class="tag">Amplitude</span>
+          <span class="tag">Mixpanel</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Figma</span>
+          <span class="tag">Looker</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">BigQuery</span>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Languages</div>
+        <div class="lang-r"><span class="l-name">English</span><div class="l-bar"><div class="l-fill" style="width:100%"></div></div></div>
+        <div class="lang-r"><span class="l-name">Korean</span><div class="l-bar"><div class="l-fill" style="width:90%"></div></div></div>
+        <div class="lang-r"><span class="l-name">Japanese</span><div class="l-bar"><div class="l-fill" style="width:50%"></div></div></div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Certifications</div>
+        <div class="cert-e">Google PM Certificate</div>
+        <div class="cert-e">AWS Cloud Practitioner</div>
+        <div class="cert-e">Pragmatic Marketing</div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">References</div>
+        <div class="ref-e">
+          <div class="r-name">Sarah Nguyen</div>
+          <div class="r-role">VP Product, Airbnb</div>
+          <div class="r-contact">s.nguyen@airbnb.com</div>
+        </div>
+        <div class="ref-e">
+          <div class="r-name">David Park</div>
+          <div class="r-role">CPO, Pinterest</div>
+          <div class="r-contact">d.park@pinterest.com</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+function setH(h,hl,el){
+  const r=document.getElementById('resume');
+  r.style.setProperty('--h',h);
+  r.style.setProperty('--hl',hl);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

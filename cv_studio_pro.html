@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Studio Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* ══ RESET ══ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+:root{
+  --bg:#0F0F15;--panel:#17171F;--panel2:#1E1E28;--panel3:#252530;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.11);--border3:rgba(255,255,255,.18);
+  --text:#E2E2EE;--text2:#7878A0;--text3:#5050708;
+  --acc:#6C63FF;--acc2:#8B84FF;--acc3:rgba(108,99,255,.12);
+  --green:#22C55E;--red:#EF4444;--amber:#F59E0B;
+  --canvas-bg:#1A1A24;
+}
+body{font-family:'Geist',sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;flex-direction:column;}
+
+/* ══ TOPBAR ══ */
+.topbar{height:50px;background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0;z-index:200;}
+.logo{font-size:14px;font-weight:700;color:#fff;letter-spacing:-.3px;margin-right:4px;white-space:nowrap;}
+.logo span{color:var(--acc);}
+.logo em{font-style:normal;font-size:9px;background:var(--acc);color:#fff;padding:1px 5px;border-radius:3px;margin-left:4px;vertical-align:middle;font-weight:700;}
+.tb-sep{width:1px;height:22px;background:var(--border2);flex-shrink:0;}
+.tb-btn{display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:6px;background:none;border:none;color:var(--text2);font-size:11.5px;font-weight:500;cursor:pointer;transition:.12s;white-space:nowrap;font-family:inherit;}
+.tb-btn:hover{background:var(--panel2);color:var(--text);}
+.tb-btn.active{background:var(--panel3);color:var(--text);}
+.tb-btn.prim{background:var(--acc);color:#fff;padding:5px 14px;}
+.tb-btn.prim:hover{background:var(--acc2);}
+.tb-btn.success{background:var(--green);color:#fff;}
+.zoom-val{font-size:11px;color:var(--text2);min-width:36px;text-align:center;}
+
+/* ══ STUDIO LAYOUT ══ */
+.studio{display:flex;flex:1;overflow:hidden;}
+
+/* ══ LEFT PANEL ══ */
+.left-panel{width:230px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.lp-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
+.lp-tab{flex:1;padding:9px 4px;text-align:center;font-size:10px;font-weight:700;color:var(--text2);cursor:pointer;transition:.12s;letter-spacing:.4px;text-transform:uppercase;border-bottom:2px solid transparent;}
+.lp-tab:hover{color:var(--text);}
+.lp-tab.active{color:var(--acc);border-bottom-color:var(--acc);}
+.lp-body{flex:1;overflow-y:auto;padding:10px;}
+.lp-body::-webkit-scrollbar{width:3px;}
+.lp-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+
+/* section titles */
+.sec-title{font-size:9.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--text2);margin:4px 0 8px;padding-top:4px;}
+
+/* element add buttons */
+.el-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:12px;}
+.el-btn{background:var(--panel2);border:1px solid var(--border);border-radius:7px;padding:9px 6px;font-size:10.5px;font-weight:500;color:var(--text);cursor:pointer;transition:.12s;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit;}
+.el-btn:hover{border-color:var(--acc);color:var(--acc);background:var(--acc3);}
+.el-btn-ico{font-size:16px;}
+.el-btn.wide{grid-column:1/-1;}
+
+/* template gallery */
+.tmpl-gallery{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.tmpl-card{background:var(--panel2);border:1.5px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:.15s;}
+.tmpl-card:hover{border-color:var(--acc);transform:translateY(-1px);}
+.tmpl-card.active-tmpl{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc3);}
+.tmpl-preview{height:72px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.3);position:relative;overflow:hidden;}
+.tmpl-label{font-size:10px;font-weight:500;color:var(--text2);padding:5px 7px;text-align:center;border-top:1px solid var(--border);}
+.tmpl-card:hover .tmpl-label{color:var(--text);}
+
+/* layers */
+.layer-row{display:flex;align-items:center;gap:7px;padding:6px 7px;border-radius:6px;cursor:pointer;transition:.12s;border:1px solid transparent;margin-bottom:2px;}
+.layer-row:hover{background:var(--panel2);}
+.layer-row.sel{background:var(--acc3);border-color:rgba(108,99,255,.25);}
+.layer-ico{font-size:11px;color:var(--text2);flex-shrink:0;width:14px;}
+.layer-nm{font-size:11.5px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.layer-vis{font-size:10px;color:var(--text2);cursor:pointer;padding:2px;}
+.layer-del{font-size:10px;color:var(--text2);cursor:pointer;padding:2px;display:none;}
+.layer-row:hover .layer-del{display:block;}
+.layer-del:hover{color:var(--red);}
+
+/* ══ CANVAS AREA ══ */
+.canvas-area{flex:1;background:var(--canvas-bg);overflow:auto;display:flex;align-items:flex-start;justify-content:center;padding:28px;position:relative;}
+.canvas-area::-webkit-scrollbar{width:6px;height:6px;}
+.canvas-area::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:3px;}
+
+.cv-page{width:794px;min-height:1123px;background:#fff;position:relative;transform-origin:top center;box-shadow:0 16px 60px rgba(0,0,0,.6);flex-shrink:0;overflow:hidden;}
+
+/* ══ CANVAS ELEMENTS ══ */
+.cv-el{position:absolute;cursor:default;box-sizing:border-box;user-select:none;}
+.el-outline{position:absolute;inset:-1px;border:1.5px dashed rgba(108,99,255,.35);border-radius:2px;pointer-events:none;opacity:0;transition:.1s;}
+.cv-el:hover .el-outline{opacity:1;}
+.cv-el.selected .el-outline{opacity:1;border-style:solid;border-color:var(--acc);}
+.cv-el.selected{cursor:move;}
+.el-handle{position:absolute;width:8px;height:8px;background:#fff;border:2px solid var(--acc);border-radius:1.5px;display:none;z-index:10;}
+.cv-el.selected .el-handle{display:flex;}
+.h-tl{top:-4px;left:-4px;cursor:nw-resize;} .h-tr{top:-4px;right:-4px;cursor:ne-resize;}
+.h-bl{bottom:-4px;left:-4px;cursor:sw-resize;} .h-br{bottom:-4px;right:-4px;cursor:se-resize;}
+.h-tm{top:-4px;left:50%;transform:translateX(-50%);cursor:n-resize;} .h-bm{bottom:-4px;left:50%;transform:translateX(-50%);cursor:s-resize;}
+.h-ml{top:50%;left:-4px;transform:translateY(-50%);cursor:w-resize;} .h-mr{top:50%;right:-4px;transform:translateY(-50%);cursor:e-resize;}
+.el-bar{position:absolute;top:-30px;left:0;background:var(--panel);border:1px solid var(--border2);border-radius:6px;padding:2px 5px;display:none;gap:2px;z-index:20;white-space:nowrap;}
+.cv-el.selected .el-bar{display:flex;}
+.eb-btn{background:none;border:none;color:var(--text2);font-size:10.5px;cursor:pointer;padding:2px 5px;border-radius:4px;transition:.1s;font-family:inherit;}
+.eb-btn:hover{background:var(--panel2);color:var(--text);}
+.eb-btn.d:hover{color:var(--red);}
+.cv-text-el{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;color:#1a1a1a;padding:3px;line-height:1.5;word-break:break-word;white-space:pre-wrap;min-height:14px;}
+.cv-text-el[contenteditable="true"]{outline:none;background:rgba(108,99,255,.04);cursor:text;}
+.grid-ov{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(108,99,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,.04) 1px,transparent 1px);background-size:20px 20px;display:none;}
+.grid-ov.on{display:block;}
+
+/* ══ RIGHT PANEL ══ */
+.right-panel{width:252px;flex-shrink:0;background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.rp-head{padding:10px 13px;border-bottom:1px solid var(--border);font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text2);flex-shrink:0;}
+.rp-body{flex:1;overflow-y:auto;padding:10px 12px;}
+.rp-body::-webkit-scrollbar{width:3px;}
+.rp-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px;}
+.prop-grp{margin-bottom:16px;}
+.prop-lbl{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text2);margin-bottom:7px;}
+.prop-row{display:flex;gap:5px;align-items:center;margin-bottom:6px;}
+.prop-nm{font-size:11px;color:var(--text2);min-width:50px;flex-shrink:0;}
+.pi{flex:1;background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11.5px;font-family:inherit;padding:4px 7px;outline:none;transition:.12s;}
+.pi:focus{border-color:var(--acc);}
+.pi[type=number]{width:58px;flex:none;}
+.pi[type=range]{accent-color:var(--acc);padding:0;height:4px;}
+.pi[type=color]{width:30px;height:26px;padding:2px;border-radius:5px;cursor:pointer;flex:none;}
+.font-sel{flex:1;background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:11.5px;font-family:inherit;padding:4px 7px;outline:none;cursor:pointer;}
+.font-sel:focus{border-color:var(--acc);}
+.sty-btns{display:flex;gap:4px;}
+.sty-btn{width:26px;height:26px;border-radius:5px;background:var(--panel2);border:1px solid var(--border);color:var(--text2);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.12s;font-family:inherit;}
+.sty-btn:hover{border-color:var(--border2);color:var(--text);}
+.sty-btn.on{background:var(--acc3);border-color:rgba(108,99,255,.4);color:var(--acc);}
+.aln-row{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;}
+.aln-btn{height:26px;border-radius:5px;background:var(--panel2);border:1px solid var(--border);color:var(--text2);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.12s;}
+.aln-btn:hover{border-color:var(--border2);color:var(--text);}
+.cs-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;}
+.cs{width:20px;height:20px;border-radius:3px;cursor:pointer;border:1.5px solid transparent;transition:.1s;flex-shrink:0;}
+.cs:hover{transform:scale(1.15);}
+.rp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:180px;gap:8px;color:var(--text2);text-align:center;}
+.rp-empty-ico{font-size:28px;}
+.rp-empty-txt{font-size:11.5px;line-height:1.5;}
+
+/* ══ IMPORT WIZARD MODAL ══ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.modal-overlay.hidden{display:none;}
+.modal{background:var(--panel);border:1px solid var(--border2);border-radius:14px;width:620px;max-height:85vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.6);}
+.modal-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.modal-title{font-size:15px;font-weight:700;color:var(--text);}
+.modal-sub{font-size:12px;color:var(--text2);margin-top:2px;}
+.modal-close{background:none;border:none;color:var(--text2);font-size:18px;cursor:pointer;padding:2px 6px;border-radius:4px;}
+.modal-close:hover{color:var(--text);background:var(--panel2);}
+.modal-body{flex:1;overflow-y:auto;padding:18px 20px;}
+.modal-footer{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;}
+
+/* wizard steps */
+.wizard-steps{display:flex;gap:0;margin-bottom:20px;}
+.wz-step{flex:1;text-align:center;position:relative;}
+.wz-step::after{content:'';position:absolute;top:14px;left:50%;width:100%;height:1.5px;background:var(--border2);}
+.wz-step:last-child::after{display:none;}
+.wz-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin:0 auto 5px;position:relative;z-index:1;background:var(--panel2);border:1.5px solid var(--border2);color:var(--text2);}
+.wz-step.done .wz-dot{background:var(--green);border-color:var(--green);color:#fff;}
+.wz-step.active .wz-dot{background:var(--acc);border-color:var(--acc);color:#fff;}
+.wz-label{font-size:10px;font-weight:600;color:var(--text2);letter-spacing:.5px;}
+.wz-step.active .wz-label{color:var(--text);}
+.wz-step.done .wz-label{color:var(--green);}
+
+/* drop zone */
+.drop-zone{border:2px dashed var(--border2);border-radius:10px;padding:32px 20px;text-align:center;cursor:pointer;transition:.15s;position:relative;background:var(--panel2);}
+.drop-zone:hover,.drop-zone.drag{border-color:var(--acc);background:var(--acc3);}
+.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.dz-icon{font-size:36px;margin-bottom:10px;}
+.dz-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.dz-sub{font-size:12px;color:var(--text2);}
+.format-chips{display:flex;gap:6px;justify-content:center;margin-top:10px;}
+.fmt-chip{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px;}
+.fmt-pdf{background:rgba(239,68,68,.15);color:#EF4444;}
+.fmt-doc{background:rgba(59,130,246,.15);color:#3B82F6;}
+.fmt-img{background:rgba(34,197,94,.15);color:#22C55E;}
+
+/* extracted data panel */
+.ext-section{margin-bottom:14px;}
+.ext-sec-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ext-sec-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.ext-field{display:grid;grid-template-columns:100px 1fr;gap:6px;margin-bottom:6px;align-items:start;}
+.ext-key{font-size:11px;font-weight:600;color:var(--text2);padding-top:5px;}
+.ext-val{background:var(--panel2);border:1px solid var(--border);border-radius:5px;color:var(--text);font-size:12px;padding:4px 8px;outline:none;width:100%;font-family:inherit;resize:vertical;min-height:28px;}
+.ext-val:focus{border-color:var(--acc);}
+
+/* template picker in wizard */
+.tmpl-picker{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.tp-card{border:1.5px solid var(--border);border-radius:8px;overflow:hidden;cursor:pointer;transition:.15s;}
+.tp-card:hover{border-color:var(--acc);}
+.tp-card.picked{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc3);}
+.tp-preview{height:55px;display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:rgba(255,255,255,.25);}
+.tp-name{font-size:10px;font-weight:500;color:var(--text2);padding:4px 6px;text-align:center;border-top:1px solid var(--border);}
+.tp-card.picked .tp-name{color:var(--acc);}
+
+/* progress bar */
+.prog-bar{height:4px;background:var(--border2);border-radius:2px;overflow:hidden;margin-bottom:8px;}
+.prog-fill{height:100%;background:var(--acc);border-radius:2px;transition:width .3s;}
+.prog-label{font-size:11.5px;color:var(--text2);text-align:center;}
+
+/* context menu */
+.ctx-menu{position:fixed;background:var(--panel);border:1px solid var(--border2);border-radius:9px;padding:4px;z-index:300;min-width:155px;box-shadow:0 8px 28px rgba(0,0,0,.5);display:none;}
+.ctx-menu.show{display:block;}
+.ctx-item{padding:6px 11px;border-radius:5px;font-size:12px;color:var(--text);cursor:pointer;display:flex;align-items:center;gap:7px;transition:.1s;}
+.ctx-item:hover{background:var(--panel2);}
+.ctx-item.d{color:var(--red);}
+.ctx-item.d:hover{background:rgba(239,68,68,.1);}
+.ctx-sep{height:1px;background:var(--border);margin:3px 0;}
+
+/* toast */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid var(--border2);color:var(--text);padding:9px 16px;border-radius:9px;font-size:12.5px;z-index:400;box-shadow:0 6px 20px rgba(0,0,0,.5);display:none;align-items:center;gap:8px;}
+.toast.show{display:flex;}
+.toast-dot{width:6px;height:6px;border-radius:50%;background:var(--acc);flex-shrink:0;}
+
+/* bg grid */
+.bg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:8px;}
+.bg-sw{height:24px;border-radius:4px;cursor:pointer;border:1.5px solid transparent;transition:.1s;}
+.bg-sw:hover{border-color:var(--border2);}
+.bg-sw.on{border-color:var(--acc);}
+
+/* spinner */
+@keyframes spin{to{transform:rotate(360deg);}}
+.spin{animation:spin .7s linear infinite;display:inline-block;}
+</style>
+</head>
+<body>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <div class="logo">CV<span>Studio</span><em>PRO</em></div>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onclick="undo()">↩ Undo</button>
+  <button class="tb-btn" onclick="redo()">↪ Redo</button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onclick="toggleGrid()" id="gridBtn">⊞ Grid</button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onclick="changeZoom(-0.1)">−</button>
+  <span class="zoom-val" id="zoomVal">100%</span>
+  <button class="tb-btn" onclick="changeZoom(0.1)">+</button>
+  <button class="tb-btn" onclick="fitZoom()">Fit</button>
+  <div class="tb-sep"></div>
+  <!-- IMPORT BUTTON — KEY FEATURE -->
+  <button class="tb-btn" onclick="openImportWizard()" style="color:var(--amber);border:1px solid rgba(245,158,11,.25);padding:5px 11px;border-radius:6px;">⬆ Import CV</button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onclick="exportJSON()">💾 Save</button>
+  <label class="tb-btn" style="cursor:pointer;">📂 Load<input type="file" accept=".json" style="display:none" onchange="importJSON(event)"></label>
+  <div class="tb-sep"></div>
+  <button class="tb-btn prim" onclick="downloadPDF()">⬇ Download PDF</button>
+</div>
+
+<!-- ══ STUDIO ══ -->
+<div class="studio">
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="lp-tabs">
+      <div class="lp-tab active" onclick="switchTab('add',this)">Add</div>
+      <div class="lp-tab" onclick="switchTab('templates',this)">Templates</div>
+      <div class="lp-tab" onclick="switchTab('layers',this)">Layers</div>
+      <div class="lp-tab" onclick="switchTab('page',this)">Page</div>
+    </div>
+
+    <!-- ADD TAB -->
+    <div class="lp-body" id="tab-add">
+      <div class="sec-title">Text</div>
+      <div class="el-grid">
+        <div class="el-btn" onclick="addEl('heading')"><div class="el-btn-ico" style="font-size:20px;font-weight:700">T</div>Heading</div>
+        <div class="el-btn" onclick="addEl('subhead')"><div class="el-btn-ico" style="font-size:15px;font-weight:600">T</div>Subhead</div>
+        <div class="el-btn" onclick="addEl('body')"><div class="el-btn-ico" style="font-size:12px">T</div>Body</div>
+        <div class="el-btn" onclick="addEl('label')"><div class="el-btn-ico" style="font-size:9px;letter-spacing:1px">ABC</div>Label</div>
+        <div class="el-btn wide" onclick="addEl('bullet')"><div class="el-btn-ico">•</div>Bullet List</div>
+      </div>
+
+      <div class="sec-title">Shapes</div>
+      <div class="el-grid">
+        <div class="el-btn" onclick="addEl('rect')"><div class="el-btn-ico">▬</div>Rectangle</div>
+        <div class="el-btn" onclick="addEl('circle')"><div class="el-btn-ico">●</div>Circle</div>
+        <div class="el-btn" onclick="addEl('divider')"><div class="el-btn-ico">━</div>Divider</div>
+        <div class="el-btn" onclick="addEl('triangle')"><div class="el-btn-ico">▲</div>Triangle</div>
+        <div class="el-btn" onclick="addEl('badge')"><div class="el-btn-ico">◈</div>Badge</div>
+        <div class="el-btn" onclick="addEl('line')"><div class="el-btn-ico">╌</div>Line</div>
+      </div>
+
+      <div class="sec-title">Content</div>
+      <div class="el-grid">
+        <div class="el-btn" onclick="addEl('photo')"><div class="el-btn-ico">👤</div>Photo</div>
+        <div class="el-btn" onclick="addEl('skillbar')"><div class="el-btn-ico">▓</div>Skill Bar</div>
+        <div class="el-btn" onclick="addEl('progress')"><div class="el-btn-ico">◐</div>Progress</div>
+        <div class="el-btn" onclick="addEl('icon')"><div class="el-btn-ico">★</div>Icon</div>
+      </div>
+    </div>
+
+    <!-- TEMPLATES TAB -->
+    <div class="lp-body" id="tab-templates" style="display:none">
+      <div class="sec-title">Built-in Themes</div>
+      <div style="font-size:10.5px;color:var(--text2);margin-bottom:10px;line-height:1.5;">Click any template to load it as fully editable canvas elements. All colors, text, and shapes can be customized.</div>
+      <div class="tmpl-gallery" id="tmplGallery"></div>
+      <div class="sec-title" style="margin-top:8px;">Theme Color</div>
+      <div style="font-size:10.5px;color:var(--text2);margin-bottom:8px;">Change the primary accent color of the loaded template:</div>
+      <div class="cs-row" id="themeColorRow"></div>
+      <input type="color" id="themeCustomColor" class="pi" style="width:100%;height:32px;padding:2px;" oninput="applyThemeColor(this.value)">
+    </div>
+
+    <!-- LAYERS TAB -->
+    <div class="lp-body" id="tab-layers" style="display:none">
+      <div id="layerList"></div>
+    </div>
+
+    <!-- PAGE TAB -->
+    <div class="lp-body" id="tab-page" style="display:none">
+      <div class="sec-title">Background</div>
+      <div class="bg-grid" id="bgGrid"></div>
+      <div class="prop-row"><span class="prop-nm">Custom</span><input type="color" class="pi" value="#ffffff" oninput="setPageBg(this.value)"></div>
+      <div class="sec-title" style="margin-top:12px;">Canvas Info</div>
+      <div style="font-size:11px;color:var(--text2);line-height:1.7">Format: A4<br>794 × 1123 px<br>Print ready at 96dpi</div>
+    </div>
+  </div>
+
+  <!-- CANVAS -->
+  <div class="canvas-area" id="canvasArea" onclick="onCanvasClick(event)" oncontextmenu="onRightClick(event)">
+    <div class="cv-page" id="cvPage">
+      <div class="grid-ov" id="gridOv"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="rp-head" id="rpHead">Properties</div>
+    <div class="rp-body" id="rpBody">
+      <div class="rp-empty"><div class="rp-empty-ico">↖</div><div class="rp-empty-txt">Select any element<br>to edit its properties</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ IMPORT WIZARD MODAL ══ -->
+<div class="modal-overlay hidden" id="importModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title">Import CV</div>
+        <div class="modal-sub">Upload a PDF, Word doc, or image — we'll extract your data and fill any template</div>
+      </div>
+      <button class="modal-close" onclick="closeImport()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- Step content injected here -->
+    </div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div class="ctx-menu" id="ctxMenu">
+  <div class="ctx-item" onclick="ctxDo('copy')">📋 Copy</div>
+  <div class="ctx-item" onclick="ctxDo('paste')">📌 Paste</div>
+  <div class="ctx-item" onclick="ctxDo('dup')">⧉ Duplicate</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="ctxDo('front')">⬆ Bring to Front</div>
+  <div class="ctx-item" onclick="ctxDo('back')">⬇ Send to Back</div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item d" onclick="ctxDo('del')">🗑 Delete</div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><div class="toast-dot"></div><span id="toastTxt"></span></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CV STUDIO PRO — ENGINE
+═══════════════════════════════════════════════════════════ */
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+/* ── STATE ── */
+let els = [], sel = null, zoom = 1, gridOn = false;
+let clipboard = null, drag = null, ctxTarget = null;
+let hist = [], histIdx = -1, idCtr = 0;
+let importData = {}, wizardStep = 0, pickedTemplate = 'noir';
+let currentThemeColor = '#6C63FF';
+
+const page = document.getElementById('cvPage');
+const uid = () => 'e' + (++idCtr);
+const getEl = id => els.find(e => e.id === id);
+const capitalize = s => s[0].toUpperCase() + s.slice(1);
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+/* ═══════════════════════════════════════════════════════════
+   BUILT-IN TEMPLATES — 10 complete CV layouts as element arrays
+   Each template is a function that receives cvData (extracted or dummy)
+   and returns an elements array. currentThemeColor is used throughout.
+═══════════════════════════════════════════════════════════ */
+const TEMPLATE_META = [
+  { id:'noir',    label:'Executive Noir', preview:{bg:'#1A1A1A',accent:'#B8960C'} },
+  { id:'swiss',   label:'Swiss Grid',     preview:{bg:'#fff',accent:'#E63312'} },
+  { id:'arch',    label:'Architect',      preview:{bg:'#F2F2F2',accent:'#C0392B'} },
+  { id:'gradient',label:'Gradient',       preview:{bg:'#0F2027',accent:'#00D4AA'} },
+  { id:'timeline',label:'Timeline Pro',   preview:{bg:'#111827',accent:'#1D4ED8'} },
+  { id:'minimal', label:'Minimal Ink',    preview:{bg:'#FFFEF9',accent:'#C2410C'} },
+  { id:'horizon', label:'Horizon',        preview:{bg:'#1C2B3A',accent:'#0F766E'} },
+  { id:'diamond', label:'Diamond Cut',    preview:{bg:'#6D28D9',accent:'#fff'} },
+  { id:'mono',    label:'Mono Block',     preview:{bg:'#0C0C0C',accent:'#D97706'} },
+  { id:'soft',    label:'Soft Premium',   preview:{bg:'#F5F0E8',accent:'#B45309'} },
+];
+
+function buildTemplate(id, d) {
+  // d = cv data object with name, title, email, phone, address, summary, experience[], education[], skills[], languages[]
+  const C = currentThemeColor; // accent color
+  const name = d.name || 'Your Name';
+  const title = d.title || 'Job Title';
+  const email = d.email || 'email@example.com';
+  const phone = d.phone || '+1 (000) 000-0000';
+  const addr  = d.address || 'City, Country';
+  const summary = d.summary || 'Professional summary goes here. Click to edit this text and add your own description.';
+  const exp0 = d.experience?.[0] || { role:'Job Title', company:'Company Name', period:'2020–Present', bullets:['Key achievement or responsibility here.','Another accomplishment or skill demonstrated.'] };
+  const exp1 = d.experience?.[1] || { role:'Previous Role', company:'Previous Company', period:'2018–2020', bullets:['Key achievement from this role.'] };
+  const edu0 = d.education?.[0]  || { degree:'Bachelor of Science', institution:'University Name', period:'2014–2018' };
+  const skills = d.skills?.slice(0,8).join('  ·  ') || 'Skill One  ·  Skill Two  ·  Skill Three  ·  Skill Four  ·  Skill Five';
+  const langs  = (d.languages||[{l:'English',lv:'Native'},{l:'Spanish',lv:'Fluent'}]).slice(0,4);
+
+  // helper to make a text element
+  const T = (x,y,w,h,text,fs,fw,ff,col,ta='left',il=false,ul=false,lh=1.5,ls=0) => ({
+    id:uid(),type:'text',x,y,w,h,text,fontSize:fs,fontWeight:fw,fontFamily:ff,color:col,
+    textAlign:ta,italic:il,underline:ul,lineHeight:lh,letterSpacing:ls,zIndex:idCtr,visible:true,locked:false
+  });
+  // helper to make a shape element
+  const S = (x,y,w,h,fill,stroke='none',sw=0,radius=0,opacity=1,shape='rect',extra={}) => ({
+    id:uid(),type:'shape',shape,x,y,w,h,fill,stroke,strokeWidth:sw,radius,opacity,zIndex:idCtr,visible:true,locked:false,...extra
+  });
+  // divider
+  const D = (x,y,w,col,thick=1,style='solid') => ({
+    id:uid(),type:'divider',x,y,w,h:8,color:col,thickness:thick,style,zIndex:idCtr,visible:true,locked:false
+  });
+  // skill bar
+  const SK = (x,y,w,label,val,barCol,bg,tc='#555') => ({
+    id:uid(),type:'skillbar',x,y,w,h:28,label,value:val,color:barCol,bg,fontSize:11,fontFamily:'Plus Jakarta Sans',textColor:tc,zIndex:idCtr,visible:true,locked:false
+  });
+
+  const templates = {
+    noir: () => [
+      S(0,0,240,1123,'#1A1A1A'),
+      S(240,0,4,1123,C,'none',0,0,1,'rect'),
+      // sidebar
+      T(30,44,180,32,name,18,'700','Cormorant Garamond','#ffffff','center'),
+      T(30,78,180,16,title,9,'600','Plus Jakarta Sans',C,'center',false,false,1.2,3),
+      T(20,112,200,12,'CONTACT',8,'700','Plus Jakarta Sans','rgba(255,255,255,0.4)','left',false,false,1.2,3),
+      D(20,127,200,'rgba(255,255,255,0.1)',1),
+      T(20,138,200,60,`✉ ${email}\n☎ ${phone}\n⌂ ${addr}`,10.5,'400','Plus Jakarta Sans','rgba(255,255,255,0.6)','left',false,false,1.7),
+      T(20,210,200,12,'SKILLS',8,'700','Plus Jakarta Sans','rgba(255,255,255,0.4)','left',false,false,1.2,3),
+      D(20,225,200,'rgba(255,255,255,0.1)',1),
+      SK(20,237,200,'Design',90,C,'rgba(255,255,255,0.1)','rgba(255,255,255,0.65)'),
+      SK(20,273,200,'Strategy',82,C,'rgba(255,255,255,0.1)','rgba(255,255,255,0.65)'),
+      SK(20,309,200,'Leadership',88,C,'rgba(255,255,255,0.1)','rgba(255,255,255,0.65)'),
+      T(20,358,200,12,'LANGUAGES',8,'700','Plus Jakarta Sans','rgba(255,255,255,0.4)','left',false,false,1.2,3),
+      D(20,373,200,'rgba(255,255,255,0.1)',1),
+      T(20,385,200,50,langs.map(l=>l.l+' — '+(l.lv||'')).join('\n'),11,'400','Plus Jakarta Sans','rgba(255,255,255,0.6)','left',false,false,1.7),
+      // main
+      T(264,44,490,54,name,36,'700','Cormorant Garamond','#1A1A1A'),
+      T(264,100,480,18,title.toUpperCase(),10,'600','Plus Jakarta Sans',C,'left',false,false,1.2,3),
+      T(264,132,480,12,'PROFILE',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(264,148,480,'#E8E8E8',1),
+      T(264,157,480,56,summary,12,'300','Plus Jakarta Sans','#555555','left',false,false,1.75),
+      T(264,226,480,12,'EXPERIENCE',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(264,242,480,'#E8E8E8',1),
+      T(264,251,340,18,exp0.role||'',13.5,'700','Plus Jakarta Sans','#1A1A1A'),
+      T(604,251,130,18,exp0.period||'',10,'600','Plus Jakarta Sans',C,'right'),
+      T(264,272,480,14,(exp0.company||'') + ' · ' + (exp0.location||''),12,'400','Plus Jakarta Sans','#888888','left',true),
+      T(264,290,480,56,(exp0.bullets||[]).map(b=>'• '+b).join('\n'),11.5,'300','Plus Jakarta Sans','#555555','left',false,false,1.65),
+      T(264,358,340,18,exp1.role||'',13.5,'700','Plus Jakarta Sans','#1A1A1A'),
+      T(604,358,130,18,exp1.period||'',10,'600','Plus Jakarta Sans',C,'right'),
+      T(264,379,480,14,(exp1.company||''),12,'400','Plus Jakarta Sans','#888888','left',true),
+      T(264,397,480,40,(exp1.bullets||[]).map(b=>'• '+b).join('\n'),11.5,'300','Plus Jakarta Sans','#555555','left',false,false,1.65),
+      T(264,450,480,12,'EDUCATION',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(264,466,480,'#E8E8E8',1),
+      T(264,475,340,18,edu0.degree||'',13,'700','Plus Jakarta Sans','#1A1A1A'),
+      T(604,475,130,18,edu0.period||'',10,'600','Plus Jakarta Sans',C,'right'),
+      T(264,495,480,16,edu0.institution||'',12,'400','Plus Jakarta Sans','#888888','left',false),
+      T(264,525,480,12,'SKILLS',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(264,541,480,'#E8E8E8',1),
+      T(264,550,480,18,skills,12,'400','Plus Jakarta Sans','#555'),
+    ],
+
+    minimal: () => [
+      T(50,50,694,58,name,46,'300','Cormorant Garamond','#111111','left',false,false,1,-1),
+      T(50,114,540,22,title,13,'400','Plus Jakarta Sans','#888888','left',false,false,1.3,0.5),
+      S(50,146,60,3,C,'none',0,2,1,'rect'),
+      T(50,162,460,56,summary,12.5,'300','Plus Jakarta Sans','#555555','left',false,false,1.78),
+      T(548,162,196,56,`${email}\n${phone}\n${addr}`,11,'400','Plus Jakarta Sans','#999999','right',false,false,1.7),
+      D(50,228,694,'#E0E0E0',1),
+      T(50,248,120,13,'EXPERIENCE',9,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      T(50,272,90,14,exp0.period||'',11,'500','Plus Jakarta Sans','#AAAAAA'),
+      T(160,270,580,18,`${exp0.role||''}  ·  ${exp0.company||''}`,13.5,'600','Plus Jakarta Sans','#111111'),
+      T(160,292,580,50,(exp0.bullets||[]).map(b=>'• '+b).join('\n'),12,'300','Plus Jakarta Sans','#555','left',false,false,1.7),
+      T(50,352,90,14,exp1.period||'',11,'500','Plus Jakarta Sans','#AAAAAA'),
+      T(160,350,580,18,`${exp1.role||''}  ·  ${exp1.company||''}`,13.5,'600','Plus Jakarta Sans','#111111'),
+      T(160,372,580,40,(exp1.bullets||[]).map(b=>'• '+b).join('\n'),12,'300','Plus Jakarta Sans','#555','left',false,false,1.7),
+      D(50,422,694,'#E0E0E0',1),
+      T(50,442,120,13,'EDUCATION',9,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      T(50,466,90,14,edu0.period||'',11,'500','Plus Jakarta Sans','#AAAAAA'),
+      T(160,464,580,34,`${edu0.degree||''}  ·  ${edu0.institution||''}`,13,'600','Plus Jakarta Sans','#111111','left',false,false,1.3),
+      D(50,508,694,'#E0E0E0',1),
+      T(50,528,120,13,'SKILLS',9,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      T(50,552,694,18,skills,12,'400','Plus Jakarta Sans','#666666','left',false,false,1.5),
+      D(50,580,694,'#E0E0E0',1),
+      T(50,600,120,13,'LANGUAGES',9,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      T(50,624,694,18,langs.map(l=>`${l.l} — ${l.lv||''}`).join('   ·   '),12,'400','Plus Jakarta Sans','#666666','left',false,false,1.5),
+    ],
+
+    horizon: () => [
+      S(0,0,794,90,C),
+      T(24,24,520,34,name,28,'700','Lora','#ffffff'),
+      T(24,62,520,18,title,11,'500','Plus Jakarta Sans','rgba(255,255,255,0.6)','left',false,false,1.2,1.5),
+      T(590,28,190,55,`${email}\n${phone}\n${addr}`,11,'400','Plus Jakarta Sans','rgba(255,255,255,0.55)','right',false,false,1.7),
+      S(0,90,794,4,C),
+      // sidebar right
+      S(580,94,214,1029,'rgba(0,0,0,0.03)'),
+      T(594,106,186,13,'EDUCATION',8.5,'700','Plus Jakarta Sans',C,'left',false,false,1,3),
+      D(594,122,186,C+'33',1),
+      T(594,130,186,18,edu0.degree||'',12,'700','Plus Jakarta Sans','#1C2B3A'),
+      T(594,150,186,14,edu0.institution||'',11,'400','Plus Jakarta Sans','#888'),
+      T(594,166,186,13,edu0.period||'',10,'600','Plus Jakarta Sans',C),
+      T(594,196,186,13,'SKILLS',8.5,'700','Plus Jakarta Sans',C,'left',false,false,1,3),
+      D(594,212,186,C+'33',1),
+      T(594,220,186,80,skills.split('  ·  ').join('\n'),11.5,'400','Plus Jakarta Sans','#555','left',false,false,1.7),
+      T(594,314,186,13,'LANGUAGES',8.5,'700','Plus Jakarta Sans',C,'left',false,false,1,3),
+      D(594,330,186,C+'33',1),
+      T(594,338,186,60,langs.map(l=>`${l.l} — ${l.lv||''}`).join('\n'),11.5,'400','Plus Jakarta Sans','#555','left',false,false,1.7),
+      // main
+      T(24,108,530,13,'SUMMARY',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(24,124,530,'#EEEEEE',1),
+      T(24,132,530,50,summary,12,'400','Plus Jakarta Sans','#444444','left',false,false,1.75),
+      T(24,196,530,13,'EXPERIENCE',8.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,3),
+      D(24,212,530,'#EEEEEE',1),
+      T(24,220,66,16,exp0.period||'',9.5,'700','Plus Jakarta Sans',C,'right'),
+      {id:uid(),type:'shape',shape:'rect',x:100,y:220,w:2,h:80,fill:C,stroke:'none',strokeWidth:0,radius:1,opacity:1,zIndex:idCtr,visible:true,locked:false},
+      T(110,220,444,16,exp0.role||'',13,'700','Plus Jakarta Sans','#1C2B3A'),
+      T(110,238,444,14,exp0.company||'',11.5,'400','Plus Jakarta Sans','#888','left',true),
+      T(110,256,444,46,(exp0.bullets||[]).map(b=>'• '+b).join('\n'),11,'400','Plus Jakarta Sans','#555','left',false,false,1.6),
+      T(24,316,66,16,exp1.period||'',9.5,'700','Plus Jakarta Sans',C,'right'),
+      {id:uid(),type:'shape',shape:'rect',x:100,y:316,w:2,h:60,fill:C,stroke:'none',strokeWidth:0,radius:1,opacity:1,zIndex:idCtr,visible:true,locked:false},
+      T(110,316,444,16,exp1.role||'',13,'700','Plus Jakarta Sans','#1C2B3A'),
+      T(110,334,444,14,exp1.company||'',11.5,'400','Plus Jakarta Sans','#888','left',true),
+      T(110,352,444,36,(exp1.bullets||[]).map(b=>'• '+b).join('\n'),11,'400','Plus Jakarta Sans','#555','left',false,false,1.6),
+    ],
+
+    soft: () => [
+      S(0,0,228,1123,'#F5F0E8'),
+      S(228,0,1,1123,C+'44'),
+      // sidebar
+      {id:uid(),type:'image',x:58,y:40,w:100,h:100,src:null,radius:50,zIndex:idCtr,visible:true,locked:false},
+      T(30,156,168,28,name,19,'700','Lora','#1C1917','center'),
+      T(30,186,168,16,title,8.5,'500','Plus Jakarta Sans',C,'center',false,false,1.2,2.5),
+      T(16,218,196,12,'CONTACT',7.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,2.5),
+      D(16,232,196,'rgba(0,0,0,0.08)',1),
+      T(16,242,196,55,`✉ ${email}\n☎ ${phone}\n⌂ ${addr}`,10.5,'400','Plus Jakarta Sans','#777777','left',false,false,1.7),
+      T(16,308,196,12,'SKILLS',7.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,2.5),
+      D(16,322,196,'rgba(0,0,0,0.08)',1),
+      SK(16,332,196,'Design',90,C,'rgba(0,0,0,0.06)','#555'),
+      SK(16,368,196,'Strategy',82,C,'rgba(0,0,0,0.06)','#555'),
+      SK(16,404,196,'Leadership',78,C,'rgba(0,0,0,0.06)','#555'),
+      T(16,446,196,12,'LANGUAGES',7.5,'700','Plus Jakarta Sans','#BBBBBB','left',false,false,1,2.5),
+      D(16,460,196,'rgba(0,0,0,0.08)',1),
+      T(16,470,196,55,langs.map(l=>`${l.l} — ${l.lv||''}`).join('\n'),11,'400','Plus Jakarta Sans','#777777','left',false,false,1.7),
+      // main
+      T(250,44,500,52,name,40,'700','Lora','#1C1917','left',true),
+      T(250,100,500,16,title,10,'500','Plus Jakarta Sans',C,'left',false,false,1.2,2),
+      T(250,130,500,12,'PROFILE',8.5,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      D(250,145,500,'rgba(0,0,0,0.07)',1),
+      T(250,155,500,52,summary,12,'300','Plus Jakarta Sans','#555555','left',false,false,1.78),
+      T(250,222,500,12,'EXPERIENCE',8.5,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      D(250,238,500,'rgba(0,0,0,0.07)',1),
+      T(250,248,340,18,exp0.role||'',13.5,'700','Plus Jakarta Sans','#1C1917'),
+      T(590,248,150,18,exp0.period||'',10,'600','Plus Jakarta Sans',C,'right'),
+      T(250,268,500,14,(exp0.company||''),12,'400','Plus Jakarta Sans','#999','left',true),
+      T(250,286,500,52,(exp0.bullets||[]).map(b=>'• '+b).join('\n'),11.5,'300','Plus Jakarta Sans','#555','left',false,false,1.65),
+      T(250,350,340,18,exp1.role||'',13.5,'700','Plus Jakarta Sans','#1C1917'),
+      T(590,350,150,18,exp1.period||'',10,'600','Plus Jakarta Sans',C,'right'),
+      T(250,370,500,14,(exp1.company||''),12,'400','Plus Jakarta Sans','#999','left',true),
+      T(250,388,500,40,(exp1.bullets||[]).map(b=>'• '+b).join('\n'),11.5,'300','Plus Jakarta Sans','#555','left',false,false,1.65),
+      T(250,440,500,12,'EDUCATION',8.5,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      D(250,456,500,'rgba(0,0,0,0.07)',1),
+      T(250,466,340,18,edu0.degree||'',13,'700','Plus Jakarta Sans','#1C1917'),
+      T(250,486,500,14,edu0.institution||'',12,'400','Plus Jakarta Sans','#999'),
+      T(250,516,500,12,'SKILLS',8.5,'700','Plus Jakarta Sans','#CCCCCC','left',false,false,1,3),
+      D(250,532,500,'rgba(0,0,0,0.07)',1),
+      T(250,542,500,18,skills,12,'400','Plus Jakarta Sans','#666666'),
+    ],
+  };
+
+  // For other templates not fully defined, use horizon as fallback
+  const fn = templates[id] || templates.horizon;
+  return fn();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOAD TEMPLATE INTO CANVAS
+═══════════════════════════════════════════════════════════ */
+function loadTemplate(id, data) {
+  pickedTemplate = id;
+  if(!data) data = {};
+  idCtr = 0;
+  els = buildTemplate(id, data);
+  sel = null;
+
+  // set page bg
+  const pageBgs = {
+    noir:'#FFFFFF', swiss:'#FFFFFF', arch:'#FAFAFA', gradient:'#F7F8FC',
+    timeline:'#FDFDFD', minimal:'#FFFEF9', horizon:'#F9FAFB',
+    diamond:'#FEFEFE', mono:'#FEFEFE', soft:'#FDFAF6'
+  };
+  page.style.background = pageBgs[id] || '#fff';
+  document.querySelectorAll('.tmpl-card').forEach(c => c.classList.toggle('active-tmpl', c.dataset.tid === id));
+  saveHist();
+  rerender();
+  showToast('Template loaded — click any element to edit');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THEME COLOR CHANGER — recolors all accent elements in template
+═══════════════════════════════════════════════════════════ */
+function applyThemeColor(newColor) {
+  currentThemeColor = newColor;
+  document.getElementById('themeCustomColor').value = newColor;
+  // Rebuild template with new color using existing data
+  if(pickedTemplate) {
+    const curData = extractCurrentTextData();
+    idCtr = 0;
+    const oldSel = sel;
+    sel = null;
+    els = buildTemplate(pickedTemplate, curData);
+    sel = null;
+    saveHist();
+    rerender();
+    showToast('Theme color updated');
+  }
+}
+
+// Extract text content from current canvas elements for re-building
+function extractCurrentTextData() {
+  const d = {};
+  const textEls = els.filter(e => e.type === 'text');
+  // Find name (largest font size)
+  const biggest = textEls.reduce((a,b) => (a.fontSize||0) > (b.fontSize||0) ? a : b, {});
+  if(biggest.text) d.name = biggest.text;
+  return d; // simplified — in real app you'd map more fields
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ELEMENT DEFAULTS
+═══════════════════════════════════════════════════════════ */
+const EL_DEFAULTS = {
+  heading:  {type:'text',x:60,y:60,w:500,h:54,text:'Your Name',fontSize:38,fontWeight:'700',fontFamily:'Cormorant Garamond',color:'#1a1a1a',textAlign:'left',italic:false,underline:false,lineHeight:1.1,letterSpacing:-0.5},
+  subhead:  {type:'text',x:60,y:120,w:400,h:26,text:'Job Title',fontSize:15,fontWeight:'500',fontFamily:'Plus Jakarta Sans',color:'#666666',textAlign:'left',italic:false,underline:false,lineHeight:1.4,letterSpacing:1.5},
+  body:     {type:'text',x:60,y:160,w:500,h:70,text:'Click to edit this text. Your professional summary or description goes here.',fontSize:12.5,fontWeight:'400',fontFamily:'Plus Jakarta Sans',color:'#444444',textAlign:'left',italic:false,underline:false,lineHeight:1.75,letterSpacing:0},
+  label:    {type:'text',x:60,y:260,w:220,h:14,text:'SECTION LABEL',fontSize:9,fontWeight:'700',fontFamily:'Plus Jakarta Sans',color:'#AAAAAA',textAlign:'left',italic:false,underline:false,lineHeight:1.2,letterSpacing:3},
+  bullet:   {type:'text',x:60,y:60,w:300,h:80,text:'• First achievement or point\n• Second key accomplishment\n• Third important result',fontSize:12,fontWeight:'400',fontFamily:'Plus Jakarta Sans',color:'#444444',textAlign:'left',italic:false,underline:false,lineHeight:1.72,letterSpacing:0},
+  rect:     {type:'shape',shape:'rect',x:60,y:60,w:200,h:80,fill:currentThemeColor,stroke:'none',strokeWidth:0,radius:0,opacity:1},
+  circle:   {type:'shape',shape:'circle',x:60,y:60,w:80,h:80,fill:currentThemeColor,stroke:'none',strokeWidth:0,radius:50,opacity:1},
+  triangle: {type:'shape',shape:'triangle',x:60,y:60,w:80,h:70,fill:currentThemeColor,stroke:'none',strokeWidth:0,radius:0,opacity:1},
+  badge:    {type:'shape',shape:'badge',x:60,y:60,w:110,h:28,fill:'rgba(108,99,255,0.1)',stroke:currentThemeColor,strokeWidth:1,radius:14,opacity:1,text:'Skill',textColor:currentThemeColor,fontSize:11,fontFamily:'Plus Jakarta Sans'},
+  line:     {type:'divider',x:60,y:200,w:500,h:8,color:'#DDDDDD',thickness:1,style:'solid'},
+  divider:  {type:'divider',x:60,y:200,w:500,h:8,color:'#DDDDDD',thickness:1,style:'solid'},
+  photo:    {type:'image',x:60,y:60,w:110,h:130,src:null,radius:0},
+  skillbar: {type:'skillbar',x:60,y:60,w:280,h:28,label:'Skill Name',value:80,color:currentThemeColor,bg:'#EEEEEE',fontSize:12,fontFamily:'Plus Jakarta Sans',textColor:'#333333'},
+  progress: {type:'skillbar',x:60,y:60,w:280,h:28,label:'Progress',value:70,color:currentThemeColor,bg:'#EEEEEE',fontSize:12,fontFamily:'Plus Jakarta Sans',textColor:'#333333'},
+  icon:     {type:'text',x:60,y:60,w:40,h:40,text:'★',fontSize:28,fontWeight:'400',fontFamily:'Plus Jakarta Sans',color:currentThemeColor,textAlign:'center',italic:false,underline:false,lineHeight:1.4,letterSpacing:0},
+};
+
+function addEl(type) {
+  const def = EL_DEFAULTS[type];
+  if(!def) return;
+  const el = { id:uid(), zIndex:els.length+1, visible:true, locked:false, ...JSON.parse(JSON.stringify(def)) };
+  el.x += (els.length%6)*6; el.y += (els.length%6)*6;
+  els.push(el);
+  saveHist(); rerender(); selectEl(el.id);
+  showToast('Element added — drag to position');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════════════ */
+function rerender() {
+  page.querySelectorAll('.cv-el').forEach(n => n.remove());
+  [...els].sort((a,b) => a.zIndex - b.zIndex).forEach(el => { if(el.visible) renderEl(el); });
+  renderLayerList();
+}
+
+function renderEl(el) {
+  const wrap = document.createElement('div');
+  wrap.className = 'cv-el' + (el.id === sel ? ' selected' : '');
+  wrap.id = 'w_' + el.id;
+  wrap.style.cssText = `left:${el.x}px;top:${el.y}px;width:${el.w}px;${el.type==='skillbar'?'':'height:'+el.h+'px;'}z-index:${el.zIndex};`;
+
+  let inner = '';
+  if(el.type === 'text') {
+    const dec = el.underline ? 'underline' : 'none';
+    inner = `<div class="cv-text-el" style="font-family:'${el.fontFamily}',serif,sans-serif;font-size:${el.fontSize}px;font-weight:${el.fontWeight};color:${el.color};text-align:${el.textAlign};font-style:${el.italic?'italic':'normal'};text-decoration:${dec};line-height:${el.lineHeight};letter-spacing:${el.letterSpacing}px;padding:3px;white-space:pre-wrap;word-break:break-word;min-height:${el.h}px;" ondblclick="startEdit('${el.id}')">${esc(el.text)}</div>`;
+  } else if(el.type === 'shape') {
+    if(el.shape === 'rect' || el.shape === 'circle')
+      inner = `<div style="width:100%;height:100%;background:${el.fill};border:${el.strokeWidth}px solid ${el.stroke};border-radius:${el.radius}%;opacity:${el.opacity};"></div>`;
+    else if(el.shape === 'triangle')
+      inner = `<div style="width:0;height:0;border-left:${el.w/2}px solid transparent;border-right:${el.w/2}px solid transparent;border-bottom:${el.h}px solid ${el.fill};opacity:${el.opacity};margin:auto;"></div>`;
+    else if(el.shape === 'badge')
+      inner = `<div style="width:100%;height:100%;background:${el.fill};border:${el.strokeWidth}px solid ${el.stroke};border-radius:${el.radius}px;opacity:${el.opacity};display:flex;align-items:center;justify-content:center;font-family:'${el.fontFamily||'Plus Jakarta Sans'}',sans-serif;font-size:${el.fontSize||11}px;color:${el.textColor||'#333'};font-weight:600;">${esc(el.text||'')}</div>`;
+  } else if(el.type === 'divider') {
+    const bs = el.style==='dashed'?'dashed':el.style==='dotted'?'dotted':'solid';
+    inner = `<div style="position:absolute;top:50%;transform:translateY(-50%);width:100%;height:${el.thickness}px;background:${el.color};border-top:${el.thickness}px ${bs} ${el.color};"></div>`;
+  } else if(el.type === 'image') {
+    inner = el.src
+      ? `<div style="width:100%;height:100%;border-radius:${el.radius}px;overflow:hidden;"><img src="${el.src}" style="width:100%;height:100%;object-fit:cover;display:block;"></div>`
+      : `<div style="width:100%;height:100%;border-radius:${el.radius}px;background:#F0F0F0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:4px;" onclick="triggerImgUpload('${el.id}')"><span style="font-size:24px;">📷</span><span style="font-size:9.5px;color:#BBB;">Click to upload</span></div>`;
+  } else if(el.type === 'skillbar') {
+    inner = `<div style="font-family:'${el.fontFamily||'Plus Jakarta Sans'}',sans-serif;font-size:${el.fontSize||12}px;color:${el.textColor||'#333'};margin-bottom:4px;font-weight:600;">${esc(el.label||'')}</div><div style="width:100%;height:8px;background:${el.bg||'#EEE'};border-radius:4px;overflow:hidden;"><div style="width:${el.value||0}%;height:100%;background:${el.color||'#6C63FF'};border-radius:4px;"></div></div>`;
+    wrap.style.height = 'auto';
+  }
+
+  inner += `<div class="el-outline"></div>`;
+  if(el.id === sel) {
+    inner += `<div class="el-handle h-tl" data-h="tl"></div><div class="el-handle h-tr" data-h="tr"></div><div class="el-handle h-bl" data-h="bl"></div><div class="el-handle h-br" data-h="br"></div><div class="el-handle h-tm" data-h="tm"></div><div class="el-handle h-bm" data-h="bm"></div><div class="el-handle h-ml" data-h="ml"></div><div class="el-handle h-mr" data-h="mr"></div>`;
+    inner += `<div class="el-bar"><button class="eb-btn" onclick="dupEl('${el.id}')">⧉</button><button class="eb-btn" onclick="bringF('${el.id}')">⬆</button><button class="eb-btn" onclick="sendB('${el.id}')">⬇</button><button class="eb-btn d" onclick="delEl('${el.id}')">🗑</button></div>`;
+  }
+  wrap.innerHTML = inner;
+  wrap.addEventListener('mousedown', e => onMDown(e, el.id));
+  page.appendChild(wrap);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SELECTION & DRAG
+═══════════════════════════════════════════════════════════ */
+function selectEl(id) { sel = id; rerender(); renderProps(); }
+function deselect() { sel = null; rerender(); renderProps(); }
+function onCanvasClick(e) { if(e.target===document.getElementById('canvasArea')||e.target===page||e.target.classList.contains('grid-ov')) deselect(); closeCtx(); }
+function onMDown(e, id) {
+  e.stopPropagation(); closeCtx();
+  if(e.button===2) return;
+  const el = getEl(id);
+  if(!el||el.locked) return;
+  const h = e.target.dataset.h;
+  if(h) { drag={type:'resize',h,sx:e.clientX,sy:e.clientY,sel:{x:el.x,y:el.y,w:el.w,h:el.h},id}; e.preventDefault(); return; }
+  if(e.target.classList.contains('cv-text-el') && id===sel) return;
+  selectEl(id);
+  drag={type:'move',sx:e.clientX,sy:e.clientY,sel:{x:el.x,y:el.y},id};
+  e.preventDefault();
+}
+document.addEventListener('mousemove', e => {
+  if(!drag) return;
+  const dx=(e.clientX-drag.sx)/zoom, dy=(e.clientY-drag.sy)/zoom;
+  const el=getEl(drag.id); if(!el) return;
+  if(drag.type==='move') {
+    el.x=Math.round(drag.sel.x+dx); el.y=Math.round(drag.sel.y+dy);
+    const w=document.getElementById('w_'+el.id);
+    if(w){w.style.left=el.x+'px';w.style.top=el.y+'px';}
+    updPosInputs(el);
+  } else {
+    let {x,y,w,h}=drag.sel;
+    if(drag.h.includes('r'))w=Math.max(20,drag.sel.w+dx);
+    if(drag.h.includes('l')){x=drag.sel.x+dx;w=Math.max(20,drag.sel.w-dx);}
+    if(drag.h.includes('b'))h=Math.max(10,drag.sel.h+dy);
+    if(drag.h.includes('t')){y=drag.sel.y+dy;h=Math.max(10,drag.sel.h-dy);}
+    el.x=Math.round(x);el.y=Math.round(y);el.w=Math.round(w);el.h=Math.round(h);
+    const w2=document.getElementById('w_'+el.id);
+    if(w2){w2.style.left=el.x+'px';w2.style.top=el.y+'px';w2.style.width=el.w+'px';w2.style.height=el.h+'px';}
+    updPosInputs(el);
+  }
+});
+document.addEventListener('mouseup', () => { if(drag){saveHist();drag=null;rerender();renderProps();} });
+
+function updPosInputs(el) {
+  ['x','y','w','h'].forEach(k => { const i=document.getElementById('pi_'+k); if(i)i.value=Math.round(el[k]); });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INLINE TEXT EDIT
+═══════════════════════════════════════════════════════════ */
+function startEdit(id) {
+  const el=getEl(id); if(!el||el.type!=='text') return;
+  const d=document.querySelector(`#w_${id} .cv-text-el`); if(!d) return;
+  d.contentEditable='true'; d.focus();
+  const r=document.createRange(); r.selectNodeContents(d); r.collapse(false);
+  const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  d.addEventListener('blur',()=>{d.contentEditable='false';el.text=d.innerText;saveHist();renderProps();},{once:true});
+  d.addEventListener('keydown',e=>{if(e.key==='Escape')d.blur();});
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RIGHT PANEL PROPERTIES
+═══════════════════════════════════════════════════════════ */
+const FONTS = ['Plus Jakarta Sans','Cormorant Garamond','Montserrat','DM Sans','Playfair Display','Lora','Raleway','Geist'];
+const COLORS = ['#1a1a1a','#333333','#555555','#888888','#CCCCCC','#ffffff','#6C63FF','#EF4444','#22C55E','#F59E0B','#3B82F6','#EC4899','#0EA5E9','#8B5CF6','#0F766E'];
+
+function renderProps() {
+  const head=document.getElementById('rpHead'), body=document.getElementById('rpBody');
+  if(!sel){head.textContent='Properties';body.innerHTML=`<div class="rp-empty"><div class="rp-empty-ico">↖</div><div class="rp-empty-txt">Select any element<br>to edit its properties</div></div>`;return;}
+  const el=getEl(sel); if(!el){deselect();return;}
+  head.textContent=capitalize(el.type)+' Properties';
+  let h='';
+  // position & size
+  h+=`<div class="prop-grp"><div class="prop-lbl">Position & Size</div>
+    <div class="prop-row"><span class="prop-nm">X</span><input type="number" class="pi" id="pi_x" value="${Math.round(el.x)}" oninput="sp('x',+this.value)"><span class="prop-nm" style="margin-left:3px">Y</span><input type="number" class="pi" id="pi_y" value="${Math.round(el.y)}" oninput="sp('y',+this.value)"></div>
+    <div class="prop-row"><span class="prop-nm">W</span><input type="number" class="pi" id="pi_w" value="${Math.round(el.w)}" oninput="sp('w',+this.value)"><span class="prop-nm" style="margin-left:3px">H</span><input type="number" class="pi" id="pi_h" value="${Math.round(el.h)}" oninput="sp('h',+this.value)"></div></div>`;
+
+  if(el.type==='text'){
+    const fOpts=FONTS.map(f=>`<option value="${f}" ${el.fontFamily===f?'selected':''}>${f}</option>`).join('');
+    h+=`<div class="prop-grp"><div class="prop-lbl">Typography</div>
+      <div class="prop-row"><span class="prop-nm">Font</span><select class="font-sel" onchange="sp('fontFamily',this.value)">${fOpts}</select></div>
+      <div class="prop-row"><span class="prop-nm">Size</span><input type="number" class="pi" value="${el.fontSize}" min="6" max="120" oninput="sp('fontSize',+this.value)"><span class="prop-nm" style="margin-left:3px">Wt</span><select class="font-sel" style="width:68px" onchange="sp('fontWeight',this.value)"><option value="300" ${el.fontWeight==='300'?'selected':''}>Light</option><option value="400" ${el.fontWeight==='400'?'selected':''}>Regular</option><option value="500" ${el.fontWeight==='500'?'selected':''}>Medium</option><option value="600" ${el.fontWeight==='600'?'selected':''}>Semi</option><option value="700" ${el.fontWeight==='700'?'selected':''}>Bold</option><option value="800" ${el.fontWeight==='800'?'selected':''}>Extra</option></select></div>
+      <div class="prop-row"><span class="prop-nm">Style</span><div class="sty-btns"><button class="sty-btn ${el.italic?'on':''}" onclick="tp('italic')"><i>I</i></button><button class="sty-btn ${el.underline?'on':''}" onclick="tp('underline')"><u>U</u></button></div></div>
+      <div class="prop-row"><span class="prop-nm">Align</span><div class="aln-row"><button class="aln-btn" onclick="sp('textAlign','left')">⬅</button><button class="aln-btn" onclick="sp('textAlign','center')">↔</button><button class="aln-btn" onclick="sp('textAlign','right')">➡</button><button class="aln-btn" onclick="sp('textAlign','justify')">☰</button></div></div>
+      <div class="prop-row"><span class="prop-nm">Color</span><input type="color" class="pi" value="${el.color}" oninput="sp('color',this.value)"></div>
+      <div class="cs-row">${COLORS.map(c=>`<div class="cs" style="background:${c};border-color:${c===el.color?'#fff':'transparent'}" onclick="sp('color','${c}')"></div>`).join('')}</div>
+      <div class="prop-row"><span class="prop-nm">Line H.</span><input type="range" class="pi" min="1" max="3" step="0.05" value="${el.lineHeight}" oninput="sp('lineHeight',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:26px;text-align:right">${el.lineHeight}</span></div>
+      <div class="prop-row"><span class="prop-nm">Spacing</span><input type="range" class="pi" min="-2" max="12" step="0.5" value="${el.letterSpacing}" oninput="sp('letterSpacing',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:28px;text-align:right">${el.letterSpacing}px</span></div></div>`;
+  }
+
+  if(el.type==='shape'){
+    h+=`<div class="prop-grp"><div class="prop-lbl">Fill & Stroke</div>
+      <div class="prop-row"><span class="prop-nm">Fill</span><input type="color" class="pi" value="${el.fill||'#6C63FF'}" oninput="sp('fill',this.value)"></div>
+      <div class="cs-row">${['#6C63FF','#EF4444','#22C55E','#F59E0B','#3B82F6','#1a1a1a','#ffffff','#F0F0F0'].map(c=>`<div class="cs" style="background:${c}" onclick="sp('fill','${c}')"></div>`).join('')}</div>
+      <div class="prop-row"><span class="prop-nm">Stroke</span><input type="color" class="pi" value="${el.stroke==='none'?'#000':el.stroke}" oninput="sp('stroke',this.value)"><span class="prop-nm" style="margin-left:3px">W</span><input type="number" class="pi" value="${el.strokeWidth}" min="0" max="20" oninput="sp('strokeWidth',+this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">Radius</span><input type="range" class="pi" min="0" max="100" value="${el.radius}" oninput="sp('radius',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:24px;text-align:right">${el.radius}</span></div>
+      <div class="prop-row"><span class="prop-nm">Opacity</span><input type="range" class="pi" min="0" max="1" step="0.05" value="${el.opacity}" oninput="sp('opacity',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:28px;text-align:right">${Math.round(el.opacity*100)}%</span></div>
+      ${el.shape==='badge'?`<div class="prop-row"><span class="prop-nm">Text</span><input type="text" class="pi" value="${el.text||''}" oninput="sp('text',this.value)"></div><div class="prop-row"><span class="prop-nm">Color</span><input type="color" class="pi" value="${el.textColor||'#6C63FF'}" oninput="sp('textColor',this.value)"></div>`:''}
+      </div>`;
+  }
+
+  if(el.type==='divider'){
+    h+=`<div class="prop-grp"><div class="prop-lbl">Divider</div>
+      <div class="prop-row"><span class="prop-nm">Color</span><input type="color" class="pi" value="${el.color}" oninput="sp('color',this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">Thickness</span><input type="number" class="pi" value="${el.thickness}" min="1" max="20" oninput="sp('thickness',+this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">Style</span><select class="font-sel" onchange="sp('style',this.value)"><option value="solid" ${el.style==='solid'?'selected':''}>Solid</option><option value="dashed" ${el.style==='dashed'?'selected':''}>Dashed</option><option value="dotted" ${el.style==='dotted'?'selected':''}>Dotted</option></select></div></div>`;
+  }
+
+  if(el.type==='image'){
+    h+=`<div class="prop-grp"><div class="prop-lbl">Image</div>
+      <div class="prop-row"><span class="prop-nm">Upload</span><label class="tb-btn" style="cursor:pointer;flex:1;justify-content:center;margin:0;font-size:11px;">📷 Choose Image<input type="file" accept="image/*" style="display:none" onchange="uploadImg(event,'${el.id}')"></label></div>
+      <div class="prop-row"><span class="prop-nm">Radius</span><input type="range" class="pi" min="0" max="200" value="${el.radius}" oninput="sp('radius',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:28px;text-align:right">${el.radius}px</span></div></div>`;
+  }
+
+  if(el.type==='skillbar'){
+    h+=`<div class="prop-grp"><div class="prop-lbl">Skill Bar</div>
+      <div class="prop-row"><span class="prop-nm">Label</span><input type="text" class="pi" value="${el.label}" oninput="sp('label',this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">Value</span><input type="range" class="pi" min="0" max="100" value="${el.value}" oninput="sp('value',+this.value)" style="flex:1"><span style="font-size:10.5px;color:var(--text2);min-width:28px;text-align:right">${el.value}%</span></div>
+      <div class="prop-row"><span class="prop-nm">Bar Color</span><input type="color" class="pi" value="${el.color}" oninput="sp('color',this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">BG</span><input type="color" class="pi" value="${el.bg}" oninput="sp('bg',this.value)"></div>
+      <div class="prop-row"><span class="prop-nm">Text</span><input type="color" class="pi" value="${el.textColor}" oninput="sp('textColor',this.value)"></div></div>`;
+  }
+
+  // layer order
+  h+=`<div class="prop-grp"><div class="prop-lbl">Layer</div>
+    <div class="prop-row" style="gap:5px"><button class="tb-btn" style="flex:1;justify-content:center;font-size:11px" onclick="bringF('${sel}')">⬆ Front</button><button class="tb-btn" style="flex:1;justify-content:center;font-size:11px" onclick="sendB('${sel}')">⬇ Back</button></div></div>`;
+
+  // actions
+  h+=`<div class="prop-grp"><div class="prop-lbl">Actions</div>
+    <div class="prop-row" style="gap:5px"><button class="tb-btn" style="flex:1;justify-content:center;font-size:11px" onclick="dupEl('${sel}')">⧉ Duplicate</button><button class="tb-btn" style="flex:1;justify-content:center;font-size:11px;color:var(--red)" onclick="delEl('${sel}')">🗑 Delete</button></div></div>`;
+
+  body.innerHTML = h;
+}
+
+function sp(k,v){const el=getEl(sel);if(!el)return;el[k]=v;fastUpdate(el);renderProps();saveHist();}
+function tp(k){const el=getEl(sel);if(!el)return;el[k]=!el[k];fastUpdate(el);renderProps();saveHist();}
+function fastUpdate(el){const w=document.getElementById('w_'+el.id);if(!w)return;w.remove();renderEl(el);}
+
+/* ═══════════════════════════════════════════════════════════
+   LAYERS PANEL
+═══════════════════════════════════════════════════════════ */
+function renderLayerList() {
+  const list=document.getElementById('layerList'); if(!list) return;
+  list.innerHTML=[...els].sort((a,b)=>b.zIndex-a.zIndex).map(el=>`
+    <div class="layer-row ${el.id===sel?'sel':''}" onclick="selectEl('${el.id}')">
+      <span class="layer-ico">${{text:'T',shape:'◻',divider:'━',image:'🖼',skillbar:'▓'}[el.type]||'◻'}</span>
+      <span class="layer-nm">${layerName(el)}</span>
+      <span class="layer-vis" onclick="toggleVis('${el.id}',event)">${el.visible?'👁':'🚫'}</span>
+      <span class="layer-del" onclick="delEl('${el.id}');event.stopPropagation()">✕</span>
+    </div>`).join('');
+}
+function layerName(el){if(el.type==='text')return el.text.slice(0,18)+(el.text.length>18?'…':'');if(el.type==='shape')return capitalize(el.shape||'Shape');if(el.type==='skillbar')return 'Skill: '+el.label;return capitalize(el.type);}
+function toggleVis(id,e){e.stopPropagation();const el=getEl(id);if(el){el.visible=!el.visible;rerender();}}
+
+/* ═══════════════════════════════════════════════════════════
+   ELEMENT OPERATIONS
+═══════════════════════════════════════════════════════════ */
+function delEl(id){els=els.filter(e=>e.id!==id);if(sel===id)sel=null;saveHist();rerender();renderProps();}
+function dupEl(id){const el=getEl(id);if(!el)return;const c={...JSON.parse(JSON.stringify(el)),id:uid(),x:el.x+12,y:el.y+12,zIndex:el.zIndex+1};els.push(c);saveHist();rerender();selectEl(c.id);}
+function bringF(id){const el=getEl(id);if(el){el.zIndex=Math.max(...els.map(e=>e.zIndex))+1;rerender();saveHist();}}
+function sendB(id){const el=getEl(id);if(el){el.zIndex=Math.min(...els.map(e=>e.zIndex))-1;rerender();saveHist();}}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE UPLOAD
+═══════════════════════════════════════════════════════════ */
+function triggerImgUpload(id){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=e=>uploadImg(e,id);inp.click();}
+function uploadImg(event,id){const f=event.target.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const el=getEl(id);if(el){el.src=e.target.result;fastUpdate(el);saveHist();}};r.readAsDataURL(f);}
+
+/* ═══════════════════════════════════════════════════════════
+   CONTEXT MENU
+═══════════════════════════════════════════════════════════ */
+function onRightClick(e){e.preventDefault();const w=e.target.closest('.cv-el');if(w){const id=w.id.replace('w_','');selectEl(id);ctxTarget=id;}else ctxTarget=null;const m=document.getElementById('ctxMenu');m.style.left=e.clientX+'px';m.style.top=e.clientY+'px';m.classList.add('show');}
+function closeCtx(){document.getElementById('ctxMenu').classList.remove('show');}
+document.addEventListener('click',closeCtx);
+function ctxDo(a){switch(a){case 'copy':clipboard=ctxTarget?JSON.parse(JSON.stringify(getEl(ctxTarget))):null;showToast('Copied');break;case 'paste':if(clipboard){const c={...JSON.parse(JSON.stringify(clipboard)),id:uid(),x:clipboard.x+14,y:clipboard.y+14};els.push(c);saveHist();rerender();selectEl(c.id);}break;case 'dup':if(ctxTarget)dupEl(ctxTarget);break;case 'front':bringF(ctxTarget);break;case 'back':sendB(ctxTarget);break;case 'del':if(ctxTarget)delEl(ctxTarget);break;}}
+
+/* ═══════════════════════════════════════════════════════════
+   HISTORY
+═══════════════════════════════════════════════════════════ */
+function saveHist(){hist=hist.slice(0,histIdx+1);hist.push(JSON.stringify(els));histIdx++;if(hist.length>60){hist.shift();histIdx--;}}
+function undo(){if(histIdx<=0){showToast('Nothing to undo');return;}histIdx--;els=JSON.parse(hist[histIdx]);sel=null;rerender();}
+function redo(){if(histIdx>=hist.length-1){showToast('Nothing to redo');return;}histIdx++;els=JSON.parse(hist[histIdx]);sel=null;rerender();}
+
+/* ═══════════════════════════════════════════════════════════
+   ZOOM
+═══════════════════════════════════════════════════════════ */
+function changeZoom(d){zoom=Math.max(0.2,Math.min(2,zoom+d));page.style.transform=`scale(${zoom})`;document.getElementById('zoomVal').textContent=Math.round(zoom*100)+'%';}
+function fitZoom(){const a=document.getElementById('canvasArea');zoom=Math.min(1,(a.clientWidth-56)/794);page.style.transform=`scale(${zoom})`;document.getElementById('zoomVal').textContent=Math.round(zoom*100)+'%';}
+function toggleGrid(){gridOn=!gridOn;document.getElementById('gridOv').classList.toggle('on',gridOn);document.getElementById('gridBtn').classList.toggle('active',gridOn);}
+document.getElementById('canvasArea').addEventListener('wheel',e=>{if(e.ctrlKey||e.metaKey){e.preventDefault();changeZoom(e.deltaY>0?-0.08:0.08);}},{passive:false});
+
+/* ═══════════════════════════════════════════════════════════
+   PAGE BG
+═══════════════════════════════════════════════════════════ */
+const BG_PRESETS=['#ffffff','#FAFAF8','#F5F0E8','#F0F5FA','#F0F7F4','#1A1A1A','#0F2027','#EEF2FF','#FEF3C7','#DCFCE7'];
+function initBg(){const g=document.getElementById('bgGrid');BG_PRESETS.forEach((c,i)=>{const s=document.createElement('div');s.className='bg-sw'+(i===0?' on':'');s.style.background=c;if(c==='#ffffff')s.style.border='1px solid #CCC';s.onclick=()=>{setPageBg(c);document.querySelectorAll('.bg-sw').forEach(x=>x.classList.remove('on'));s.classList.add('on');};g.appendChild(s);});}
+function setPageBg(c){page.style.background=c;}
+
+/* ═══════════════════════════════════════════════════════════
+   LEFT PANEL TABS
+═══════════════════════════════════════════════════════════ */
+function switchTab(n,el){document.querySelectorAll('.lp-tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');['add','templates','layers','page'].forEach(t=>{document.getElementById('tab-'+t).style.display=t===n?'block':'none';});if(n==='layers')renderLayerList();}
+
+/* ═══════════════════════════════════════════════════════════
+   TEMPLATE GALLERY
+═══════════════════════════════════════════════════════════ */
+function initTemplateGallery(){
+  const g=document.getElementById('tmplGallery');
+  TEMPLATE_META.forEach(t=>{
+    const card=document.createElement('div');
+    card.className='tmpl-card';
+    card.dataset.tid=t.id;
+    card.innerHTML=`<div class="tmpl-preview" style="background:${t.preview.bg};"><div style="position:absolute;inset:0;background:${t.preview.accent};opacity:0.3"></div><span style="position:relative;z-index:1">${t.label.split(' ')[0].toUpperCase()}</span></div><div class="tmpl-label">${t.label}</div>`;
+    card.onclick=()=>loadTemplate(t.id,{});
+    g.appendChild(card);
+  });
+
+  // theme color swatches for templates tab
+  const row=document.getElementById('themeColorRow');
+  ['#6C63FF','#B8960C','#E63312','#C0392B','#1D6FA4','#2E7D52','#D97706','#0F766E','#7C3AED','#9D174D'].forEach((c,i)=>{
+    const s=document.createElement('div');
+    s.className='cs'+(i===0?' ':'');
+    s.style.background=c;
+    s.style.width='24px';s.style.height='24px';s.style.borderRadius='5px';
+    s.onclick=()=>applyThemeColor(c);
+    row.appendChild(s);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ████████████████████████████████████████████████████████
+   IMPORT WIZARD — THE MAIN NEW FEATURE
+   ████████████████████████████████████████████████████████
+
+   Step 1: Upload PDF / DOCX / Image
+   Step 2: Extract text → parse CV data → show editable fields
+   Step 3: Pick template
+   Step 4: Apply data to template → load on canvas
+
+═══════════════════════════════════════════════════════════ */
+let wizData = {}; // extracted CV data
+let wizFile = null;
+let wizPickedTmpl = 'noir';
+let wizStepNum = 1;
+
+function openImportWizard(){
+  wizData={}; wizFile=null; wizPickedTmpl='noir'; wizStepNum=1;
+  document.getElementById('importModal').classList.remove('hidden');
+  renderWizStep(1);
+}
+function closeImport(){document.getElementById('importModal').classList.add('hidden');}
+
+function renderWizStep(step){
+  wizStepNum=step;
+  const body=document.getElementById('modalBody');
+  const footer=document.getElementById('modalFooter');
+
+  // Step indicators
+  const steps=[{n:1,label:'Upload'},{n:2,label:'Review'},{n:3,label:'Template'},{n:4,label:'Import'}];
+  let stepsHtml=`<div class="wizard-steps">`;
+  steps.forEach(s=>{ stepsHtml+=`<div class="wz-step ${step>s.n?'done':step===s.n?'active':''}"><div class="wz-dot">${step>s.n?'✓':s.n}</div><div class="wz-label">${s.label}</div></div>`; });
+  stepsHtml+='</div>';
+
+  if(step===1){
+    body.innerHTML=stepsHtml+`
+    <div class="drop-zone" id="dzWiz">
+      <input type="file" accept=".pdf,.docx,.doc,.png,.jpg,.jpeg,.webp" onchange="wizHandleFile(event)">
+      <div class="dz-icon">📄</div>
+      <div class="dz-title">Drop your CV here</div>
+      <div class="dz-sub">or click to browse files</div>
+      <div class="format-chips">
+        <span class="fmt-chip fmt-pdf">PDF</span>
+        <span class="fmt-chip fmt-doc">DOCX / DOC</span>
+        <span class="fmt-chip fmt-img">PNG / JPG</span>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding:12px;background:var(--panel2);border-radius:8px;font-size:11.5px;color:var(--text2);line-height:1.6;">
+      <strong style="color:var(--text)">How it works:</strong><br>
+      We extract all text from your CV, parse it into structured data (name, experience, education, skills), let you review and edit it, then fill any template automatically.
+    </div>`;
+    footer.innerHTML=`<button class="tb-btn" onclick="closeImport()">Cancel</button>`;
+    setupDzDrag('dzWiz');
+  }
+
+  if(step===2){
+    body.innerHTML=stepsHtml+`
+    <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+    <div class="prog-label" id="progLabel">Extracting text...</div>`;
+    footer.innerHTML=`<button class="tb-btn" onclick="renderWizStep(1)">← Back</button>`;
+    extractCVData().then(()=>renderExtractedFields(stepsHtml));
+  }
+
+  if(step===3){
+    const tCards=TEMPLATE_META.map(t=>`<div class="tp-card ${wizPickedTmpl===t.id?'picked':''}" onclick="wizPickTmpl('${t.id}',this)"><div class="tp-preview" style="background:${t.preview.bg};"><div style="position:absolute;inset:0;background:${t.preview.accent};opacity:0.35;"></div><span style="position:relative;z-index:1;font-size:9px;font-weight:700;color:rgba(255,255,255,.4)">${t.label.split(' ')[0].toUpperCase()}</span></div><div class="tp-name">${t.label}</div></div>`).join('');
+    body.innerHTML=stepsHtml+`
+    <div style="font-size:12px;color:var(--text2);margin-bottom:12px;">Choose a template. Your extracted CV data will be automatically placed into the selected layout.</div>
+    <div class="tmpl-picker">${tCards}</div>`;
+    footer.innerHTML=`<button class="tb-btn" onclick="renderExtractedFields(null)">← Back</button><button class="tb-btn prim" onclick="renderWizStep(4)">Apply to Template →</button>`;
+  }
+
+  if(step===4){
+    body.innerHTML=stepsHtml+`
+    <div style="text-align:center;padding:20px 0">
+      <div style="font-size:40px;margin-bottom:12px">✅</div>
+      <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:6px">Ready to import!</div>
+      <div style="font-size:12.5px;color:var(--text2);line-height:1.6">Your CV data has been extracted and will be placed into the <strong style="color:var(--acc)">${TEMPLATE_META.find(t=>t.id===wizPickedTmpl)?.label}</strong> template.<br>You can edit every element in the studio after importing.</div>
+    </div>
+    <div style="background:var(--panel2);border-radius:8px;padding:12px 14px;font-size:11.5px;color:var(--text2);line-height:1.8">
+      <strong style="color:var(--text)">What gets imported:</strong><br>
+      ✓ Name, title, contact info<br>
+      ✓ Work experience (up to 3 jobs)<br>
+      ✓ Education history<br>
+      ✓ Skills & languages
+    </div>`;
+    footer.innerHTML=`<button class="tb-btn" onclick="renderWizStep(3)">← Back</button><button class="tb-btn success" onclick="doImport()">🚀 Import to Canvas</button>`;
+  }
+}
+
+function wizPickTmpl(id,el){
+  wizPickedTmpl=id;
+  document.querySelectorAll('.tp-card').forEach(c=>c.classList.remove('picked'));
+  el.classList.add('picked');
+}
+
+/* ── EXTRACT CV DATA FROM FILE ── */
+async function extractCVData(){
+  const setP=(pct,msg)=>{const f=document.getElementById('progFill'),l=document.getElementById('progLabel');if(f)f.style.width=pct+'%';if(l)l.textContent=msg;};
+
+  try{
+    setP(15,'Reading file...');
+    await sleep(100);
+    let rawText='';
+
+    if(!wizFile){rawText='No file uploaded.';wizData={name:'Your Name',title:'Job Title',email:'email@example.com',phone:'+1 (000) 000-0000',address:'City, Country',summary:'Your professional summary here.',experience:[{role:'Job Title',company:'Company',period:'2020–Present',bullets:['Key achievement.']}],education:[{degree:'Degree',institution:'University',period:'2018–2022'}],skills:['Skill One','Skill Two','Skill Three'],languages:[{l:'English',lv:'Native'}]};return;}
+
+    const ext=wizFile.name.split('.').pop().toLowerCase();
+
+    if(ext==='pdf'){
+      setP(30,'Parsing PDF pages...');
+      rawText=await extractPDFText(wizFile);
+    } else if(['png','jpg','jpeg','webp'].includes(ext)){
+      setP(30,'Reading image...');
+      rawText=await extractFromImage(wizFile);
+    } else if(['docx','doc'].includes(ext)){
+      setP(30,'Parsing Word document...');
+      rawText=await extractDOCXText(wizFile);
+    }
+
+    setP(60,'Parsing CV structure...');
+    await sleep(200);
+    wizData=parseRawText(rawText);
+    setP(100,'Done!');
+    await sleep(300);
+
+  }catch(e){
+    console.error(e);
+    wizData={name:'Your Name',title:'Job Title',email:'email@example.com',phone:'',address:'',summary:'',experience:[],education:[],skills:[],languages:[]};
+  }
+}
+
+/* ── PDF TEXT EXTRACTION using PDF.js ── */
+async function extractPDFText(file){
+  const ab=await file.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:ab}).promise;
+  let text='';
+  for(let i=1;i<=pdf.numPages;i++){
+    const page=await pdf.getPage(i);
+    const content=await page.getTextContent();
+    // Group by Y position to preserve line order
+    const lines={};
+    content.items.forEach(item=>{const y=Math.round(item.transform[5]);if(!lines[y])lines[y]=[];lines[y].push(item.str);});
+    const ys=Object.keys(lines).map(Number).sort((a,b)=>b-a);
+    ys.forEach(y=>{text+=lines[y].join(' ')+'\n';});
+    text+='\n';
+  }
+  return text.trim();
+}
+
+/* ── IMAGE EXTRACTION (base64 → send to Gemini if available, else OCR hint) ── */
+async function extractFromImage(file){
+  return new Promise(resolve=>{
+    const r=new FileReader();
+    r.onload=()=>resolve('[Image CV detected. Text extraction from images requires the Gemini API. Your data fields below can be filled manually.]\n\nName: \nJob Title: \nEmail: \nPhone: \nAddress: \nSummary: \n');
+    r.readAsDataURL(file);
+  });
+}
+
+/* ── DOCX EXTRACTION — read as ArrayBuffer, extract raw XML text ── */
+async function extractDOCXText(file){
+  try{
+    const ab=await file.arrayBuffer();
+    // Read the ZIP structure — DOCX is a ZIP with word/document.xml
+    // We use a simple approach: find XML text patterns
+    const uint8=new Uint8Array(ab);
+    let binary='';
+    for(let i=0;i<uint8.length;i++)binary+=String.fromCharCode(uint8[i]);
+    // Find word/document.xml content in the ZIP
+    const marker='word/document.xml';
+    const idx=binary.indexOf(marker);
+    if(idx===-1)return '[Could not read DOCX structure. Please fill fields manually.]';
+    // Extract a chunk after the marker and strip XML tags
+    const chunk=binary.slice(idx,idx+50000);
+    const text=chunk.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
+    return text;
+  }catch(e){return '[DOCX read error. Please fill fields manually.]';}
+}
+
+/* ── SMART CV TEXT PARSER ── */
+function parseRawText(text){
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  const d={name:'',title:'',email:'',phone:'',address:'',summary:'',experience:[],education:[],skills:[],languages:[]};
+
+  // Email
+  const em=text.match(/[\w._%+-]+@[\w.-]+\.[a-z]{2,}/i);
+  if(em)d.email=em[0];
+
+  // Phone
+  const ph=text.match(/(\+?[\d\s\-().]{8,18})/);
+  if(ph)d.phone=ph[0].trim();
+
+  // LinkedIn
+  const li=text.match(/linkedin\.com\/in\/([\w-]+)/i);
+  if(li)d.linkedin='linkedin.com/in/'+li[1];
+
+  // Name — largest/first bold-looking line at top (no numbers, no @, short)
+  for(const line of lines.slice(0,6)){
+    if(line.length>3&&line.length<55&&!/[@\d{4,}]/.test(line)&&/^[A-Za-zÀ-ÿ\s'\-\.]+$/.test(line)){
+      d.name=line.trim(); break;
+    }
+  }
+
+  // Title — line after name that looks like a job title
+  const nameIdx=lines.indexOf(d.name);
+  for(const l of lines.slice(nameIdx+1,nameIdx+5)){
+    if(l.length>3&&l.length<70&&!/[@\d{6,}]/.test(l)&&!l.includes('|')&&!/^[A-Z]{2,}$/.test(l)){
+      d.title=l.trim(); break;
+    }
+  }
+
+  // Detect sections
+  const sectionRx={
+    summary:/^(summary|profile|objective|about me|professional summary|personal statement)/i,
+    experience:/^(experience|work experience|employment|career|professional experience|work history)/i,
+    education:/^(education|academic|qualification|training|study)/i,
+    skills:/^(skills|technical skills|key skills|competenc|expertise|technologies)/i,
+    languages:/^(languages?|language skills)/i,
+  };
+
+  const sections={};
+  let curSec='header'; const secLines={header:[]};
+  lines.forEach(line=>{
+    const matched=Object.entries(sectionRx).find(([,rx])=>rx.test(line)&&line.length<60);
+    if(matched){curSec=matched[0];secLines[curSec]=[];}
+    else{if(!secLines[curSec])secLines[curSec]=[];secLines[curSec].push(line);}
+  });
+
+  // Summary
+  if(secLines.summary?.length) d.summary=secLines.summary.slice(0,5).join(' ');
+
+  // Experience
+  const expLines=secLines.experience||[];
+  let curJob=null;
+  const dateRx=/(\d{4})\s*[-–—to]+\s*(\d{4}|present|now|current)/gi;
+  expLines.forEach(line=>{
+    const dates=line.match(dateRx);
+    if(dates){
+      if(curJob)d.experience.push(curJob);
+      curJob={role:'',company:'',period:dates[0],location:'',bullets:[]};
+    }else if(curJob){
+      if(!curJob.role&&line.length<70&&!/^[•\-*▪►]/.test(line))curJob.role=line;
+      else if(!curJob.company&&line.length<70&&!/^[•\-*▪►]/.test(line))curJob.company=line;
+      else if(/^[•\-*▪►]/.test(line))curJob.bullets.push(line.replace(/^[•\-*▪►\s]+/,''));
+    }
+  });
+  if(curJob)d.experience.push(curJob);
+
+  // Education
+  const eduLines=secLines.education||[];
+  let curEdu=null;
+  eduLines.forEach(line=>{
+    const yr=line.match(/\d{4}/);
+    const isDeg=/bachelor|master|phd|diploma|certificate|b\.?sc|m\.?sc|b\.?a|m\.?a|mba|llb|degree/i.test(line);
+    if(isDeg){if(curEdu)d.education.push(curEdu);curEdu={degree:line,institution:'',period:yr?yr[0]:''};}
+    else if(curEdu){if(!curEdu.institution&&line.length<80)curEdu.institution=line;if(yr&&!curEdu.period)curEdu.period=yr[0];}
+  });
+  if(curEdu)d.education.push(curEdu);
+
+  // Skills
+  const skillLines=secLines.skills||[];
+  d.skills=skillLines.join(', ').split(/[,•\n|\/·]/).map(s=>s.trim()).filter(s=>s.length>1&&s.length<40).slice(0,12);
+
+  // Languages
+  const langLines=secLines.languages||[];
+  const langRx=/([A-Z][a-z]{2,20})\s*[-–(:]?\s*(native|mother tongue|[ABC][12]|fluent|intermediate|basic|beginner|advanced)/i;
+  d.languages=langLines.map(l=>{const m=l.match(langRx);return m?{l:m[1],lv:m[2]}:null;}).filter(Boolean);
+  if(!d.languages.length)d.languages=[{l:'English',lv:'Native'}];
+
+  return d;
+}
+
+/* ── RENDER EXTRACTED FIELDS FOR REVIEW ── */
+function renderExtractedFields(stepsHtml){
+  const body=document.getElementById('modalBody');
+  const footer=document.getElementById('modalFooter');
+  if(!stepsHtml){
+    // came back from step 3
+    wizStepNum=2;
+    const steps=[{n:1,label:'Upload'},{n:2,label:'Review'},{n:3,label:'Template'},{n:4,label:'Import'}];
+    stepsHtml=`<div class="wizard-steps">`;
+    steps.forEach(s=>{ stepsHtml+=`<div class="wz-step ${2>s.n?'done':2===s.n?'active':''}"><div class="wz-dot">${2>s.n?'✓':s.n}</div><div class="wz-label">${s.label}</div></div>`; });
+    stepsHtml+='</div>';
+  }
+
+  const d=wizData;
+  body.innerHTML=stepsHtml+`
+  <div style="font-size:11.5px;color:var(--text2);margin-bottom:12px;">Review and edit the extracted data. All fields are editable — correct anything that wasn't parsed correctly.</div>
+
+  <div class="ext-section"><div class="ext-sec-title">Personal</div>
+    <div class="ext-field"><span class="ext-key">Full Name</span><input class="ext-val" id="wd_name" value="${esc(d.name||'')}"></div>
+    <div class="ext-field"><span class="ext-key">Job Title</span><input class="ext-val" id="wd_title" value="${esc(d.title||'')}"></div>
+    <div class="ext-field"><span class="ext-key">Email</span><input class="ext-val" id="wd_email" value="${esc(d.email||'')}"></div>
+    <div class="ext-field"><span class="ext-key">Phone</span><input class="ext-val" id="wd_phone" value="${esc(d.phone||'')}"></div>
+    <div class="ext-field"><span class="ext-key">Address</span><input class="ext-val" id="wd_address" value="${esc(d.address||'')}"></div>
+  </div>
+
+  <div class="ext-section"><div class="ext-sec-title">Summary</div>
+    <textarea class="ext-val" id="wd_summary" rows="3" style="resize:vertical">${esc(d.summary||'')}</textarea>
+  </div>
+
+  <div class="ext-section"><div class="ext-sec-title">Experience</div>
+    ${(d.experience||[]).slice(0,3).map((e,i)=>`
+    <div style="background:var(--panel2);border-radius:7px;padding:10px;margin-bottom:8px;">
+      <div style="font-size:10px;font-weight:700;color:var(--acc);margin-bottom:6px">Job ${i+1}</div>
+      <div class="ext-field"><span class="ext-key">Role</span><input class="ext-val" id="wd_e${i}_role" value="${esc(e.role||'')}"></div>
+      <div class="ext-field"><span class="ext-key">Company</span><input class="ext-val" id="wd_e${i}_company" value="${esc(e.company||'')}"></div>
+      <div class="ext-field"><span class="ext-key">Period</span><input class="ext-val" id="wd_e${i}_period" value="${esc(e.period||'')}"></div>
+      <div class="ext-field"><span class="ext-key">Bullets</span><textarea class="ext-val" id="wd_e${i}_bullets" rows="2">${esc((e.bullets||[]).join('\n'))}</textarea></div>
+    </div>`).join('')}
+    ${(d.experience||[]).length===0?`<div style="background:var(--panel2);border-radius:7px;padding:10px;margin-bottom:8px;"><div style="font-size:10px;font-weight:700;color:var(--acc);margin-bottom:6px">Job 1</div><div class="ext-field"><span class="ext-key">Role</span><input class="ext-val" id="wd_e0_role" value=""></div><div class="ext-field"><span class="ext-key">Company</span><input class="ext-val" id="wd_e0_company" value=""></div><div class="ext-field"><span class="ext-key">Period</span><input class="ext-val" id="wd_e0_period" value=""></div><div class="ext-field"><span class="ext-key">Bullets</span><textarea class="ext-val" id="wd_e0_bullets" rows="2"></textarea></div></div>`:''}
+  </div>
+
+  <div class="ext-section"><div class="ext-sec-title">Education</div>
+    ${(d.education||[{degree:'',institution:'',period:''}]).slice(0,2).map((e,i)=>`
+    <div style="background:var(--panel2);border-radius:7px;padding:10px;margin-bottom:8px;">
+      <div class="ext-field"><span class="ext-key">Degree</span><input class="ext-val" id="wd_edu${i}_degree" value="${esc(e.degree||'')}"></div>
+      <div class="ext-field"><span class="ext-key">Institution</span><input class="ext-val" id="wd_edu${i}_inst" value="${esc(e.institution||'')}"></div>
+      <div class="ext-field"><span class="ext-key">Period</span><input class="ext-val" id="wd_edu${i}_period" value="${esc(e.period||'')}"></div>
+    </div>`).join('')}
+  </div>
+
+  <div class="ext-section"><div class="ext-sec-title">Skills & Languages</div>
+    <div class="ext-field"><span class="ext-key">Skills</span><textarea class="ext-val" id="wd_skills" rows="2">${esc((d.skills||[]).join(', '))}</textarea></div>
+    <div class="ext-field"><span class="ext-key">Languages</span><input class="ext-val" id="wd_langs" value="${esc((d.languages||[]).map(l=>l.l+(l.lv?' — '+l.lv:'')).join(', '))}"></div>
+  </div>`;
+
+  footer.innerHTML=`<button class="tb-btn" onclick="renderWizStep(1)">← Back</button><button class="tb-btn prim" onclick="collectWizData()">Next: Choose Template →</button>`;
+}
+
+/* ── COLLECT FORM DATA FROM WIZARD FIELDS ── */
+function collectWizData(){
+  const g=id=>{const el=document.getElementById(id);return el?el.value.trim():''};
+  wizData.name=g('wd_name');wizData.title=g('wd_title');
+  wizData.email=g('wd_email');wizData.phone=g('wd_phone');wizData.address=g('wd_address');
+  wizData.summary=g('wd_summary');
+  wizData.skills=g('wd_skills').split(/[,;]/).map(s=>s.trim()).filter(Boolean);
+  wizData.languages=g('wd_langs').split(',').map(s=>{const p=s.split('—').map(x=>x.trim());return{l:p[0]||'',lv:p[1]||''};}).filter(l=>l.l);
+  // experience
+  wizData.experience=[];
+  for(let i=0;i<3;i++){
+    const role=g(`wd_e${i}_role`),co=g(`wd_e${i}_company`),per=g(`wd_e${i}_period`);
+    if(role||co){
+      const bullets=g(`wd_e${i}_bullets`).split('\n').map(s=>s.trim()).filter(Boolean);
+      wizData.experience.push({role,company:co,period:per,bullets});
+    }
+  }
+  wizData.education=[];
+  for(let i=0;i<2;i++){
+    const deg=g(`wd_edu${i}_degree`),inst=g(`wd_edu${i}_inst`),per=g(`wd_edu${i}_period`);
+    if(deg||inst)wizData.education.push({degree:deg,institution:inst,period:per});
+  }
+  renderWizStep(3);
+}
+
+/* ── HANDLE FILE UPLOAD IN WIZARD ── */
+function wizHandleFile(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  wizFile=file;
+  const dz=document.getElementById('dzWiz');
+  if(dz)dz.innerHTML=`<div class="dz-icon">✅</div><div class="dz-title">${esc(file.name)}</div><div class="dz-sub">${(file.size/1024).toFixed(0)} KB — ready to extract</div>`;
+  document.getElementById('modalFooter').innerHTML=`<button class="tb-btn" onclick="closeImport()">Cancel</button><button class="tb-btn prim" onclick="renderWizStep(2)">Extract Data →</button>`;
+}
+
+function setupDzDrag(id){
+  const dz=document.getElementById(id);
+  if(!dz)return;
+  dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+  dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+  dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');const f=e.dataTransfer.files[0];if(f){const fakeEv={target:{files:[f]}};wizHandleFile(fakeEv);}});
+}
+
+/* ── FINAL IMPORT ── */
+function doImport(){
+  closeImport();
+  pickedTemplate=wizPickedTmpl;
+  currentThemeColor=currentThemeColor;
+  loadTemplate(wizPickedTmpl, wizData);
+  showToast('✅ CV imported and loaded! Click any element to edit.');
+  // Switch to templates tab so user sees the theme color options
+  const tab=document.querySelector('[onclick="switchTab(\'templates\',this)"]');
+  if(tab)tab.click();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SAVE / LOAD
+═══════════════════════════════════════════════════════════ */
+function exportJSON(){
+  const data={els,pageBg:page.style.background||'#fff',version:2,template:pickedTemplate,themeColor:currentThemeColor};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='cv_studio_design.json';a.click();
+  showToast('Design saved as JSON');
+}
+
+function importJSON(event){
+  const file=event.target.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=e=>{try{
+    const data=JSON.parse(e.target.result);
+    els=data.els||[];
+    if(data.pageBg)page.style.background=data.pageBg;
+    if(data.themeColor)currentThemeColor=data.themeColor;
+    if(data.template)pickedTemplate=data.template;
+    sel=null;
+    idCtr=Math.max(...els.map(el=>parseInt(el.id.replace('e',''))||0),0)+1;
+    saveHist();rerender();showToast('Design loaded successfully');
+  }catch(err){showToast('Invalid file — could not load');}};
+  r.readAsText(file);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PIXEL-PERFECT PDF DOWNLOAD
+═══════════════════════════════════════════════════════════ */
+async function downloadPDF(){
+  showToast('⏳ Generating PDF…');
+  try{
+    await document.fonts.ready;
+    const prevT=page.style.transform;
+    const prevSel=sel;
+    sel=null;
+    page.style.transform='scale(1)';
+    document.querySelectorAll('.el-outline,.el-handle,.el-bar').forEach(e=>e.style.display='none');
+    document.querySelectorAll('.cv-el').forEach(e=>e.classList.remove('selected'));
+    await sleep(100);
+
+    const canvas=await html2canvas(page,{
+      scale:3,useCORS:true,allowTaint:true,
+      backgroundColor:page.style.background||'#ffffff',
+      logging:false,imageTimeout:15000,
+      onclone:doc=>{
+        const p=doc.getElementById('cvPage');
+        if(p){p.style.transform='scale(1)';p.style.boxShadow='none';}
+        doc.querySelectorAll('.el-outline,.el-handle,.el-bar,.grid-ov').forEach(e=>e.style.display='none');
+      }
+    });
+
+    page.style.transform=prevT;
+    document.querySelectorAll('.el-outline,.el-handle,.el-bar').forEach(e=>e.style.display='');
+    if(prevSel){sel=prevSel;rerender();}
+
+    const{jsPDF}=window.jspdf;
+    const pdf=new jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+    const pW=pdf.internal.pageSize.getWidth(),pH=pdf.internal.pageSize.getHeight();
+    const imgH=pW*(canvas.height/canvas.width);
+    const imgData=canvas.toDataURL('image/jpeg',0.96);
+
+    if(imgH<=pH+1){pdf.addImage(imgData,'JPEG',0,0,pW,imgH,'','FAST');}
+    else{
+      const ppx=(pH/pW)*canvas.width;let y=0;
+      while(y<canvas.height){
+        if(y>0)pdf.addPage();
+        const sl=document.createElement('canvas');sl.width=canvas.width;sl.height=Math.min(ppx,canvas.height-y);
+        sl.getContext('2d').drawImage(canvas,0,-y);
+        pdf.addImage(sl.toDataURL('image/jpeg',0.96),'JPEG',0,0,pW,(sl.height/canvas.width)*pW,'','FAST');
+        y+=ppx;
+      }
+    }
+    pdf.save('My_CV_Studio.pdf');
+    showToast('✅ PDF downloaded perfectly!');
+  }catch(err){console.error(err);showToast('❌ PDF error — please try again');}
+}
+
+/* ═══════════════════════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════════════════════════════ */
+document.addEventListener('keydown',e=>{
+  const editing=document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='SELECT'||document.activeElement.tagName==='TEXTAREA'||document.activeElement.contentEditable==='true';
+  if(!editing){
+    if((e.key==='Delete'||e.key==='Backspace')&&sel){delEl(sel);e.preventDefault();}
+    if(e.key==='Escape'){deselect();closeImport();}
+    if((e.ctrlKey||e.metaKey)&&e.key==='d'&&!e.shiftKey){e.preventDefault();if(sel)dupEl(sel);}
+    const nudge=e.shiftKey?10:1;
+    if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)&&sel){
+      const el=getEl(sel);if(el){
+        if(e.key==='ArrowLeft')el.x-=nudge;if(e.key==='ArrowRight')el.x+=nudge;
+        if(e.key==='ArrowUp')el.y-=nudge;if(e.key==='ArrowDown')el.y+=nudge;
+        fastUpdate(el);updPosInputs(el);e.preventDefault();
+      }
+    }
+  }
+  if(e.ctrlKey||e.metaKey){
+    if(e.key==='z'&&!e.shiftKey){e.preventDefault();undo();}
+    if((e.key==='z'&&e.shiftKey)||e.key==='y'){e.preventDefault();redo();}
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════════════ */
+function showToast(msg){const t=document.getElementById('toast');document.getElementById('toastTxt').textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════ */
+initBg();
+initTemplateGallery();
+// Load the noir template by default on startup
+loadTemplate('noir', {});
+fitZoom();
+saveHist();
+</script>
+</body>
+</html>

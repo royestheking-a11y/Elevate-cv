@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Soft Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Gantari:wght@300;400;500;600;700&family=Cormorant:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--a:#B45309;--al:rgba(180,83,9,.06);--ink:#1C1917;--bg:#FDFAF6;--side:#F5F0E8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#D6CEBF;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Gantari',sans-serif;}
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#777;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 2px 6px rgba(0,0,0,.15);}
+.swatch:hover{transform:scale(1.12);}
+.swatch.active{border-color:#777;}
+
+.resume{width:794px;min-height:1123px;background:var(--bg);box-shadow:0 20px 60px rgba(0,0,0,.18);display:grid;grid-template-columns:240px 1fr;}
+
+/* SIDEBAR */
+.sb{background:var(--side);padding:44px 24px 40px;display:flex;flex-direction:column;gap:24px;border-right:1px solid rgba(180,83,9,.12);}
+
+.sb-top{text-align:center;}
+.sb-photo{
+  width:108px;height:108px;
+  border-radius:50%;
+  margin:0 auto 16px;
+  border:2px solid var(--a);
+  background:rgba(180,83,9,.06);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.sb-photo img{width:100%;height:100%;object-fit:cover;}
+.sb-init{font-family:'Cormorant',serif;font-size:38px;font-weight:600;color:var(--a);opacity:.5;}
+.sb-name{font-family:'Cormorant',serif;font-size:24px;font-weight:700;color:var(--ink);line-height:1.2;}
+.sb-role{font-size:9.5px;font-weight:500;color:var(--a);letter-spacing:2.5px;text-transform:uppercase;margin-top:6px;}
+
+.sb-sec{}
+.sb-title{font-size:8.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#999;margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid rgba(0,0,0,.08);}
+
+.ci{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;}
+.ci-label{font-size:9px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.5px;min-width:34px;padding-top:2px;}
+.ci-val{font-size:11px;color:#666;line-height:1.45;}
+
+.edu-e{margin-bottom:13px;}
+.ed-d{font-size:11.5px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ed-s{font-size:11px;color:#888;font-style:italic;}
+.ed-y{font-size:10px;color:var(--a);font-weight:500;margin-top:2px;}
+
+.sk-item{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sk-name{font-size:11px;color:#555;}
+.sk-bar{width:68px;height:3px;background:rgba(0,0,0,.08);border-radius:2px;}
+.sk-fill{height:100%;background:var(--a);border-radius:2px;}
+
+.lang-r{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.ln{font-size:11px;color:#555;}
+.ll{font-size:10px;color:#BBB;}
+.l-pips{display:flex;gap:2.5px;}
+.lp{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.1);}
+.lp.on{background:var(--a);}
+
+/* MAIN */
+.main{padding:40px 42px 36px 36px;}
+
+/* header */
+.m-head{margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.08);}
+.m-name{font-family:'Cormorant',serif;font-size:42px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.5px;}
+.m-name em{color:var(--a);font-style:italic;}
+.m-sub{font-size:11px;color:#999;letter-spacing:2.5px;text-transform:uppercase;margin-top:5px;}
+.m-tagline{font-size:12px;color:#777;line-height:1.7;margin-top:10px;font-weight:300;font-style:italic;font-family:'Cormorant',serif;border-left:2px solid var(--a);padding-left:12px;}
+
+/* sections */
+.section{margin-bottom:20px;}
+.sh{
+  font-size:9.5px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--a);
+  margin-bottom:13px;display:flex;align-items:center;gap:8px;
+}
+.sh::after{content:'';flex:1;height:1px;background:rgba(0,0,0,.08);}
+
+/* job cards */
+.jcard{
+  border:1px solid rgba(180,83,9,.12);
+  border-radius:8px;
+  background:var(--al);
+  padding:13px 15px;
+  margin-bottom:9px;
+}
+.jcard:last-child{margin-bottom:0;}
+.jt{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px;}
+.jr{font-size:13px;font-weight:600;color:var(--ink);}
+.jd{font-size:10px;font-weight:600;color:var(--a);background:rgba(180,83,9,.1);padding:2px 7px;border-radius:20px;}
+.jco{font-family:'Cormorant',serif;font-style:italic;font-size:13px;color:#999;margin-bottom:6px;}
+.jpts li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;list-style:none;padding-left:12px;position:relative;font-weight:400;}
+.jpts li::before{content:'◦';position:absolute;left:0;color:var(--a);}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:10.5px;padding:4px 11px;background:rgba(180,83,9,.06);border:1px solid rgba(180,83,9,.2);color:var(--ink);border-radius:20px;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#B45309" onclick="setA('#B45309','rgba(180,83,9,.06)','#F5F0E8',this)"></div>
+  <div class="swatch" style="background:#0F766E" onclick="setA('#0F766E','rgba(15,118,110,.06)','#EEF7F6',this)"></div>
+  <div class="swatch" style="background:#1E40AF" onclick="setA('#1E40AF','rgba(30,64,175,.06)','#EEF2FB',this)"></div>
+  <div class="swatch" style="background:#7C3AED" onclick="setA('#7C3AED','rgba(124,58,237,.06)','#F2EEFB',this)"></div>
+  <div class="swatch" style="background:#9D174D" onclick="setA('#9D174D','rgba(157,23,77,.06)','#FBEEEF',this)"></div>
+  <div class="swatch" style="background:#374151" onclick="setA('#374151','rgba(55,65,81,.06)','#F3F4F6',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <aside class="sb">
+    <div class="sb-top">
+      <div class="sb-photo"><span class="sb-init">NC</span></div>
+      <div class="sb-name">Natalie<br>Chen</div>
+      <div class="sb-role">Brand Strategy Director</div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Contact</div>
+      <div class="ci"><span class="ci-label">Email</span><span class="ci-val">natalie@brandcraft.co</span></div>
+      <div class="ci"><span class="ci-label">Phone</span><span class="ci-val">+1 (310) 555-7788</span></div>
+      <div class="ci"><span class="ci-label">City</span><span class="ci-val">Los Angeles, CA</span></div>
+      <div class="ci"><span class="ci-label">Web</span><span class="ci-val">nataliechen.co</span></div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Education</div>
+      <div class="edu-e"><div class="ed-d">MBA — Brand Strategy</div><div class="ed-s">Kellogg School of Mgmt</div><div class="ed-y">2013–2015</div></div>
+      <div class="edu-e"><div class="ed-d">B.A. Communications</div><div class="ed-s">UCLA</div><div class="ed-y">2009–2013</div></div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Skills</div>
+      <div class="sk-item"><span class="sk-name">Brand Strategy</span><div class="sk-bar"><div class="sk-fill" style="width:96%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Consumer Insights</span><div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">Campaign Direction</span><div class="sk-bar"><div class="sk-fill" style="width:88%"></div></div></div>
+      <div class="sk-item"><span class="sk-name">P&L Management</span><div class="sk-bar"><div class="sk-fill" style="width:82%"></div></div></div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Languages</div>
+      <div class="lang-r"><span class="ln">English</span><div class="l-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div></div></div>
+      <div class="lang-r"><span class="ln">Mandarin</span><div class="l-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div></div></div>
+      <div class="lang-r"><span class="ln">French</span><div class="l-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div><div class="lp"></div></div></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="m-head">
+      <div class="m-name">Natalie <em>Chen</em></div>
+      <div class="m-sub">Brand Strategy Director · Creative Leader</div>
+      <div class="m-tagline">I build brands that earn cultural relevance — not just recognition.</div>
+    </div>
+
+    <div class="section"><div class="sh">Experience</div>
+      <div class="jcard"><div class="jt"><div class="jr">Global Brand Strategy Director</div><div class="jd">2021 – Present</div></div><div class="jco">Ogilvy — Los Angeles</div><ul class="jpts"><li>Lead brand strategy for Nike, L'Oréal, and Google across 15 markets.</li><li>Developed brand positioning framework adopted by 8 Ogilvy global offices.</li><li>Won three Effie Awards for effectiveness in 2022 and 2023.</li></ul></div>
+      <div class="jcard"><div class="jt"><div class="jr">Head of Brand Strategy</div><div class="jd">2018 – 2021</div></div><div class="jco">Droga5 — New York</div><ul class="jpts"><li>Led strategy team of 12 on Amazon and Spotify brand platforms.</li><li>Developed Spotify "Only You" campaign; 2.4B media impressions globally.</li></ul></div>
+      <div class="jcard"><div class="jt"><div class="jr">Senior Brand Strategist</div><div class="jd">2015 – 2018</div></div><div class="jco">BBDO — New York</div><ul class="jpts"><li>Produced annual brand tracking studies for 5 Fortune 100 clients.</li></ul></div>
+    </div>
+
+    <div class="section"><div class="sh">Competencies</div>
+      <div class="chips">
+        <span class="chip">Brand Architecture</span>
+        <span class="chip">Positioning Strategy</span>
+        <span class="chip">Consumer Research</span>
+        <span class="chip">Campaign Development</span>
+        <span class="chip">Cultural Strategy</span>
+        <span class="chip">Team Leadership</span>
+        <span class="chip">New Business Pitches</span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+function setA(a,al,side,el){
+  const r=document.getElementById('resume');
+  r.style.setProperty('--a',a);r.style.setProperty('--al',al);r.style.setProperty('--side',side);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));el.classList.add('active');
+}
+</script>
+</body>
+</html>

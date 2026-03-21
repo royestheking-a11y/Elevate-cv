@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 5 - Luxury Navy Gold</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1B3050;
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --white: #FFFFFF;
+    --offwhite: #FAFAF8;
+    --text: #1a1a1a;
+    --text-mid: #555;
+  }
+  body { font-family: 'Jost', sans-serif; background: #c8cfd7; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 880px; }
+  .cv { background: var(--offwhite); box-shadow: 0 25px 80px rgba(0,0,0,0.3); }
+
+  /* HEADER */
+  .cv-header { background: var(--navy); position: relative; padding: 50px 55px 40px; overflow: hidden; }
+  .cv-header::before { content: ''; position: absolute; right: -60px; top: -60px; width: 280px; height: 280px; border: 60px solid rgba(201,168,76,0.08); border-radius: 50%; }
+  .cv-header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), transparent); }
+  .header-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+  .name-section { color: var(--white); }
+  .cv-name { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; letter-spacing: 3px; line-height: 1; }
+  .cv-name strong { font-weight: 700; color: var(--gold); }
+  .cv-subtitle { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 10px; font-weight: 300; }
+  .info-col { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+  .info-line { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; text-align: right; }
+
+  /* MAIN LAYOUT */
+  .cv-layout { display: grid; grid-template-columns: 1fr 230px; }
+
+  /* MAIN CONTENT */
+  .main { padding: 40px 45px 50px; }
+  .section { margin-bottom: 32px; }
+  .sec-label { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 500; color: var(--navy); letter-spacing: 1px; padding-bottom: 8px; margin-bottom: 16px; border-bottom: 1px solid var(--gold); display: flex; align-items: center; gap: 10px; }
+
+  .profile-p { font-size: 13.5px; line-height: 1.8; color: var(--text-mid); font-weight: 300; }
+
+  .work-entry { margin-bottom: 24px; }
+  .we-head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .we-position { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .we-period { font-size: 11px; background: var(--navy); color: var(--gold); padding: 3px 8px; border-radius: 2px; white-space: nowrap; }
+  .we-employer { font-size: 12.5px; color: var(--gold); font-style: italic; margin: 4px 0 8px; font-family: 'Cormorant Garamond', serif; font-size: 15px; }
+  .we-list { padding-left: 0; list-style: none; }
+  .we-list li { font-size: 13px; color: var(--text-mid); line-height: 1.65; margin-bottom: 4px; padding-left: 14px; position: relative; }
+  .we-list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 4px; }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--navy); padding: 40px 25px; color: var(--white); }
+  .s-sec { margin-bottom: 26px; }
+  .s-heading { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 500; color: var(--gold); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(201,168,76,0.25); }
+
+  .edu-entry { margin-bottom: 14px; }
+  .edu-deg { font-size: 12.5px; font-weight: 600; color: var(--white); }
+  .edu-sch { font-size: 11.5px; color: rgba(255,255,255,0.55); margin: 2px 0; }
+  .edu-yr { font-size: 11px; color: var(--gold); }
+
+  .skill-entry { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .skill-name { font-size: 12px; color: rgba(255,255,255,0.8); }
+  .skill-dots { display: flex; gap: 3px; }
+  .sd { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+  .sd.on { background: var(--gold); }
+
+  .ref-entry { margin-bottom: 14px; }
+  .ref-nm { font-size: 12.5px; font-weight: 600; color: var(--white); }
+  .ref-ro { font-size: 11.5px; color: var(--gold); margin: 2px 0; }
+  .ref-ct { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  @media (max-width: 660px) {
+    .cv-layout { grid-template-columns: 1fr; }
+    .sidebar { order: 2; }
+    .header-grid { grid-template-columns: 1fr; }
+    .info-col { align-items: flex-start; }
+    .main { padding: 25px 20px; }
+    .cv-header { padding: 30px 20px; }
+    .sidebar { padding: 25px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <header class="cv-header">
+    <div class="header-grid">
+      <div class="name-section">
+        <div class="cv-name">OLIVIA <strong>WILSON</strong></div>
+        <div class="cv-subtitle">Marketing Manager &nbsp;·&nbsp; Brand Strategist</div>
+      </div>
+      <div class="info-col">
+        <div class="info-line">123-456-7890</div>
+        <div class="info-line">hello@reallygreatsite.com</div>
+        <div class="info-line">123 Anywhere St., Any City</div>
+        <div class="info-line">www.reallygreatsite.com</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cv-layout">
+    <main class="main">
+      <div class="section">
+        <div class="sec-label">Profile</div>
+        <p class="profile-p">A results-driven marketing professional with 5+ years of experience leading brand strategy, digital campaigns, and cross-functional teams. Adept at translating complex market insights into actionable strategies that drive measurable growth and lasting brand equity.</p>
+      </div>
+
+      <div class="section">
+        <div class="sec-label">Work Experience</div>
+        <div class="work-entry">
+          <div class="we-head">
+            <div class="we-position">Marketing Manager</div>
+            <div class="we-period">2022 – 2023</div>
+          </div>
+          <div class="we-employer">Arowwai Industries</div>
+          <ul class="we-list">
+            <li>Led a team of 8 marketers across digital, content, and brand channels.</li>
+            <li>Delivered 34% YoY increase in qualified lead generation through optimized campaigns.</li>
+            <li>Managed $2M annual marketing budget with ROI reporting to C-suite.</li>
+          </ul>
+        </div>
+        <div class="work-entry">
+          <div class="we-head">
+            <div class="we-position">Marketing Manager</div>
+            <div class="we-period">2020 – 2021</div>
+          </div>
+          <div class="we-employer">Ginyard International Co.</div>
+          <ul class="we-list">
+            <li>Revamped brand identity resulting in 22% improvement in brand recognition.</li>
+            <li>Coordinated multinational campaign launches across 5 markets.</li>
+          </ul>
+        </div>
+        <div class="work-entry">
+          <div class="we-head">
+            <div class="we-position">Marketing Manager</div>
+            <div class="we-period">2018 – 2019</div>
+          </div>
+          <div class="we-employer">Salford & Co.</div>
+          <ul class="we-list">
+            <li>Developed content marketing strategy that grew organic traffic by 45%.</li>
+            <li>Established partnership programs with 12 key industry influencers.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="s-sec">
+        <div class="s-heading">Education</div>
+        <div class="edu-entry">
+          <div class="edu-deg">B.B.A. Business Management</div>
+          <div class="edu-sch">Rimberio University</div>
+          <div class="edu-yr">2019 – 2023</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-deg">B.B.A. Business Management</div>
+          <div class="edu-sch">Borcelle University</div>
+          <div class="edu-yr">2014 – 2018</div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-heading">Skills</div>
+        <div class="skill-entry">
+          <span class="skill-name">Management</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div>
+          </div>
+        </div>
+        <div class="skill-entry">
+          <span class="skill-name">Negotiation</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div>
+          </div>
+        </div>
+        <div class="skill-entry">
+          <span class="skill-name">Critical Thinking</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div>
+          </div>
+        </div>
+        <div class="skill-entry">
+          <span class="skill-name">Digital Marketing</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div>
+          </div>
+        </div>
+        <div class="skill-entry">
+          <span class="skill-name">Leadership</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-heading">Languages</div>
+        <div class="skill-entry">
+          <span class="skill-name">English</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd on"></div>
+          </div>
+        </div>
+        <div class="skill-entry">
+          <span class="skill-name">Spanish</span>
+          <div class="skill-dots">
+            <div class="sd on"></div><div class="sd on"></div><div class="sd on"></div><div class="sd"></div><div class="sd"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-heading">References</div>
+        <div class="ref-entry">
+          <div class="ref-nm">Harumi Kobayashi</div>
+          <div class="ref-ro">Salford & Co. / CEO</div>
+          <div class="ref-ct">123-456-7890<br>hello@reallygreatsite.com</div>
+        </div>
+        <div class="ref-entry">
+          <div class="ref-nm">Bailey Dupont</div>
+          <div class="ref-ro">Arowwai Industries / CEO</div>
+          <div class="ref-ct">123-456-7890<br>hello@reallygreatsite.com</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</body>
+</html>

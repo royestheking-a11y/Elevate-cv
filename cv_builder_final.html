@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Premium Resume Templates — CV Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;600;700;800&family=Gantari:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* ═══ GLOBAL RESET ═══ */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#1E1E24; font-family:'DM Sans',sans-serif; color:#fff; min-height:100vh; }
+
+/* ═══ APP SHELL ═══ */
+.app { display:grid; grid-template-columns:280px 1fr; min-height:100vh; }
+
+/* ═══ LEFT PANEL ═══ */
+.panel {
+  background:#13131A;
+  border-right:1px solid rgba(255,255,255,.07);
+  padding:24px 18px;
+  display:flex; flex-direction:column; gap:0;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.panel-logo { font-size:16px; font-weight:700; margin-bottom:24px; color:#fff; letter-spacing:-.3px; }
+.panel-logo span { color:#6366F1; }
+
+.panel-section { margin-bottom:20px; }
+.panel-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#555; margin-bottom:10px; }
+
+/* template thumbs */
+.tmpl-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.tmpl-thumb {
+  background:#1E1E2A;
+  border:1.5px solid rgba(255,255,255,.07);
+  border-radius:6px;
+  padding:10px 6px 7px;
+  cursor:pointer;
+  transition:.15s;
+  text-align:center;
+}
+.tmpl-thumb:hover { border-color:rgba(99,102,241,.4); background:#22223A; }
+.tmpl-thumb.active { border-color:#6366F1; background:rgba(99,102,241,.12); }
+.tmpl-preview {
+  width:100%; aspect-ratio:0.7;
+  border-radius:3px;
+  margin-bottom:5px;
+  overflow:hidden;
+  font-size:7px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; letter-spacing:1px;
+}
+.tmpl-name { font-size:9.5px; color:#999; font-weight:500; }
+.tmpl-thumb.active .tmpl-name { color:#A5B4FC; }
+
+/* color swatches */
+.swatch-row { display:flex; gap:7px; flex-wrap:wrap; }
+.swatch {
+  width:26px; height:26px; border-radius:50%;
+  cursor:pointer; border:2px solid transparent;
+  transition:.15s; box-shadow:0 2px 5px rgba(0,0,0,.3);
+}
+.swatch:hover { transform:scale(1.12); }
+.swatch.active { border-color:#fff; }
+
+/* download btn */
+.btn-dl {
+  width:100%;
+  padding:12px;
+  background:#6366F1;
+  color:#fff; border:none; border-radius:8px;
+  font-size:13px; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  transition:.2s; margin-top:auto;
+  font-family:inherit;
+}
+.btn-dl:hover { background:#4F46E5; }
+.btn-dl:active { transform:scale(.98); }
+.btn-dl.loading { opacity:.6; cursor:not-allowed; pointer-events:none; }
+
+.status-bar {
+  font-size:11px; color:#555; margin-top:8px; text-align:center;
+  min-height:16px;
+}
+
+/* ═══ CANVAS AREA ═══ */
+.canvas-area {
+  background:#25252F;
+  display:flex; align-items:flex-start; justify-content:center;
+  padding:32px 20px;
+  min-height:100vh;
+}
+
+/* ═══ RESUME WRAPPER ═══ */
+.resume-outer { position:relative; }
+
+/* ═══════════════════════════════════════════════
+   TEMPLATE STYLES — each template scoped by ID
+═══════════════════════════════════════════════ */
+
+/* ── TEMPLATE 1: Executive Noir ── */
+#t1 {
+  width:794px; min-height:1123px;
+  display:grid; grid-template-columns:260px 1fr;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  position:relative; overflow:hidden;
+  --c1:#B8960C; --c2:#1A1A1A; --c3:#F5F0E8;
+  background:var(--c3);
+}
+#t1::before { content:''; position:absolute; top:0; left:260px; width:4px; height:100%; background:var(--c1); z-index:10; }
+#t1 .sb { background:var(--c2); padding:44px 28px 40px; display:flex; flex-direction:column; gap:24px; position:relative; }
+#t1 .sb::after { content:''; position:absolute; bottom:0; right:0; width:70px; height:70px; border-right:2px solid var(--c1); border-bottom:2px solid var(--c1); opacity:.3; }
+#t1 .ph { width:110px; height:110px; border-radius:50%; border:2px solid var(--c1); display:flex; align-items:center; justify-content:center; margin:0 auto; background:rgba(255,255,255,.04); }
+#t1 .ph-init { font-family:'Cormorant Garamond',serif; font-size:38px; color:var(--c1); font-weight:300; }
+#t1 .fn { font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:300; color:rgba(255,255,255,.7); letter-spacing:3px; text-transform:uppercase; text-align:center; }
+#t1 .ln { font-family:'Cormorant Garamond',serif; font-size:30px; font-weight:700; color:#fff; letter-spacing:2px; text-transform:uppercase; text-align:center; }
+#t1 .jt { font-size:8.5px; font-weight:500; color:var(--c1); letter-spacing:3px; text-transform:uppercase; text-align:center; padding:5px 0; border-top:1px solid rgba(255,255,255,.1); border-bottom:1px solid rgba(255,255,255,.1); margin-top:4px; }
+#t1 .st { font-size:7.5px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--c1); margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+#t1 .st::after { content:''; flex:1; height:1px; background:rgba(255,255,255,.1); }
+#t1 .ci { display:flex; align-items:flex-start; gap:9px; margin-bottom:8px; }
+#t1 .ci-ic { width:18px; height:18px; border:1px solid var(--c1); border-radius:2px; display:flex; align-items:center; justify-content:center; font-size:8px; color:var(--c1); flex-shrink:0; }
+#t1 .ci-tx { font-size:10.5px; color:rgba(255,255,255,.6); line-height:1.4; }
+#t1 .sr { margin-bottom:8px; }
+#t1 .sr-top { display:flex; justify-content:space-between; font-size:10px; color:rgba(255,255,255,.65); margin-bottom:3px; }
+#t1 .sr-pct { font-size:8.5px; color:var(--c1); }
+#t1 .sr-tr { height:2px; background:rgba(255,255,255,.08); border-radius:1px; }
+#t1 .sr-fi { height:100%; background:var(--c1); border-radius:1px; }
+#t1 .li { display:flex; justify-content:space-between; margin-bottom:6px; }
+#t1 .li-n { font-size:10.5px; color:rgba(255,255,255,.65); }
+#t1 .li-d { display:flex; gap:3px; }
+#t1 .ld { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.12); }
+#t1 .ld.on { background:var(--c1); }
+#t1 .mn { padding:36px 34px 32px 38px; display:flex; flex-direction:column; gap:18px; }
+#t1 .sh { display:flex; align-items:center; gap:9px; margin-bottom:12px; }
+#t1 .sh-d { width:5px; height:5px; background:var(--c1); border-radius:50%; flex-shrink:0; }
+#t1 .sh-t { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; color:var(--c2); }
+#t1 .sh-r { flex:1; height:1px; background:linear-gradient(90deg,var(--c1),transparent); }
+#t1 .ab { font-size:11px; line-height:1.75; color:#555; font-weight:300; }
+#t1 .ej { margin-bottom:14px; padding-bottom:14px; padding-left:12px; position:relative; }
+#t1 .ej::before { content:''; position:absolute; left:0; top:4px; width:3.5px; height:3.5px; background:var(--c1); border-radius:50%; }
+#t1 .ej:last-child { margin-bottom:0; padding-bottom:0; }
+#t1 .ej-t { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1px; }
+#t1 .ej-r { font-size:12px; font-weight:600; color:var(--c2); }
+#t1 .ej-d { font-size:9px; color:var(--c1); font-weight:600; white-space:nowrap; }
+#t1 .ej-c { font-family:'Cormorant Garamond',serif; font-size:12px; font-style:italic; color:#777; margin-bottom:4px; }
+#t1 .ej-b { padding-left:10px; }
+#t1 .ej-b li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; font-weight:300; }
+#t1 .edu { display:flex; gap:12px; margin-bottom:10px; }
+#t1 .edu-y { font-size:9px; font-weight:600; color:var(--c1); min-width:65px; padding-top:2px; }
+#t1 .edu-d { font-size:11.5px; font-weight:600; color:var(--c2); }
+#t1 .edu-s { font-size:10.5px; color:#888; font-style:italic; }
+#t1 .sk-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+#t1 .sk-ch { background:rgba(0,0,0,.04); border:1px solid rgba(0,0,0,.07); border-radius:3px; padding:5px 9px; font-size:10px; color:#555; display:flex; align-items:center; gap:5px; }
+#t1 .sk-ch::before { content:''; width:3.5px; height:3.5px; background:var(--c1); border-radius:50%; flex-shrink:0; }
+
+/* ── TEMPLATE 2: Swiss Grid ── */
+#t2 {
+  width:794px; min-height:1123px;
+  background:#fff;
+  box-shadow:0 20px 60px rgba(0,0,0,.3);
+  display:flex; flex-direction:column;
+  --ac:#E63312;
+}
+#t2 .top-bar { background:#111; height:7px; }
+#t2 .ac-bar { background:var(--ac); height:3px; }
+#t2 .hd { padding:30px 50px 24px; display:grid; grid-template-columns:1fr auto; gap:24px; border-bottom:1px solid #E0E0E0; }
+#t2 .h-name { font-family:'Barlow Condensed',sans-serif; font-size:52px; font-weight:700; color:#111; line-height:.9; letter-spacing:-1px; text-transform:uppercase; }
+#t2 .h-name span { color:var(--ac); }
+#t2 .h-sub { font-size:11px; font-weight:500; color:var(--ac); letter-spacing:3.5px; text-transform:uppercase; margin-top:8px; }
+#t2 .h-rt { text-align:right; display:flex; flex-direction:column; gap:4px; justify-content:flex-end; }
+#t2 .hc { font-size:11px; color:#555; }
+#t2 .bd { display:grid; grid-template-columns:1fr 200px; flex:1; }
+#t2 .mn { padding:26px 36px 26px 50px; border-right:1px solid #EBEBEB; }
+#t2 .sec-hd { display:flex; align-items:center; gap:0; margin-bottom:12px; }
+#t2 .sn { font-family:'Barlow Condensed',sans-serif; font-size:10px; font-weight:700; color:var(--ac); letter-spacing:2px; width:26px; }
+#t2 .st { font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:#111; flex:1; }
+#t2 .sl { flex:1; height:1px; background:#E0E0E0; margin-left:8px; }
+#t2 .sec { margin-bottom:20px; }
+#t2 .ab { font-size:11.5px; line-height:1.75; color:#444; font-weight:300; }
+#t2 .eb { margin-bottom:16px; display:grid; grid-template-columns:76px 1fr; gap:0 14px; }
+#t2 .eb-l { }
+#t2 .eb-dt { font-size:9.5px; font-weight:600; color:var(--ac); line-height:1.4; }
+#t2 .eb-co { font-size:9px; color:#999; margin-top:2px; line-height:1.3; }
+#t2 .eb-r { border-left:2px solid var(--ac); padding-left:12px; }
+#t2 .eb-ro { font-size:12.5px; font-weight:600; color:#111; margin-bottom:4px; }
+#t2 .eb-pts li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; padding-left:10px; list-style:none; position:relative; }
+#t2 .eb-pts li::before { content:'—'; position:absolute; left:0; color:var(--ac); font-size:9px; top:1px; }
+#t2 .sd { padding:26px 24px 26px 20px; }
+#t2 .ss { margin-bottom:20px; }
+#t2 .ss-t { font-family:'Barlow Condensed',sans-serif; font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#111; border-bottom:2px solid var(--ac); padding-bottom:4px; margin-bottom:10px; }
+#t2 .edu-e { margin-bottom:10px; }
+#t2 .edu-y { font-size:9.5px; font-weight:600; color:var(--ac); }
+#t2 .edu-d { font-size:11.5px; font-weight:600; color:#111; line-height:1.3; }
+#t2 .edu-s { font-size:10.5px; color:#777; font-style:italic; }
+#t2 .sk-tg { display:inline-block; font-size:9.5px; font-weight:600; padding:2px 7px; border:1px solid var(--ac); color:var(--ac); margin:2px 2px 2px 0; letter-spacing:.3px; }
+#t2 .l-row { display:flex; justify-content:space-between; margin-bottom:6px; }
+#t2 .l-n { font-size:11px; color:#111; }
+#t2 .l-l { font-size:10px; color:#999; }
+#t2 .ce { font-size:10.5px; color:#555; margin-bottom:5px; padding-left:10px; position:relative; }
+#t2 .ce::before { content:'▸'; position:absolute; left:0; color:var(--ac); font-size:8px; }
+
+/* ── TEMPLATE 3: Architect ── */
+#t3 {
+  width:794px; min-height:1123px;
+  background:#FAFAFA;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:grid; grid-template-columns:6px 200px 1fr;
+  --a:#C0392B;
+}
+#t3 .stripe { background:var(--a); }
+#t3 .sb { background:#F2F2F2; padding:40px 20px 36px 22px; border-right:1px solid #E5E5E5; }
+#t3 .ph-sq { width:100%; aspect-ratio:1; background:#E0E0E0; display:flex; align-items:center; justify-content:center; margin-bottom:18px; position:relative; overflow:hidden; }
+#t3 .ph-sq::after { content:''; position:absolute; bottom:0; left:0; width:100%; height:3px; background:var(--a); }
+#t3 .ph-lt { font-family:'Playfair Display',serif; font-size:34px; color:#BBB; font-weight:700; }
+#t3 .cv-n { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1C1C1C; line-height:1.2; margin-bottom:3px; }
+#t3 .cv-r { font-size:9px; color:var(--a); letter-spacing:2px; text-transform:uppercase; font-weight:500; margin-bottom:16px; }
+#t3 .sb-bl { margin-bottom:18px; }
+#t3 .sb-hd { font-size:8px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--a); margin-bottom:9px; padding-bottom:4px; border-bottom:1px solid #DDD; }
+#t3 .cr { font-size:10px; color:#555; line-height:1.45; margin-bottom:6px; display:flex; gap:5px; }
+#t3 .cr-lb { font-size:8px; font-weight:700; color:var(--a); text-transform:uppercase; letter-spacing:.4px; min-width:32px; }
+#t3 .edu-e { margin-bottom:10px; }
+#t3 .edu-dg { font-size:10.5px; font-weight:500; color:#1C1C1C; line-height:1.3; }
+#t3 .edu-sc { font-size:9.5px; color:#777; }
+#t3 .edu-yr { font-size:9px; color:var(--a); font-weight:500; margin-top:1px; }
+#t3 .sl-l { display:flex; flex-direction:column; gap:5px; }
+#t3 .sl-r { display:flex; justify-content:space-between; align-items:center; }
+#t3 .sl-n { font-size:10px; color:#555; }
+#t3 .sl-b { width:55px; height:2.5px; background:#DDD; border-radius:1px; }
+#t3 .sl-f { height:100%; background:var(--a); border-radius:1px; }
+#t3 .la-e { display:flex; justify-content:space-between; margin-bottom:5px; }
+#t3 .la-n { font-size:10px; color:#444; }
+#t3 .la-l { font-size:9.5px; color:#999; }
+#t3 .mn { padding:40px 40px 32px 32px; }
+#t3 .sh { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#1C1C1C; margin-bottom:2px; display:flex; align-items:baseline; gap:8px; }
+#t3 .sh::after { content:''; flex:1; height:1px; background:#E0E0E0; margin-left:4px; }
+#t3 .sh-ac { width:20px; height:2px; background:var(--a); margin-bottom:12px; }
+#t3 .sec { margin-bottom:20px; }
+#t3 .pr { font-size:11.5px; line-height:1.78; color:#555; font-weight:300; }
+#t3 .jb { margin-bottom:14px; }
+#t3 .jb-t { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1px; }
+#t3 .jb-ro { font-size:12px; font-weight:500; color:#1C1C1C; }
+#t3 .jb-dt { font-size:9.5px; color:var(--a); font-weight:500; background:rgba(192,57,43,.07); padding:1px 6px; border-radius:2px; }
+#t3 .jb-co { font-family:'Playfair Display',serif; font-style:italic; font-size:11.5px; color:#888; margin-bottom:4px; }
+#t3 .jb-pt { padding-left:12px; }
+#t3 .jb-pt li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; font-weight:300; }
+#t3 .cps { display:flex; flex-wrap:wrap; gap:4px; }
+#t3 .cp { font-size:9.5px; color:#555; background:#EFEFEF; border-radius:2px; padding:3px 8px; font-weight:500; }
+#t3 .rf-gd { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+#t3 .rf-n { font-size:11.5px; font-weight:500; color:#1C1C1C; }
+#t3 .rf-r { font-size:10px; color:var(--a); margin:1px 0; }
+#t3 .rf-c { font-size:9.5px; color:#888; line-height:1.5; }
+
+/* ── TEMPLATE 4: Gradient Modern ── */
+#t4 {
+  width:794px; min-height:1123px;
+  background:#F7F8FC;
+  box-shadow:0 25px 70px rgba(0,0,0,.3);
+  overflow:hidden; display:flex; flex-direction:column;
+  --g1:#0F2027; --g2:#203A43; --g3:#2C5364; --ac:#00D4AA;
+}
+#t4 .hd { background:linear-gradient(135deg,var(--g1),var(--g2),var(--g3)); padding:36px 46px 54px; position:relative; overflow:hidden; }
+#t4 .hd::before { content:''; position:absolute; top:-70px; right:-70px; width:260px; height:260px; border-radius:50%; border:50px solid rgba(255,255,255,.04); }
+#t4 .hi { display:flex; justify-content:space-between; align-items:flex-end; position:relative; z-index:1; }
+#t4 .h-nm { font-size:38px; font-weight:800; color:#fff; line-height:1; letter-spacing:-1px; }
+#t4 .h-nm span { color:var(--ac); }
+#t4 .h-sub { font-size:11px; font-weight:400; color:rgba(255,255,255,.55); letter-spacing:2px; text-transform:uppercase; margin-top:7px; }
+#t4 .h-rt { display:flex; flex-direction:column; gap:5px; text-align:right; }
+#t4 .hc { font-size:11px; color:rgba(255,255,255,.6); }
+#t4 .fc { background:#fff; margin:0 36px; margin-top:-22px; border-radius:10px; padding:16px 24px; box-shadow:0 6px 24px rgba(0,0,0,.1); display:flex; gap:24px; align-items:center; position:relative; z-index:2; }
+#t4 .fc-st { text-align:center; flex:1; }
+#t4 .fc-n { font-size:22px; font-weight:800; color:#1A1A2E; line-height:1; }
+#t4 .fc-n span { color:var(--ac); }
+#t4 .fc-l { font-size:8px; font-weight:700; color:#999; letter-spacing:1.8px; text-transform:uppercase; margin-top:2px; }
+#t4 .fc-dv { width:1px; height:32px; background:#EEE; flex-shrink:0; }
+#t4 .bd { display:grid; grid-template-columns:1fr 210px; flex:1; padding:24px 36px 30px; }
+#t4 .mn { padding-right:28px; border-right:1px solid #EEEEEE; }
+#t4 .sec { margin-bottom:20px; }
+#t4 .sc-t { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#1A1A2E; margin-bottom:11px; display:flex; align-items:center; gap:7px; }
+#t4 .sc-t::before { content:''; width:14px; height:3px; background:var(--ac); border-radius:2px; flex-shrink:0; }
+#t4 .ab { font-size:11.5px; line-height:1.78; color:#555; }
+#t4 .jc { background:#FAFAFA; border:1px solid #F0F0F0; border-left:3px solid var(--ac); border-radius:0 7px 7px 0; padding:10px 12px; margin-bottom:8px; }
+#t4 .jc-t { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2px; }
+#t4 .jc-r { font-size:12.5px; font-weight:700; color:#1A1A2E; }
+#t4 .jc-d { font-size:9.5px; font-weight:600; background:rgba(0,212,170,.1); color:var(--ac); padding:1px 7px; border-radius:20px; }
+#t4 .jc-c { font-size:10.5px; color:#888; margin-bottom:5px; }
+#t4 .jc-p li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; padding-left:10px; list-style:none; position:relative; }
+#t4 .jc-p li::before { content:'›'; position:absolute; left:0; color:var(--ac); font-weight:700; }
+#t4 .sd { padding-left:24px; }
+#t4 .ss { margin-bottom:18px; }
+#t4 .ss-t { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--ac); margin-bottom:10px; padding-bottom:5px; border-bottom:1px solid #EEEEEE; }
+#t4 .e-e { margin-bottom:10px; }
+#t4 .e-d { font-size:11.5px; font-weight:600; color:#1A1A2E; line-height:1.3; }
+#t4 .e-s { font-size:10.5px; color:#777; }
+#t4 .e-y { font-size:9.5px; color:var(--ac); font-weight:500; margin-top:1px; }
+#t4 .sk-wp { display:flex; flex-wrap:wrap; gap:4px; }
+#t4 .sk-p { font-size:9.5px; font-weight:500; padding:2px 8px; background:rgba(0,212,170,.08); color:#1A1A2E; border-radius:20px; border:1px solid rgba(0,212,170,.2); }
+#t4 .lr { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+#t4 .l-n { font-size:11px; color:#1A1A2E; }
+#t4 .l-ps { display:flex; gap:2.5px; }
+#t4 .lp { width:7px; height:7px; border-radius:50%; background:#E8E8E8; }
+#t4 .lp.on { background:var(--ac); }
+#t4 .c-it { font-size:10.5px; color:#555; margin-bottom:5px; display:flex; gap:5px; }
+#t4 .c-it::before { content:'✓'; color:var(--ac); font-weight:700; flex-shrink:0; }
+
+/* ── TEMPLATE 5: Timeline Pro ── */
+#t5 {
+  width:794px; min-height:1123px;
+  background:#FDFDFD;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:grid; grid-template-columns:230px 1fr;
+  --p:#1D4ED8; --pk:rgba(29,78,216,.07);
+}
+#t5 .sb { background:#111827; display:flex; flex-direction:column; }
+#t5 .sb-top { background:var(--p); padding:36px 24px 28px; position:relative; overflow:hidden; }
+#t5 .sb-top::after { content:''; position:absolute; bottom:-18px; left:-18px; width:100px; height:100px; border-radius:50%; background:rgba(255,255,255,.06); }
+#t5 .av { width:76px; height:76px; border-radius:10px; background:rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
+#t5 .av-i { font-size:26px; color:#fff; font-weight:700; font-family:'Playfair Display',serif; }
+#t5 .sb-nm { font-size:20px; font-weight:700; color:#fff; font-family:'Playfair Display',serif; line-height:1.2; }
+#t5 .sb-ro { font-size:9px; color:rgba(255,255,255,.55); letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+#t5 .sb-bd { padding:22px 24px 28px; flex:1; display:flex; flex-direction:column; gap:20px; }
+#t5 .s-h { font-size:8px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:9px; }
+#t5 .ci { font-size:10.5px; color:rgba(255,255,255,.6); margin-bottom:6px; display:flex; gap:7px; align-items:flex-start; }
+#t5 .ci-d { width:4px; height:4px; background:var(--p); border-radius:50%; margin-top:4px; flex-shrink:0; }
+#t5 .pr-r { margin-bottom:8px; }
+#t5 .pr-t { display:flex; justify-content:space-between; font-size:9.5px; color:rgba(255,255,255,.6); margin-bottom:3px; }
+#t5 .pr-p { font-size:8.5px; color:var(--p); }
+#t5 .pr-tr { height:2px; background:rgba(255,255,255,.1); border-radius:1px; }
+#t5 .pr-fi { height:100%; background:var(--p); border-radius:1px; }
+#t5 .aw { font-size:10.5px; color:rgba(255,255,255,.6); margin-bottom:5px; display:flex; gap:7px; }
+#t5 .aw-d { width:4px; height:4px; background:var(--p); border-radius:50%; margin-top:4px; flex-shrink:0; }
+#t5 .la-r { display:flex; justify-content:space-between; margin-bottom:5px; }
+#t5 .la-n { font-size:10.5px; color:rgba(255,255,255,.6); }
+#t5 .la-l { font-size:9.5px; color:var(--p); }
+#t5 .mn { padding:36px 38px 32px 34px; }
+#t5 .m-hd { margin-bottom:20px; }
+#t5 .m-nm { font-family:'Playfair Display',serif; font-size:34px; font-weight:700; color:#111827; line-height:1; letter-spacing:-.5px; }
+#t5 .m-nm em { color:var(--p); font-style:normal; }
+#t5 .m-ti { font-size:10px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+#t5 .m-sum { font-size:11px; line-height:1.72; color:#555; margin-top:9px; padding:10px 12px; background:var(--pk); border-left:3px solid var(--p); border-radius:0 5px 5px 0; }
+#t5 .sec { margin-bottom:18px; }
+#t5 .sc-l { font-size:8.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--p); margin-bottom:12px; display:flex; align-items:center; gap:7px; }
+#t5 .sc-l::after { content:''; flex:1; height:1px; background:#EEEEEE; }
+#t5 .tl { position:relative; padding-left:18px; }
+#t5 .tl::before { content:''; position:absolute; left:4px; top:5px; bottom:5px; width:1.5px; background:linear-gradient(180deg,var(--p),rgba(29,78,216,.1)); }
+#t5 .tl-i { margin-bottom:14px; position:relative; }
+#t5 .tl-i:last-child { margin-bottom:0; }
+#t5 .tl-dt { position:absolute; left:-18px; top:2px; width:9px; height:9px; border-radius:50%; background:#fff; border:2px solid var(--p); z-index:1; }
+#t5 .tl-dt.f { background:var(--p); }
+#t5 .tl-tp { display:flex; justify-content:space-between; align-items:flex-start; }
+#t5 .tl-ro { font-size:12.5px; font-weight:600; color:#111827; }
+#t5 .tl-da { font-size:9.5px; color:var(--p); font-weight:600; background:var(--pk); padding:1px 6px; border-radius:3px; }
+#t5 .tl-co { font-style:italic; font-size:11.5px; color:#888; margin:2px 0 4px; font-family:'Playfair Display',serif; }
+#t5 .tl-pt li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; list-style:none; padding-left:9px; position:relative; }
+#t5 .tl-pt li::before { content:'·'; position:absolute; left:0; color:var(--p); font-size:13px; line-height:1; }
+#t5 .eg { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+#t5 .ec { padding:9px 11px; background:var(--pk); border-radius:5px; }
+#t5 .ec-d { font-size:11.5px; font-weight:600; color:#111827; line-height:1.3; }
+#t5 .ec-s { font-size:10px; color:#777; margin-top:1px; }
+#t5 .ec-y { font-size:9px; color:var(--p); font-weight:600; margin-top:2px; }
+#t5 .sk-rw { display:flex; flex-wrap:wrap; gap:4px; }
+#t5 .sk { font-size:10px; padding:3px 9px; border:1px solid var(--p); color:var(--p); border-radius:4px; font-weight:500; }
+
+/* ── TEMPLATE 6: Minimal Ink ── */
+#t6 {
+  width:794px; min-height:1123px;
+  background:#FFFEF9;
+  box-shadow:0 15px 50px rgba(0,0,0,.2);
+  padding:52px 62px 48px;
+  font-family:'Work Sans',sans-serif;
+  --a:#C2410C;
+}
+#t6 .hd { border-bottom:2px solid #111; padding-bottom:18px; margin-bottom:22px; }
+#t6 .ht { display:flex; justify-content:space-between; align-items:flex-end; }
+#t6 .cv-n { font-family:'Lora',serif; font-size:42px; font-weight:700; color:#111; line-height:1; letter-spacing:-1px; }
+#t6 .cv-n span { color:var(--a); }
+#t6 .h-rt { text-align:right; }
+#t6 .cv-ti { font-size:11px; font-weight:500; color:var(--a); letter-spacing:2px; text-transform:uppercase; margin-bottom:7px; }
+#t6 .cl { font-size:11px; color:#666; margin-bottom:2px; }
+#t6 .bd { display:grid; grid-template-columns:1fr 178px; gap:36px; }
+#t6 .sec { margin-bottom:20px; }
+#t6 .sh { font-family:'Lora',serif; font-size:12px; font-weight:700; color:#111; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:9px; }
+#t6 .sh span { color:var(--a); }
+#t6 .sh::after { content:''; flex:1; height:1px; background:#DDD; margin-left:4px; }
+#t6 .pp { font-size:11.5px; line-height:1.82; color:#444; font-weight:300; }
+#t6 .jb { margin-bottom:13px; padding-bottom:13px; border-bottom:1px dotted #DDD; }
+#t6 .jb:last-child { border-bottom:none; padding-bottom:0; }
+#t6 .jt { display:flex; justify-content:space-between; align-items:baseline; }
+#t6 .jr { font-size:12.5px; font-weight:600; color:#111; }
+#t6 .jd { font-size:9.5px; color:var(--a); font-weight:600; }
+#t6 .jco { font-family:'Lora',serif; font-style:italic; font-size:11.5px; color:#888; margin:1px 0 4px; }
+#t6 .jpt { padding-left:11px; }
+#t6 .jpt li { font-size:10.5px; color:#555; line-height:1.65; margin-bottom:2px; padding-left:11px; position:relative; list-style:none; font-weight:300; }
+#t6 .jpt li::before { content:'—'; position:absolute; left:0; color:var(--a); font-size:8px; top:1px; }
+#t6 .sd {}
+#t6 .sb { margin-bottom:18px; }
+#t6 .sb-t { font-size:8.5px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#111; border-bottom:1px solid #111; padding-bottom:4px; margin-bottom:9px; }
+#t6 .ee { margin-bottom:9px; }
+#t6 .ee-d { font-size:11.5px; font-weight:500; color:#111; line-height:1.3; }
+#t6 .ee-s { font-size:10px; color:#888; font-style:italic; }
+#t6 .ee-y { font-size:9.5px; color:var(--a); margin-top:1px; font-weight:500; }
+#t6 .sk { font-size:10.5px; color:#555; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+#t6 .sk::before { content:''; width:4px; height:4px; background:var(--a); border-radius:50%; flex-shrink:0; }
+#t6 .lr { display:flex; justify-content:space-between; margin-bottom:5px; }
+#t6 .ln { font-size:10.5px; color:#444; }
+#t6 .ll { font-size:9.5px; color:#AAA; }
+#t6 .ce { font-size:10px; color:#555; margin-bottom:4px; padding-left:9px; position:relative; }
+#t6 .ce::before { content:'✓'; position:absolute; left:0; color:var(--a); }
+#t6 .cp-wr { display:flex; flex-wrap:wrap; gap:4px; }
+#t6 .cp { font-size:10px; color:#555; border:1px solid #DDD; padding:2px 8px; border-radius:2px; }
+
+/* ── TEMPLATE 7: Horizon ── */
+#t7 {
+  width:794px; min-height:1123px;
+  background:#F9FAFB;
+  box-shadow:0 20px 60px rgba(0,0,0,.22);
+  display:flex; flex-direction:column; overflow:hidden;
+  --h:#0F766E; --hl:rgba(15,118,110,.07);
+}
+#t7 .hd { background:#1C2B3A; padding:28px 46px; display:flex; justify-content:space-between; align-items:center; position:relative; overflow:hidden; }
+#t7 .hd::before { content:''; position:absolute; right:-36px; top:-36px; width:160px; height:160px; border-radius:50%; background:rgba(255,255,255,.03); }
+#t7 .h-ph { width:64px; height:64px; border-radius:50%; border:2px solid var(--h); background:rgba(255,255,255,.05); display:flex; align-items:center; justify-content:center; overflow:hidden; flex-shrink:0; }
+#t7 .h-i { font-size:22px; color:rgba(255,255,255,.35); font-family:'Playfair Display',serif; }
+#t7 .h-md { flex:1; padding:0 24px; }
+#t7 .cv-n { font-family:'Lora',serif; font-size:28px; font-weight:700; color:#fff; line-height:1.1; }
+#t7 .cv-n span { color:var(--h); }
+#t7 .cv-ti { font-size:10px; color:rgba(255,255,255,.45); letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+#t7 .h-ct { display:flex; flex-direction:column; gap:4px; align-items:flex-end; }
+#t7 .hc { font-size:10.5px; color:rgba(255,255,255,.5); }
+#t7 .ac-s { height:3.5px; background:linear-gradient(90deg,var(--h),transparent); }
+#t7 .bd { display:grid; grid-template-columns:1fr 214px; flex:1; }
+#t7 .mn { padding:26px 32px 26px 46px; }
+#t7 .sec { margin-bottom:20px; }
+#t7 .sc-h { font-size:9.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--h); margin-bottom:11px; display:flex; align-items:center; gap:7px; }
+#t7 .sc-h::after { content:''; flex:1; height:1px; background:#E5E7EB; }
+#t7 .pt { font-size:11.5px; line-height:1.77; color:#4B5563; }
+#t7 .jb { display:grid; grid-template-columns:66px 1fr; gap:0 14px; margin-bottom:13px; }
+#t7 .jb-l { text-align:right; padding-top:2px; }
+#t7 .jb-dt { font-size:9.5px; font-weight:700; color:var(--h); line-height:1.4; }
+#t7 .jb-co { font-size:9px; color:#9CA3AF; margin-top:2px; line-height:1.3; }
+#t7 .jb-r { border-left:2px solid var(--h); padding-left:12px; }
+#t7 .jb-ro { font-size:12.5px; font-weight:700; color:#1C2B3A; }
+#t7 .jb-p li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; list-style:none; padding-left:9px; position:relative; }
+#t7 .jb-p li::before { content:'›'; position:absolute; left:0; color:var(--h); font-weight:800; }
+#t7 .s2c { display:grid; grid-template-columns:1fr 1fr; gap:5px 18px; }
+#t7 .sk-r { display:flex; align-items:center; gap:7px; }
+#t7 .sk-l { font-size:10.5px; color:#555; min-width:85px; flex-shrink:0; }
+#t7 .sk-b { flex:1; height:2.5px; background:#E5E7EB; border-radius:2px; }
+#t7 .sk-f { height:100%; background:var(--h); border-radius:2px; }
+#t7 .sd { background:var(--hl); padding:26px 24px 26px 22px; border-left:1px solid rgba(15,118,110,.1); }
+#t7 .ss { margin-bottom:18px; }
+#t7 .ss-t { font-size:8.5px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--h); margin-bottom:10px; padding-bottom:4px; border-bottom:1px solid rgba(15,118,110,.18); }
+#t7 .e-e { margin-bottom:10px; }
+#t7 .e-d { font-size:11.5px; font-weight:700; color:#1C2B3A; line-height:1.3; }
+#t7 .e-s { font-size:10.5px; color:#6B7280; }
+#t7 .e-y { font-size:9.5px; color:var(--h); font-weight:600; margin-top:1px; }
+#t7 .t-wr { display:flex; flex-wrap:wrap; gap:4px; }
+#t7 .tg { font-size:9.5px; font-weight:600; padding:2px 8px; background:#fff; border:1px solid rgba(15,118,110,.22); color:#1C2B3A; border-radius:3px; }
+#t7 .la-r { display:flex; justify-content:space-between; margin-bottom:6px; align-items:center; }
+#t7 .l-n { font-size:11px; color:#1C2B3A; }
+#t7 .l-b { width:44px; height:2.5px; background:#E5E7EB; border-radius:2px; }
+#t7 .l-f { height:100%; background:var(--h); border-radius:2px; }
+#t7 .c-e { font-size:10.5px; color:#555; margin-bottom:5px; display:flex; gap:5px; }
+#t7 .c-e::before { content:'✓'; color:var(--h); font-weight:700; flex-shrink:0; }
+#t7 .r-e { margin-bottom:10px; }
+#t7 .r-n { font-size:11.5px; font-weight:700; color:#1C2B3A; }
+#t7 .r-r { font-size:10px; color:var(--h); }
+#t7 .r-c { font-size:9.5px; color:#9CA3AF; line-height:1.5; }
+
+/* ── TEMPLATE 8: Diamond Cut ── */
+#t8 {
+  width:794px; min-height:1123px;
+  background:#FEFEFE;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:grid; grid-template-columns:244px 1fr; overflow:hidden;
+  --p:#6D28D9; --pl:rgba(109,40,217,.07);
+}
+#t8 .sb { background:var(--p); padding:42px 24px 38px; display:flex; flex-direction:column; gap:0; position:relative; overflow:hidden; }
+#t8 .sb::before { content:''; position:absolute; bottom:-55px; right:-55px; width:180px; height:180px; border-radius:50%; border:36px solid rgba(255,255,255,.05); }
+#t8 .sb-ph { width:96px; height:96px; border-radius:50%; border:2.5px solid rgba(255,255,255,.3); background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; overflow:hidden; }
+#t8 .sb-i { font-family:'Lora',serif; font-size:32px; color:rgba(255,255,255,.45); font-weight:700; }
+#t8 .sb-n { text-align:center; margin-bottom:24px; }
+#t8 .sb-fn { font-size:20px; font-weight:800; color:#fff; text-transform:uppercase; letter-spacing:.8px; line-height:1.1; font-family:'Raleway',sans-serif; }
+#t8 .sb-ro { font-size:8.5px; color:rgba(255,255,255,.5); letter-spacing:2.5px; text-transform:uppercase; margin-top:6px; }
+#t8 .sb-dv { width:26px; height:2px; background:rgba(255,255,255,.28); margin:0 auto 6px; }
+#t8 .sb-s { margin-bottom:20px; }
+#t8 .sb-t { font-size:7.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:9px; display:flex; align-items:center; gap:5px; }
+#t8 .sb-t::after { content:''; flex:1; height:1px; background:rgba(255,255,255,.1); }
+#t8 .ci { font-size:10.5px; color:rgba(255,255,255,.65); margin-bottom:7px; display:flex; gap:7px; align-items:flex-start; }
+#t8 .ci-ic { width:15px; flex-shrink:0; margin-top:1px; font-size:9.5px; color:rgba(255,255,255,.35); }
+#t8 .e-e { margin-bottom:11px; }
+#t8 .e-d { font-size:11px; font-weight:600; color:#fff; line-height:1.3; }
+#t8 .e-s { font-size:10px; color:rgba(255,255,255,.5); }
+#t8 .e-y { font-size:9.5px; color:rgba(255,255,255,.32); margin-top:1px; }
+#t8 .sk-r { margin-bottom:7px; }
+#t8 .sk-tp { display:flex; justify-content:space-between; font-size:9.5px; color:rgba(255,255,255,.6); margin-bottom:2px; }
+#t8 .sk-pc { font-size:8.5px; color:var(--p); filter:brightness(2.5); }
+#t8 .sk-tr { height:2px; background:rgba(255,255,255,.1); border-radius:1px; }
+#t8 .sk-fi { height:100%; background:rgba(255,255,255,.5); border-radius:1px; }
+#t8 .la-r { display:flex; justify-content:space-between; margin-bottom:5px; }
+#t8 .l-n { font-size:10.5px; color:rgba(255,255,255,.6); }
+#t8 .l-l { font-size:9.5px; color:rgba(255,255,255,.3); }
+#t8 .mn { padding:38px 38px 32px 36px; }
+#t8 .m-tp { margin-bottom:20px; padding-bottom:18px; border-bottom:1px solid #EBEBEB; }
+#t8 .m-n { font-family:'Lora',serif; font-size:36px; font-weight:700; color:#18181B; line-height:1; letter-spacing:-.4px; }
+#t8 .m-n em { color:var(--p); font-style:normal; }
+#t8 .m-ti { font-size:10px; color:#888; letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+#t8 .m-sum { font-size:11px; line-height:1.75; color:#555; margin-top:9px; font-weight:400; }
+#t8 .sec { margin-bottom:18px; }
+#t8 .sc-t { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--p); display:flex; align-items:center; gap:7px; margin-bottom:11px; }
+#t8 .sc-t::after { content:''; flex:1; height:1px; background:#EBEBEB; }
+#t8 .jb { background:var(--pl); border-radius:7px; padding:10px 13px; margin-bottom:8px; }
+#t8 .jb:last-child { margin-bottom:0; }
+#t8 .jt { display:flex; justify-content:space-between; margin-bottom:1px; }
+#t8 .jr { font-size:12.5px; font-weight:700; color:#18181B; }
+#t8 .jd { font-size:9.5px; font-weight:600; color:var(--p); }
+#t8 .jco { font-size:10.5px; color:#888; margin-bottom:4px; font-style:italic; }
+#t8 .jp li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; padding-left:9px; position:relative; list-style:none; }
+#t8 .jp li::before { content:'▸'; position:absolute; left:0; color:var(--p); font-size:8px; }
+#t8 .cps { display:flex; flex-wrap:wrap; gap:4px; }
+#t8 .cp { font-size:10px; padding:3px 9px; background:#F4F4F5; border-radius:4px; color:#444; font-weight:500; }
+
+/* ── TEMPLATE 9: Mono Block ── */
+#t9 {
+  width:794px; min-height:1123px;
+  background:#FEFEFE;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  font-family:'Space Grotesk',sans-serif;
+  --a:#D97706; --al:rgba(217,119,6,.07);
+}
+#t9 .hd { padding:32px 50px 26px; display:grid; grid-template-columns:1fr auto; align-items:end; border-bottom:3px solid #0C0C0C; }
+#t9 .cv-n { font-family:'Playfair Display',serif; font-size:48px; font-weight:700; color:#0C0C0C; line-height:.95; letter-spacing:-1.5px; }
+#t9 .cv-n span { display:block; font-size:32px; color:var(--a); letter-spacing:-1px; }
+#t9 .h-rt { text-align:right; display:flex; flex-direction:column; gap:4px; }
+#t9 .cv-ti { font-size:10px; font-weight:600; color:var(--a); letter-spacing:2px; text-transform:uppercase; }
+#t9 .hc { font-size:10.5px; color:#666; }
+#t9 .ss { background:#0C0C0C; padding:10px 50px; display:flex; gap:28px; align-items:center; }
+#t9 .st { display:flex; align-items:center; gap:7px; }
+#t9 .st-n { font-size:16px; font-weight:700; color:var(--a); line-height:1; }
+#t9 .st-l { font-size:8.5px; color:rgba(255,255,255,.45); text-transform:uppercase; letter-spacing:.8px; line-height:1.3; }
+#t9 .st-d { width:1px; height:20px; background:rgba(255,255,255,.13); }
+#t9 .bd { display:grid; grid-template-columns:1fr 218px; }
+#t9 .mn { padding:24px 32px 28px 50px; border-right:1px solid #E8E8E8; }
+#t9 .sec { margin-bottom:20px; }
+#t9 .sc-hd { display:flex; align-items:flex-end; gap:9px; margin-bottom:11px; }
+#t9 .sc-n { font-size:28px; font-weight:700; color:#EEEEEE; line-height:1; flex-shrink:0; font-family:'Playfair Display',serif; }
+#t9 .sc-t { font-size:9.5px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#0C0C0C; margin-bottom:3px; }
+#t9 .sc-rl { flex:1; height:1px; background:#E8E8E8; margin-bottom:3px; }
+#t9 .ab { font-size:11.5px; line-height:1.77; color:#444; }
+#t9 .jb { background:var(--al); border:1px solid rgba(217,119,6,.12); border-left:3px solid var(--a); padding:10px 13px; margin-bottom:8px; }
+#t9 .jb:last-child { margin-bottom:0; }
+#t9 .jt { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1px; }
+#t9 .jr { font-size:12.5px; font-weight:600; color:#0C0C0C; }
+#t9 .jd { font-size:9.5px; font-weight:600; color:var(--a); }
+#t9 .jco { font-size:11px; color:#888; margin-bottom:4px; }
+#t9 .jp li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; list-style:none; padding-left:10px; position:relative; }
+#t9 .jp li::before { content:'→'; position:absolute; left:0; color:var(--a); font-size:8px; top:1px; }
+#t9 .sk-gd { display:flex; flex-wrap:wrap; gap:4px; }
+#t9 .sk { font-size:10px; font-weight:600; padding:3px 9px; border:1px solid #E0E0E0; color:#555; border-radius:3px; }
+#t9 .sd { padding:24px 26px 28px 22px; }
+#t9 .ss2 { margin-bottom:18px; }
+#t9 .ss2-t { font-size:8.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#0C0C0C; border-left:3px solid var(--a); padding-left:7px; margin-bottom:10px; }
+#t9 .e-e { margin-bottom:10px; }
+#t9 .e-d { font-size:12px; font-weight:600; color:#0C0C0C; line-height:1.3; }
+#t9 .e-s { font-size:10.5px; color:#888; }
+#t9 .e-y { font-size:9.5px; color:var(--a); font-weight:600; margin-top:1px; }
+#t9 .ce { font-size:10.5px; color:#555; margin-bottom:5px; display:flex; align-items:flex-start; gap:5px; }
+#t9 .ce::before { content:'✦'; color:var(--a); font-size:8.5px; flex-shrink:0; margin-top:1px; }
+#t9 .la-r { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+#t9 .l-n { font-size:11.5px; color:#0C0C0C; }
+#t9 .l-l { font-size:9.5px; color:#BBB; }
+#t9 .r-e { margin-bottom:10px; }
+#t9 .r-n { font-size:12px; font-weight:600; color:#0C0C0C; }
+#t9 .r-r { font-size:10px; color:var(--a); }
+#t9 .r-c { font-size:9.5px; color:#AAA; line-height:1.5; }
+
+/* ── TEMPLATE 10: Soft Premium ── */
+#t10 {
+  width:794px; min-height:1123px;
+  background:#FDFAF6;
+  box-shadow:0 20px 60px rgba(0,0,0,.18);
+  display:grid; grid-template-columns:230px 1fr;
+  font-family:'Gantari',sans-serif;
+  --a:#B45309; --al:rgba(180,83,9,.06); --side:#F5F0E8;
+}
+#t10 .sb { background:var(--side); padding:42px 22px 38px; display:flex; flex-direction:column; gap:22px; border-right:1px solid rgba(180,83,9,.11); }
+#t10 .sb-ph { width:102px; height:102px; border-radius:50%; border:2px solid var(--a); margin:0 auto; background:rgba(180,83,9,.05); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+#t10 .sb-i { font-size:34px; color:var(--a); opacity:.45; font-family:'Lora',serif; font-weight:700; }
+#t10 .sb-tp { text-align:center; }
+#t10 .sb-n { font-family:'Lora',serif; font-size:22px; font-weight:700; color:#1C1917; line-height:1.2; }
+#t10 .sb-ro { font-size:8.5px; font-weight:500; color:var(--a); letter-spacing:2px; text-transform:uppercase; margin-top:5px; }
+#t10 .s-bl { }
+#t10 .s-t { font-size:7.5px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#999; margin-bottom:9px; padding-bottom:4px; border-bottom:1px solid rgba(0,0,0,.07); }
+#t10 .ci { display:flex; gap:7px; align-items:flex-start; margin-bottom:7px; }
+#t10 .ci-l { font-size:8.5px; font-weight:700; color:var(--a); text-transform:uppercase; letter-spacing:.4px; min-width:30px; padding-top:1px; }
+#t10 .ci-v { font-size:10.5px; color:#666; line-height:1.4; }
+#t10 .e-e { margin-bottom:11px; }
+#t10 .e-d { font-size:11px; font-weight:600; color:#1C1917; line-height:1.3; }
+#t10 .e-s { font-size:10.5px; color:#888; font-style:italic; }
+#t10 .e-y { font-size:9.5px; color:var(--a); font-weight:500; margin-top:1px; }
+#t10 .sk-i { display:flex; justify-content:space-between; align-items:center; margin-bottom:7px; }
+#t10 .sk-n { font-size:10.5px; color:#555; }
+#t10 .sk-b { width:62px; height:2.5px; background:rgba(0,0,0,.08); border-radius:1.5px; }
+#t10 .sk-f { height:100%; background:var(--a); border-radius:1.5px; }
+#t10 .la-r { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+#t10 .l-n { font-size:11px; color:#555; }
+#t10 .l-ps { display:flex; gap:2px; }
+#t10 .lp { width:6.5px; height:6.5px; border-radius:50%; background:rgba(0,0,0,.1); }
+#t10 .lp.on { background:var(--a); }
+#t10 .mn { padding:38px 40px 32px 34px; }
+#t10 .m-hd { margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid rgba(0,0,0,.07); }
+#t10 .m-n { font-family:'Lora',serif; font-size:38px; font-weight:700; color:#1C1917; line-height:1; letter-spacing:-.4px; }
+#t10 .m-n em { color:var(--a); font-style:italic; }
+#t10 .m-sub { font-size:10px; color:#999; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+#t10 .m-tl { font-family:'Lora',serif; font-size:13.5px; color:#777; line-height:1.7; margin-top:9px; font-style:italic; border-left:2px solid var(--a); padding-left:11px; }
+#t10 .sec { margin-bottom:18px; }
+#t10 .sh { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--a); margin-bottom:11px; display:flex; align-items:center; gap:7px; }
+#t10 .sh::after { content:''; flex:1; height:1px; background:rgba(0,0,0,.07); }
+#t10 .jc { border:1px solid rgba(180,83,9,.11); border-radius:7px; background:var(--al); padding:11px 13px; margin-bottom:8px; }
+#t10 .jc:last-child { margin-bottom:0; }
+#t10 .jt { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1px; }
+#t10 .jr { font-size:13px; font-weight:600; color:#1C1917; }
+#t10 .jd { font-size:9.5px; font-weight:600; color:var(--a); background:rgba(180,83,9,.09); padding:1px 7px; border-radius:20px; }
+#t10 .jco { font-family:'Lora',serif; font-style:italic; font-size:12px; color:#999; margin-bottom:5px; }
+#t10 .jp li { font-size:10.5px; color:#555; line-height:1.6; margin-bottom:2px; list-style:none; padding-left:10px; position:relative; }
+#t10 .jp li::before { content:'◦'; position:absolute; left:0; color:var(--a); }
+#t10 .cps { display:flex; flex-wrap:wrap; gap:4px; }
+#t10 .cp { font-size:10px; padding:3px 10px; background:rgba(180,83,9,.06); border:1px solid rgba(180,83,9,.18); color:#1C1917; border-radius:20px; font-weight:500; }
+
+/* ═══ HIDDEN RESUMES (only active one shown) ═══ */
+.resume-wrap { display:none; }
+.resume-wrap.active { display:block; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ═══ LEFT PANEL ═══ -->
+  <div class="panel">
+    <div class="panel-logo">CV<span>Builder</span> Pro</div>
+
+    <div class="panel-section">
+      <div class="panel-label">Templates</div>
+      <div class="tmpl-grid">
+        <div class="tmpl-thumb active" onclick="switchTemplate(1,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(135deg,#1A1A1A 40%,#F5F0E8 40%);color:#B8960C;">01</div>
+          <div class="tmpl-name">Executive Noir</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(2,this)">
+          <div class="tmpl-preview" style="background:#fff;border:1px solid #eee;color:#E63312;font-size:10px;">SWISS</div>
+          <div class="tmpl-name">Swiss Grid</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(3,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(90deg,#C0392B 4%,#F2F2F2 4%);color:#C0392B;font-size:9px;">ARCH</div>
+          <div class="tmpl-name">Architect</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(4,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(180deg,#0F2027 40%,#F7F8FC 40%);color:#00D4AA;font-size:9px;">GRD</div>
+          <div class="tmpl-name">Gradient</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(5,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(135deg,#111827 40%,#FDFDFD 40%);color:#1D4ED8;font-size:9px;">TML</div>
+          <div class="tmpl-name">Timeline Pro</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(6,this)">
+          <div class="tmpl-preview" style="background:#FFFEF9;border:1px solid #eee;color:#C2410C;font-size:9px;">INK</div>
+          <div class="tmpl-name">Minimal Ink</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(7,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(180deg,#1C2B3A 35%,#F9FAFB 35%);color:#0F766E;font-size:9px;">HRZ</div>
+          <div class="tmpl-name">Horizon</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(8,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(135deg,#6D28D9 40%,#FEFEFE 40%);color:#6D28D9;font-size:9px;">DMD</div>
+          <div class="tmpl-name">Diamond Cut</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(9,this)">
+          <div class="tmpl-preview" style="background:#FEFEFE;border:1px solid #eee;color:#D97706;font-size:9px;">MONO</div>
+          <div class="tmpl-name">Mono Block</div>
+        </div>
+        <div class="tmpl-thumb" onclick="switchTemplate(10,this)">
+          <div class="tmpl-preview" style="background:linear-gradient(135deg,#F5F0E8 40%,#FDFAF6 40%);color:#B45309;font-size:9px;">SFT</div>
+          <div class="tmpl-name">Soft Premium</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-section" id="colorSection">
+      <div class="panel-label">Accent Color</div>
+      <div class="swatch-row" id="swatchRow"></div>
+    </div>
+
+    <div style="margin-top:auto;">
+      <button class="btn-dl" id="btnDl" onclick="downloadPDF()">
+        ⬇ &nbsp; Download PDF
+      </button>
+      <div class="status-bar" id="statusBar"></div>
+    </div>
+  </div>
+
+  <!-- ═══ CANVAS AREA ═══ -->
+  <div class="canvas-area">
+    <div class="resume-outer">
+
+      <!-- T1 -->
+      <div class="resume-wrap active" id="wrap1">
+        <div id="t1">
+          <div class="sb">
+            <div class="ph"><span class="ph-init">OW</span></div>
+            <div><div class="fn">Olivia</div><div class="ln">Wilson</div><div class="jt">Marketing Director</div></div>
+            <div><div class="st">Contact</div>
+              <div class="ci"><div class="ci-ic">✉</div><div class="ci-tx">hello@olivia.com</div></div>
+              <div class="ci"><div class="ci-ic">☎</div><div class="ci-tx">+1 (555) 234-5678</div></div>
+              <div class="ci"><div class="ci-ic">⌂</div><div class="ci-tx">New York, NY</div></div>
+              <div class="ci"><div class="ci-ic">in</div><div class="ci-tx">linkedin.com/in/owilson</div></div>
+            </div>
+            <div><div class="st">Expertise</div>
+              <div class="sr"><div class="sr-top"><span>Brand Strategy</span><span class="sr-pct">95%</span></div><div class="sr-tr"><div class="sr-fi" style="width:95%"></div></div></div>
+              <div class="sr"><div class="sr-top"><span>Digital Marketing</span><span class="sr-pct">90%</span></div><div class="sr-tr"><div class="sr-fi" style="width:90%"></div></div></div>
+              <div class="sr"><div class="sr-top"><span>Team Leadership</span><span class="sr-pct">88%</span></div><div class="sr-tr"><div class="sr-fi" style="width:88%"></div></div></div>
+              <div class="sr"><div class="sr-top"><span>Data Analytics</span><span class="sr-pct">80%</span></div><div class="sr-tr"><div class="sr-fi" style="width:80%"></div></div></div>
+            </div>
+            <div><div class="st">Languages</div>
+              <div class="li"><span class="li-n">English</span><div class="li-d"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div></div></div>
+              <div class="li"><span class="li-n">French</span><div class="li-d"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div></div></div>
+              <div class="li"><span class="li-n">Spanish</span><div class="li-d"><div class="ld on"></div><div class="ld on"></div><div class="ld on"></div><div class="ld"></div><div class="ld"></div></div></div>
+            </div>
+          </div>
+          <div class="mn">
+            <div><div class="sh"><div class="sh-d"></div><div class="sh-t">Profile</div><div class="sh-r"></div></div><p class="ab">Results-driven marketing director with 10+ years building global brands across consumer, tech, and luxury sectors. Proven ability to scale campaigns from concept to execution, consistently delivering double-digit growth and lasting brand equity.</p></div>
+            <div><div class="sh"><div class="sh-d"></div><div class="sh-t">Experience</div><div class="sh-r"></div></div>
+              <div class="ej"><div class="ej-t"><div class="ej-r">Director of Marketing</div><div class="ej-d">2021 – Present</div></div><div class="ej-c">Arowwai Industries, New York</div><ul class="ej-b"><li>Led rebranding that increased NPS by 34 points in 12 months.</li><li>Managed $4.2M budget; delivered 28% ROI improvement.</li><li>Built and mentored team of 14 across brand and performance.</li></ul></div>
+              <div class="ej"><div class="ej-t"><div class="ej-r">Senior Marketing Manager</div><div class="ej-d">2018 – 2021</div></div><div class="ej-c">Ginyard International Co., Chicago</div><ul class="ej-b"><li>Launched into 3 new markets; $1.2M revenue in Q1.</li><li>Grew social following from 40K to 380K.</li></ul></div>
+              <div class="ej"><div class="ej-t"><div class="ej-r">Marketing Manager</div><div class="ej-d">2015 – 2018</div></div><div class="ej-c">Salford & Co., Boston</div><ul class="ej-b"><li>Content strategy increased organic traffic by 120%.</li></ul></div>
+            </div>
+            <div><div class="sh"><div class="sh-d"></div><div class="sh-t">Education</div><div class="sh-r"></div></div>
+              <div class="edu"><div class="edu-y">2013–2015</div><div><div class="edu-d">MBA — Marketing & Strategy</div><div class="edu-s">Harvard Business School</div></div></div>
+              <div class="edu"><div class="edu-y">2009–2013</div><div><div class="edu-d">B.Sc. Business Administration</div><div class="edu-s">New York University</div></div></div>
+            </div>
+            <div><div class="sh"><div class="sh-d"></div><div class="sh-t">Skills</div><div class="sh-r"></div></div>
+              <div class="sk-grid"><div class="sk-ch">Campaign Mgmt</div><div class="sk-ch">SEO / SEM</div><div class="sk-ch">HubSpot</div><div class="sk-ch">Market Research</div><div class="sk-ch">P&L Management</div><div class="sk-ch">Creative Direction</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- T2 -->
+      <div class="resume-wrap" id="wrap2">
+        <div id="t2">
+          <div class="top-bar"></div><div class="ac-bar"></div>
+          <div class="hd">
+            <div><div class="h-name">Thomas<br><span>Anderson</span></div><div class="h-sub">Senior Software Engineer</div></div>
+            <div class="h-rt"><div class="hc">thomas@anderson.dev</div><div class="hc">+1 (415) 987-6543</div><div class="hc">San Francisco, CA</div><div class="hc">github.com/tanderson</div></div>
+          </div>
+          <div class="bd">
+            <div class="mn">
+              <div class="sec"><div class="sec-hd"><div class="sn">01</div><div class="st">About</div><div class="sl"></div></div><p class="ab">Full-stack engineer with 8 years building scalable products at the intersection of great engineering and exceptional UX. Strong background in distributed systems, React ecosystems, and cloud architecture.</p></div>
+              <div class="sec"><div class="sec-hd"><div class="sn">02</div><div class="st">Experience</div><div class="sl"></div></div>
+                <div class="eb"><div class="eb-l"><div class="eb-dt">2022<br>Present</div><div class="eb-co">Stripe Inc.</div></div><div class="eb-r"><div class="eb-ro">Senior Software Engineer</div><ul class="eb-pts"><li>Architected payment flow handling $2B+ monthly transactions.</li><li>Reduced API latency by 40% through caching redesign.</li><li>Mentored 5 engineers; led bi-weekly architecture reviews.</li></ul></div></div>
+                <div class="eb"><div class="eb-l"><div class="eb-dt">2019<br>2022</div><div class="eb-co">Figma</div></div><div class="eb-r"><div class="eb-ro">Software Engineer II</div><ul class="eb-pts"><li>Built real-time collaboration engine used by 5M+ daily users.</li><li>Improved canvas render performance 60% via WebGL.</li></ul></div></div>
+                <div class="eb"><div class="eb-l"><div class="eb-dt">2016<br>2019</div><div class="eb-co">Startup Lab</div></div><div class="eb-r"><div class="eb-ro">Frontend Developer</div><ul class="eb-pts"><li>Built SaaS dashboard — React, Node.js, PostgreSQL.</li></ul></div></div>
+              </div>
+            </div>
+            <div class="sd">
+              <div class="ss"><div class="ss-t">Education</div>
+                <div class="edu-e"><div class="edu-y">2012–2016</div><div class="edu-d">B.Sc. Computer Science</div><div class="edu-s">Stanford University</div></div>
+                <div class="edu-e"><div class="edu-y">2021</div><div class="edu-d">AWS Solutions Architect</div><div class="edu-s">Amazon Web Services</div></div>
+              </div>
+              <div class="ss"><div class="ss-t">Tech Stack</div>
+                <span class="sk-tg">TypeScript</span><span class="sk-tg">React</span><span class="sk-tg">Node.js</span><span class="sk-tg">Go</span><span class="sk-tg">PostgreSQL</span><span class="sk-tg">Redis</span><span class="sk-tg">AWS</span><span class="sk-tg">Docker</span><span class="sk-tg">Kubernetes</span>
+              </div>
+              <div class="ss"><div class="ss-t">Languages</div>
+                <div class="l-row"><span class="l-n">English</span><span class="l-l">Native</span></div>
+                <div class="l-row"><span class="l-n">German</span><span class="l-l">B2</span></div>
+                <div class="l-row"><span class="l-n">Spanish</span><span class="l-l">A2</span></div>
+              </div>
+              <div class="ss"><div class="ss-t">Certifications</div>
+                <div class="ce">AWS Solutions Architect</div>
+                <div class="ce">Google Cloud Professional</div>
+                <div class="ce">Meta React Developer</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- T3–T10: abbreviated for space, same structure -->
+      <div class="resume-wrap" id="wrap3"><div id="t3"><div class="stripe"></div><div class="sb"><div class="ph-sq"><span class="ph-lt">SD</span></div><div class="cv-n">Sophie<br>Dupont</div><div class="cv-r">UX Design Lead</div><div class="sb-bl"><div class="sb-hd">Contact</div><div class="cr"><span class="cr-lb">Email</span>sophie@ux.io</div><div class="cr"><span class="cr-lb">Phone</span>+33 6 12 34 56 78</div><div class="cr"><span class="cr-lb">City</span>Paris, France</div><div class="cr"><span class="cr-lb">Web</span>sophiedupont.design</div></div><div class="sb-bl"><div class="sb-hd">Education</div><div class="edu-e"><div class="edu-dg">MA Interaction Design</div><div class="edu-sc">Royal College of Art</div><div class="edu-yr">2014–2016</div></div><div class="edu-e"><div class="edu-dg">BA Visual Communication</div><div class="edu-sc">École des Arts Déco.</div><div class="edu-yr">2010–2014</div></div></div><div class="sb-bl"><div class="sb-hd">Tools</div><div class="sl-l"><div class="sl-r"><span class="sl-n">Figma</span><div class="sl-b"><div class="sl-f" style="width:100%"></div></div></div><div class="sl-r"><span class="sl-n">Framer</span><div class="sl-b"><div class="sl-f" style="width:80%"></div></div></div><div class="sl-r"><span class="sl-n">After Effects</span><div class="sl-b"><div class="sl-f" style="width:65%"></div></div></div></div></div><div class="sb-bl"><div class="sb-hd">Languages</div><div class="la-e"><span class="la-n">French</span><span class="la-l">Native</span></div><div class="la-e"><span class="la-n">English</span><span class="la-l">C2</span></div><div class="la-e"><span class="la-n">Dutch</span><span class="la-l">B1</span></div></div></div><div class="mn"><div class="sec"><div class="sh">Profile</div><div class="sh-ac"></div><p class="pr">Product design lead with 8 years crafting user experiences for fintech, health tech, and consumer platforms. Led end-to-end design for three products that each reached 1M+ active users. Known for bridging research and execution.</p></div><div class="sec"><div class="sh">Experience</div><div class="sh-ac"></div><div class="jb"><div class="jb-t"><div class="jb-ro">Head of Product Design</div><div class="jb-dt">2021–Now</div></div><div class="jb-co">N26 Bank — Berlin</div><ul class="jb-pt"><li>Led design for mobile banking app serving 8M customers.</li><li>Built 12-person design team across 4 countries.</li><li>Redesigned onboarding — reduced drop-off 38%.</li></ul></div><div class="jb"><div class="jb-t"><div class="jb-ro">Senior UX Designer</div><div class="jb-dt">2018–2021</div></div><div class="jb-co">Doctolib — Paris</div><ul class="jb-pt"><li>Patient booking system used by 60M+ patients.</li><li>Ran 40+ user research sessions shaping 3 roadmaps.</li></ul></div><div class="jb"><div class="jb-t"><div class="jb-ro">UX/UI Designer</div><div class="jb-dt">2016–2018</div></div><div class="jb-co">IDEO Paris Studio</div><ul class="jb-pt"><li>Design sprints for Renault, Société Générale, BNP Paribas.</li></ul></div></div><div class="sec"><div class="sh">Skills</div><div class="sh-ac"></div><div class="cps"><div class="cp">User Research</div><div class="cp">Design Systems</div><div class="cp">Prototyping</div><div class="cp">Motion Design</div><div class="cp">Accessibility</div></div></div><div class="sec"><div class="sh">References</div><div class="sh-ac"></div><div class="rf-gd"><div><div class="rf-n">Marc Leblanc</div><div class="rf-r">CPO, N26 Bank</div><div class="rf-c">m.leblanc@n26.com</div></div><div><div class="rf-n">Isabelle Renard</div><div class="rf-r">Design Director, Doctolib</div><div class="rf-c">i.renard@doctolib.fr</div></div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap4"><div id="t4"><div class="hd"><div class="hi"><div><div class="h-nm">Diana <span>Foster</span></div><div class="h-sub">Financial Analyst · CPA · FRM</div></div><div class="h-rt"><div class="hc">diana.foster@finance.com</div><div class="hc">+1 (212) 555-8800</div><div class="hc">New York, NY 10001</div><div class="hc">linkedin.com/in/dfoster</div></div></div></div><div class="fc"><div class="fc-st"><div class="fc-n">7<span>+</span></div><div class="fc-l">Years Exp.</div></div><div class="fc-dv"></div><div class="fc-st"><div class="fc-n"><span>$</span>500<span>M</span></div><div class="fc-l">Portfolio</div></div><div class="fc-dv"></div><div class="fc-st"><div class="fc-n">3</div><div class="fc-l">Certifications</div></div><div class="fc-dv"></div><div class="fc-st"><div class="fc-n">96<span>%</span></div><div class="fc-l">Forecast Acc.</div></div></div><div class="bd"><div class="mn"><div class="sec"><div class="sc-t">Summary</div><p class="ab">CPA and FRM certified analyst with 7 years in corporate finance at Goldman Sachs and Deloitte. Expert in financial modeling, leading audits, and translating complex data into board-level insights.</p></div><div class="sec"><div class="sc-t">Experience</div><div class="jc"><div class="jc-t"><div class="jc-r">Senior Financial Analyst</div><div class="jc-d">2021–Now</div></div><div class="jc-c">Goldman Sachs · New York</div><ul class="jc-p"><li>Manage $500M+ portfolio financial modeling across 12 sectors.</li><li>Weekly P&L reports for CFO-level review.</li><li>Identified $2.8M in cost savings through optimisation.</li></ul></div><div class="jc"><div class="jc-t"><div class="jc-r">Financial Analyst</div><div class="jc-d">2018–2021</div></div><div class="jc-c">Deloitte · New York</div><ul class="jc-p"><li>Quarterly forecasts with 96% accuracy; Fortune 100 audits.</li><li>Excel dashboards reducing reporting time by 35%.</li></ul></div><div class="jc"><div class="jc-t"><div class="jc-r">Junior Analyst</div><div class="jc-d">2016–2018</div></div><div class="jc-c">KPMG · New York</div><ul class="jc-p"><li>Annual reports, regulatory filings, peer benchmarking.</li></ul></div></div></div><div class="sd"><div class="ss"><div class="ss-t">Education</div><div class="e-e"><div class="e-d">M.Sc. Finance</div><div class="e-s">NYU Stern School</div><div class="e-y">2014–2016</div></div><div class="e-e"><div class="e-d">B.Sc. Accounting</div><div class="e-s">Univ. of Michigan</div><div class="e-y">2010–2014</div></div></div><div class="ss"><div class="ss-t">Certifications</div><div class="c-it">CPA — AICPA (2017)</div><div class="c-it">CFA Level II (2020)</div><div class="c-it">FRM — GARP (2019)</div></div><div class="ss"><div class="ss-t">Skills</div><div class="sk-wp"><span class="sk-p">Excel/VBA</span><span class="sk-p">Power BI</span><span class="sk-p">SQL</span><span class="sk-p">Bloomberg</span><span class="sk-p">IFRS</span><span class="sk-p">DCF Modeling</span></div></div><div class="ss"><div class="ss-t">Languages</div><div class="lr"><span class="l-n">English</span><div class="l-ps"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div></div></div><div class="lr"><span class="l-n">Mandarin</span><div class="l-ps"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div><div class="lp"></div></div></div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap5"><div id="t5"><div class="sb"><div class="sb-top"><div class="av"><span class="av-i">MC</span></div><div class="sb-nm">Marcus<br>Chen</div><div class="sb-ro">Creative Director</div></div><div class="sb-bd"><div><div class="s-h">Contact</div><div class="ci"><div class="ci-d"></div>marcus@mchen.studio</div><div class="ci"><div class="ci-d"></div>+1 (415) 987-6543</div><div class="ci"><div class="ci-d"></div>Los Angeles, CA</div><div class="ci"><div class="ci-d"></div>mchen.studio</div></div><div><div class="s-h">Design Skills</div><div class="pr-r"><div class="pr-t"><span>Brand Design</span><span class="pr-p">98%</span></div><div class="pr-tr"><div class="pr-fi" style="width:98%"></div></div></div><div class="pr-r"><div class="pr-t"><span>Motion / Animation</span><span class="pr-p">90%</span></div><div class="pr-tr"><div class="pr-fi" style="width:90%"></div></div></div><div class="pr-r"><div class="pr-t"><span>3D / Cinema4D</span><span class="pr-p">80%</span></div><div class="pr-tr"><div class="pr-fi" style="width:80%"></div></div></div><div class="pr-r"><div class="pr-t"><span>Photography</span><span class="pr-p">85%</span></div><div class="pr-tr"><div class="pr-fi" style="width:85%"></div></div></div></div><div><div class="s-h">Awards</div><div class="aw"><div class="aw-d"></div>Cannes Lions Bronze 2022</div><div class="aw"><div class="aw-d"></div>D&AD Wood Pencil 2021</div><div class="aw"><div class="aw-d"></div>Red Dot Winner 2020</div></div><div><div class="s-h">Languages</div><div class="la-r"><span class="la-n">English</span><span class="la-l">Native</span></div><div class="la-r"><span class="la-n">Mandarin</span><span class="la-l">C2</span></div><div class="la-r"><span class="la-n">Japanese</span><span class="la-l">B2</span></div></div></div></div><div class="mn"><div class="m-hd"><div class="m-nm">Marcus <em>Chen</em></div><div class="m-ti">Creative Director · Art Director · Brand Strategist</div><p class="m-sum">Award-winning creative director with 10 years shaping brand identities for global companies. Led campaigns for Nike, Apple, and luxury fashion houses.</p></div><div class="sec"><div class="sc-l">Experience</div><div class="tl"><div class="tl-i"><div class="tl-dt f"></div><div class="tl-tp"><div class="tl-ro">Executive Creative Director</div><div class="tl-da">2020–Now</div></div><div class="tl-co">Wieden+Kennedy — Los Angeles</div><ul class="tl-pt"><li>Led global creative for Nike, Jordan Brand, and Amazon.</li><li>Grew studio from 8 to 32 creatives; 3 Cannes Lions in 2 years.</li><li>Directed campaign viewed 200M+ times.</li></ul></div><div class="tl-i"><div class="tl-dt f"></div><div class="tl-tp"><div class="tl-ro">Senior Art Director</div><div class="tl-da">2017–2020</div></div><div class="tl-co">TBWA\Chiat\Day — New York</div><ul class="tl-pt"><li>Art directed Apple and Nissan campaigns across 22 markets.</li><li>Won D&AD Wood Pencil for Apple Watch launch.</li></ul></div><div class="tl-i"><div class="tl-dt"></div><div class="tl-tp"><div class="tl-ro">Art Director</div><div class="tl-da">2014–2017</div></div><div class="tl-co">Droga5 — New York</div><ul class="tl-pt"><li>Brand identity systems for luxury fashion clients.</li></ul></div></div></div><div class="sec"><div class="sc-l">Education</div><div class="eg"><div class="ec"><div class="ec-d">MFA Design</div><div class="ec-s">Yale School of Art</div><div class="ec-y">2012–2014</div></div><div class="ec"><div class="ec-d">B.F.A. Graphic Design</div><div class="ec-s">RISD</div><div class="ec-y">2008–2012</div></div></div></div><div class="sec"><div class="sc-l">Skills</div><div class="sk-rw"><span class="sk">Brand Strategy</span><span class="sk">Creative Direction</span><span class="sk">Team Leadership</span><span class="sk">Typography</span></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap6"><div id="t6"><div class="hd"><div class="ht"><div class="cv-n">Elena <span>Vasquez</span></div><div class="h-rt"><div class="cv-ti">HR Director</div><div class="cl">elena.vasquez@people.co</div><div class="cl">+1 (212) 345-6789</div><div class="cl">New York, NY</div><div class="cl">linkedin.com/in/evasquez</div></div></div></div><div class="bd"><div class="main"><div class="sec"><div class="sh"><span>§</span> Profile</div><p class="pp">Strategic HR leader with 12 years building people-first cultures at high-growth tech companies. Deep expertise in talent acquisition, organisational design, and change management. Known for scaling teams from 50 to 1,000+.</p></div><div class="sec"><div class="sh"><span>§</span> Experience</div><div class="jb"><div class="jt"><div class="jr">Chief People Officer</div><div class="jd">2020–Now</div></div><div class="jco">TechNova Inc. — New York</div><ul class="jpt"><li>Scaled team from 200 to 850 employees across 4 countries.</li><li>Reduced attrition from 28% to 12% through retention programmes.</li><li>Increased underrepresented groups in leadership by 40%.</li></ul></div><div class="jb"><div class="jt"><div class="jr">VP of People</div><div class="jd">2017–2020</div></div><div class="jco">Relay Financial — San Francisco</div><ul class="jpt"><li>Built HR function from scratch at Series B.</li><li>Led acquisition integration absorbing 120-person team.</li></ul></div><div class="jb"><div class="jt"><div class="jr">HR Business Partner</div><div class="jd">2013–2017</div></div><div class="jco">Salesforce — San Francisco</div><ul class="jpt"><li>Supported 600-person Engineering org; ran calibration cycles.</li></ul></div></div><div class="sec"><div class="sh"><span>§</span> Competencies</div><div class="cp-wr"><span class="cp">Talent Strategy</span><span class="cp">OKR Design</span><span class="cp">Compensation</span><span class="cp">L&D Programs</span><span class="cp">HRIS</span><span class="cp">Employment Law</span></div></div></div><div class="sd"><div class="sb"><div class="sb-t">Education</div><div class="ee"><div class="ee-d">MBA — Org. Behavior</div><div class="ee-s">Columbia Business School</div><div class="ee-y">2011–2013</div></div><div class="ee"><div class="ee-d">B.A. Psychology</div><div class="ee-s">Univ. of Michigan</div><div class="ee-y">2007–2011</div></div></div><div class="sb"><div class="sb-t">Certifications</div><div class="ce">SHRM-SCP (2016)</div><div class="ce">PHR — HRCI (2014)</div><div class="ce">ICF Coaching (2019)</div></div><div class="sb"><div class="sb-t">Skills</div><div class="sk">Workday & BambooHR</div><div class="sk">Greenhouse ATS</div><div class="sk">Lattice Performance</div><div class="sk">People Analytics</div></div><div class="sb"><div class="sb-t">Languages</div><div class="lr"><span class="ln">English</span><span class="ll">Native</span></div><div class="lr"><span class="ln">Spanish</span><span class="ll">C1</span></div><div class="lr"><span class="ln">Portuguese</span><span class="ll">B2</span></div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap7"><div id="t7"><div class="hd"><div class="h-ph"><span class="h-i">JK</span></div><div class="h-md"><div class="cv-n">James <span>Kim</span></div><div class="cv-ti">Product Manager · Growth Specialist</div></div><div class="h-ct"><div class="hc">j.kim@product.io</div><div class="hc">+1 (628) 555-0190</div><div class="hc">San Francisco, CA</div><div class="hc">linkedin.com/in/jkim</div></div></div><div class="ac-s"></div><div class="bd"><div class="mn"><div class="sec"><div class="sc-h">Summary</div><p class="pt">Product manager with 9 years driving growth at consumer tech companies. Shipped products used by 50M+ users, led cross-functional teams of up to 30. Data-obsessed and user-centric.</p></div><div class="sec"><div class="sc-h">Experience</div><div class="jb"><div class="jb-l"><div class="jb-dt">2021<br>Now</div><div class="jb-co">Airbnb</div></div><div class="jb-r"><div class="jb-ro">Senior Product Manager — Growth</div><ul class="jb-p"><li>Owned conversion funnel for 90M annual bookings; +18% checkout.</li><li>Launched Flexible Dates feature; $240M incremental revenue.</li><li>Led 8-person PM+Eng+Design team through 3 feature cycles.</li></ul></div></div><div class="jb"><div class="jb-l"><div class="jb-dt">2018<br>2021</div><div class="jb-co">Uber</div></div><div class="jb-r"><div class="jb-ro">Product Manager — Rider Experience</div><ul class="jb-p"><li>Redesigned post-trip flow; +12 points 5-star ratings.</li><li>Launched in-app tipping globally; $40M/yr driver income.</li></ul></div></div><div class="jb"><div class="jb-l"><div class="jb-dt">2015<br>2018</div><div class="jb-co">Pinterest</div></div><div class="jb-r"><div class="jb-ro">Associate Product Manager</div><ul class="jb-p"><li>Recommendations engine increasing weekly actives by 22%.</li></ul></div></div></div><div class="sec"><div class="sc-h">Skills</div><div class="s2c"><div class="sk-r"><span class="sk-l">Product Strategy</span><div class="sk-b"><div class="sk-f" style="width:95%"></div></div></div><div class="sk-r"><span class="sk-l">Data Analysis</span><div class="sk-b"><div class="sk-f" style="width:92%"></div></div></div><div class="sk-r"><span class="sk-l">A/B Testing</span><div class="sk-b"><div class="sk-f" style="width:90%"></div></div></div><div class="sk-r"><span class="sk-l">SQL / Python</span><div class="sk-b"><div class="sk-f" style="width:78%"></div></div></div></div></div></div><div class="sd"><div class="ss"><div class="ss-t">Education</div><div class="e-e"><div class="e-d">MBA — Product</div><div class="e-s">MIT Sloan</div><div class="e-y">2013–2015</div></div><div class="e-e"><div class="e-d">B.E. Computer Science</div><div class="e-s">UC Berkeley</div><div class="e-y">2009–2013</div></div></div><div class="ss"><div class="ss-t">Tools</div><div class="t-wr"><span class="tg">Amplitude</span><span class="tg">Mixpanel</span><span class="tg">Jira</span><span class="tg">Figma</span><span class="tg">Looker</span><span class="tg">BigQuery</span></div></div><div class="ss"><div class="ss-t">Languages</div><div class="la-r"><span class="l-n">English</span><div class="l-b"><div class="l-f" style="width:100%"></div></div></div><div class="la-r"><span class="l-n">Korean</span><div class="l-b"><div class="l-f" style="width:90%"></div></div></div><div class="la-r"><span class="l-n">Japanese</span><div class="l-b"><div class="l-f" style="width:50%"></div></div></div></div><div class="ss"><div class="ss-t">References</div><div class="r-e"><div class="r-n">Sarah Nguyen</div><div class="r-r">VP Product, Airbnb</div><div class="r-c">s.nguyen@airbnb.com</div></div><div class="r-e"><div class="r-n">David Park</div><div class="r-r">CPO, Pinterest</div><div class="r-c">d.park@pinterest.com</div></div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap8"><div id="t8"><div class="sb"><div class="sb-ph"><span class="sb-i">AR</span></div><div class="sb-n"><div class="sb-fn">Aisha<br>Rahman</div><div class="sb-dv"></div><div class="sb-ro">Data Scientist</div></div><div class="sb-s"><div class="sb-t">Contact</div><div class="ci"><div class="ci-ic">✉</div>aisha.rahman@data.ai</div><div class="ci"><div class="ci-ic">☎</div>+44 7911 123 456</div><div class="ci"><div class="ci-ic">⌂</div>London, UK</div><div class="ci"><div class="ci-ic">gh</div>github.com/arahman</div></div><div class="sb-s"><div class="sb-t">Education</div><div class="e-e"><div class="e-d">PhD Machine Learning</div><div class="e-s">Imperial College London</div><div class="e-y">2017–2021</div></div><div class="e-e"><div class="e-d">M.Sc. Statistics</div><div class="e-s">UCL London</div><div class="e-y">2015–2017</div></div></div><div class="sb-s"><div class="sb-t">Skills</div><div class="sk-r"><div class="sk-tp"><span>Python / R</span><span class="sk-pc">98%</span></div><div class="sk-tr"><div class="sk-fi" style="width:98%"></div></div></div><div class="sk-r"><div class="sk-tp"><span>PyTorch / TF</span><span class="sk-pc">92%</span></div><div class="sk-tr"><div class="sk-fi" style="width:92%"></div></div></div><div class="sk-r"><div class="sk-tp"><span>SQL & BigQuery</span><span class="sk-pc">88%</span></div><div class="sk-tr"><div class="sk-fi" style="width:88%"></div></div></div><div class="sk-r"><div class="sk-tp"><span>MLOps</span><span class="sk-pc">80%</span></div><div class="sk-tr"><div class="sk-fi" style="width:80%"></div></div></div></div><div class="sb-s"><div class="sb-t">Languages</div><div class="la-r"><span class="l-n">English</span><span class="l-l">Native</span></div><div class="la-r"><span class="l-n">Urdu</span><span class="l-l">Native</span></div><div class="la-r"><span class="l-n">Arabic</span><span class="l-l">B2</span></div></div></div><div class="mn"><div class="m-tp"><div class="m-n">Aisha <em>Rahman</em></div><div class="m-ti">Senior Data Scientist · ML Research · NLP</div><p class="m-sum">PhD-trained data scientist with 6 years applying machine learning at DeepMind and Deliveroo. Published 7 peer-reviewed papers; built production ML systems serving millions daily.</p></div><div class="sec"><div class="sc-t">Experience</div><div class="jb"><div class="jt"><div class="jr">Senior Data Scientist</div><div class="jd">2022–Now</div></div><div class="jco">DeepMind · London</div><ul class="jp"><li>Led NLP research; published 3 papers at NeurIPS and ICML.</li><li>Production recommendation system; +15% engagement.</li><li>ML platform cutting deployment time from 2 weeks to 2 days.</li></ul></div><div class="jb"><div class="jt"><div class="jr">Data Scientist</div><div class="jd">2019–2022</div></div><div class="jco">Deliveroo · London</div><ul class="jp"><li>ETA prediction model improving accuracy by 23%.</li><li>Demand forecasting saving £2M/year in food waste.</li></ul></div><div class="jb"><div class="jt"><div class="jr">Research Scientist Intern</div><div class="jd">2018</div></div><div class="jco">Meta AI Research · London</div><ul class="jp"><li>Contributed to conversational AI; co-authored 1 NeurIPS paper.</li></ul></div></div><div class="sec"><div class="sc-t">Skills</div><div class="cps"><div class="cp">Machine Learning</div><div class="cp">NLP & LLMs</div><div class="cp">Computer Vision</div><div class="cp">A/B Testing</div><div class="cp">Research Methods</div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap9"><div id="t9"><div class="hd"><div><div class="cv-n">Carlos<span>Mendez</span></div></div><div class="h-rt"><div class="cv-ti">Operations Director</div><div class="hc">carlos.mendez@ops.co</div><div class="hc">+1 (646) 777-8899</div><div class="hc">Miami, FL</div><div class="hc">linkedin.com/in/cmendez</div></div></div><div class="ss"><div class="st"><div class="st-n">14</div><div class="st-l">Years<br>Experience</div></div><div class="st-d"></div><div class="st"><div class="st-n">$40M</div><div class="st-l">Budget<br>Managed</div></div><div class="st-d"></div><div class="st"><div class="st-n">350+</div><div class="st-l">Team<br>Members</div></div><div class="st-d"></div><div class="st"><div class="st-n">18%</div><div class="st-l">Cost<br>Reduction</div></div></div><div class="bd"><div class="mn"><div class="sec"><div class="sc-hd"><div class="sc-n">01</div><div><div class="sc-t">Profile</div><div class="sc-rl"></div></div></div><p class="ab">Senior operations executive with 14 years leading global logistics, supply chain, and process optimisation at Fortune 500 companies. Built and scaled operations teams across LATAM, Europe, and Asia.</p></div><div class="sec"><div class="sc-hd"><div class="sc-n">02</div><div><div class="sc-t">Experience</div><div class="sc-rl"></div></div></div><div class="jb"><div class="jt"><div class="jr">VP of Operations</div><div class="jd">2020–Now</div></div><div class="jco">Amazon Logistics — Miami</div><ul class="jp"><li>Oversee $40M regional budget for 350-person team.</li><li>Reduced delivery cost-per-unit 18% via route optimisation.</li><li>Launched same-day delivery in 4 cities; +32% Q1 volume.</li></ul></div><div class="jb"><div class="jt"><div class="jr">Director of Supply Chain</div><div class="jd">2016–2020</div></div><div class="jco">Walmart International — Bentonville</div><ul class="jp"><li>Managed end-to-end supply chain for $1.2B LATAM unit.</li><li>JIT inventory system reducing stockouts by 44%.</li></ul></div><div class="jb"><div class="jt"><div class="jr">Operations Manager</div><div class="jd">2010–2016</div></div><div class="jco">Procter & Gamble — Miami</div><ul class="jp"><li>Led 80-person team; 99.8% on-time delivery rate.</li></ul></div></div><div class="sec"><div class="sc-hd"><div class="sc-n">03</div><div><div class="sc-t">Competencies</div><div class="sc-rl"></div></div></div><div class="sk-gd"><span class="sk">Supply Chain</span><span class="sk">Lean / Six Sigma</span><span class="sk">P&L Management</span><span class="sk">ERP Systems</span><span class="sk">Team Leadership</span><span class="sk">Process Design</span></div></div></div><div class="sd"><div class="ss2"><div class="ss2-t">Education</div><div class="e-e"><div class="e-d">MBA — Operations</div><div class="e-s">Univ. of Miami</div><div class="e-y">2008–2010</div></div><div class="e-e"><div class="e-d">B.Sc. Industrial Eng.</div><div class="e-s">Florida Intl. Univ.</div><div class="e-y">2004–2008</div></div></div><div class="ss2"><div class="ss2-t">Certifications</div><div class="ce">Six Sigma Black Belt</div><div class="ce">PMP — PMI (2014)</div><div class="ce">APICS CPIM (2016)</div></div><div class="ss2"><div class="ss2-t">Languages</div><div class="la-r"><span class="l-n">English</span><span class="l-l">Native</span></div><div class="la-r"><span class="l-n">Spanish</span><span class="l-l">Native</span></div><div class="la-r"><span class="l-n">Portuguese</span><span class="l-l">B2</span></div></div><div class="ss2"><div class="ss2-t">References</div><div class="r-e"><div class="r-n">Jennifer Walsh</div><div class="r-r">SVP Ops, Amazon</div><div class="r-c">j.walsh@amazon.com</div></div><div class="r-e"><div class="r-n">Marco Reyes</div><div class="r-r">VP, Walmart Intl</div><div class="r-c">m.reyes@walmart.com</div></div></div></div></div></div></div>
+
+      <div class="resume-wrap" id="wrap10"><div id="t10"><div class="sb"><div class="sb-ph"><span class="sb-i">NC</span></div><div class="sb-tp"><div class="sb-n">Natalie<br>Chen</div><div class="sb-ro">Brand Strategy Director</div></div><div class="s-bl"><div class="s-t">Contact</div><div class="ci"><span class="ci-l">Email</span><span class="ci-v">natalie@brandcraft.co</span></div><div class="ci"><span class="ci-l">Phone</span><span class="ci-v">+1 (310) 555-7788</span></div><div class="ci"><span class="ci-l">City</span><span class="ci-v">Los Angeles, CA</span></div><div class="ci"><span class="ci-l">Web</span><span class="ci-v">nataliechen.co</span></div></div><div class="s-bl"><div class="s-t">Education</div><div class="e-e"><div class="e-d">MBA — Brand Strategy</div><div class="e-s">Kellogg School</div><div class="e-y">2013–2015</div></div><div class="e-e"><div class="e-d">B.A. Communications</div><div class="e-s">UCLA</div><div class="e-y">2009–2013</div></div></div><div class="s-bl"><div class="s-t">Skills</div><div class="sk-i"><span class="sk-n">Brand Strategy</span><div class="sk-b"><div class="sk-f" style="width:96%"></div></div></div><div class="sk-i"><span class="sk-n">Consumer Insights</span><div class="sk-b"><div class="sk-f" style="width:90%"></div></div></div><div class="sk-i"><span class="sk-n">Campaign Direction</span><div class="sk-b"><div class="sk-f" style="width:88%"></div></div></div><div class="sk-i"><span class="sk-n">P&L Management</span><div class="sk-b"><div class="sk-f" style="width:82%"></div></div></div></div><div class="s-bl"><div class="s-t">Languages</div><div class="la-r"><span class="l-n">English</span><div class="l-ps"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div></div></div><div class="la-r"><span class="l-n">Mandarin</span><div class="l-ps"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div></div></div><div class="la-r"><span class="l-n">French</span><div class="l-ps"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div><div class="lp"></div></div></div></div></div><div class="mn"><div class="m-hd"><div class="m-n">Natalie <em>Chen</em></div><div class="m-sub">Brand Strategy Director · Creative Leader</div><div class="m-tl">I build brands that earn cultural relevance — not just recognition.</div></div><div class="sec"><div class="sh">Experience</div><div class="jc"><div class="jt"><div class="jr">Global Brand Strategy Director</div><div class="jd">2021–Now</div></div><div class="jco">Ogilvy — Los Angeles</div><ul class="jp"><li>Lead brand strategy for Nike, L'Oréal, and Google across 15 markets.</li><li>Developed framework adopted by 8 Ogilvy global offices.</li><li>Won three Effie Awards for effectiveness in 2022 and 2023.</li></ul></div><div class="jc"><div class="jt"><div class="jr">Head of Brand Strategy</div><div class="jd">2018–2021</div></div><div class="jco">Droga5 — New York</div><ul class="jp"><li>Led strategy team of 12 on Amazon and Spotify platforms.</li><li>Spotify "Only You" campaign; 2.4B media impressions.</li></ul></div><div class="jc"><div class="jt"><div class="jr">Senior Brand Strategist</div><div class="jd">2015–2018</div></div><div class="jco">BBDO — New York</div><ul class="jp"><li>Brand tracking studies for 5 Fortune 100 clients annually.</li></ul></div></div><div class="sec"><div class="sh">Competencies</div><div class="cps"><span class="cp">Brand Architecture</span><span class="cp">Positioning Strategy</span><span class="cp">Consumer Research</span><span class="cp">Campaign Development</span><span class="cp">Cultural Strategy</span><span class="cp">Team Leadership</span></div></div></div></div></div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   COLOR PRESETS per template
+═══════════════════════════════════════════════ */
+const presets = {
+  1: [
+    { label:'Gold',     vars:{ '--c1':'#B8960C','--c2':'#1A1A1A','--c3':'#F5F0E8' }, hex:'#B8960C' },
+    { label:'Crimson',  vars:{ '--c1':'#B8294A','--c2':'#1A0A0F','--c3':'#FDF5F7' }, hex:'#B8294A' },
+    { label:'Sapphire', vars:{ '--c1':'#1D6FA4','--c2':'#0A1828','--c3':'#F0F5FA' }, hex:'#1D6FA4' },
+    { label:'Forest',   vars:{ '--c1':'#2E7D52','--c2':'#0D1F16','--c3':'#F0F7F4' }, hex:'#2E7D52' },
+    { label:'Slate',    vars:{ '--c1':'#7C6FCD','--c2':'#1A1826','--c3':'#F4F3FB' }, hex:'#7C6FCD' },
+  ],
+  2: [
+    { label:'Red',    vars:{ '--ac':'#E63312' }, hex:'#E63312' },
+    { label:'Black',  vars:{ '--ac':'#1A1A1A' }, hex:'#1A1A1A' },
+    { label:'Blue',   vars:{ '--ac':'#0066CC' }, hex:'#0066CC' },
+    { label:'Green',  vars:{ '--ac':'#00875A' }, hex:'#00875A' },
+    { label:'Purple', vars:{ '--ac':'#7B2FBE' }, hex:'#7B2FBE' },
+    { label:'Amber',  vars:{ '--ac':'#D97706' }, hex:'#D97706' },
+  ],
+  3: [
+    { label:'Red',    vars:{ '--a':'#C0392B' }, hex:'#C0392B' },
+    { label:'Black',  vars:{ '--a':'#1A1A1A' }, hex:'#1A1A1A' },
+    { label:'Blue',   vars:{ '--a':'#1565C0' }, hex:'#1565C0' },
+    { label:'Green',  vars:{ '--a':'#1B5E20' }, hex:'#1B5E20' },
+    { label:'Purple', vars:{ '--a':'#6A1B9A' }, hex:'#6A1B9A' },
+    { label:'Teal',   vars:{ '--a':'#00695C' }, hex:'#00695C' },
+  ],
+  4: [
+    { label:'Teal',   vars:{ '--g1':'#0F2027','--g2':'#203A43','--g3':'#2C5364','--ac':'#00D4AA' }, hex:'#00D4AA' },
+    { label:'Purple', vars:{ '--g1':'#1A0533','--g2':'#2D0A55','--g3':'#3D0F6E','--ac':'#B06EF5' }, hex:'#B06EF5' },
+    { label:'Green',  vars:{ '--g1':'#0D1F12','--g2':'#163520','--g3':'#1A4728','--ac':'#4ADE80' }, hex:'#4ADE80' },
+    { label:'Red',    vars:{ '--g1':'#1A0A0A','--g2':'#2D1010','--g3':'#3D1515','--ac':'#FF6B6B' }, hex:'#FF6B6B' },
+    { label:'Blue',   vars:{ '--g1':'#0A0F1A','--g2':'#12193A','--g3':'#1A2640','--ac':'#60A5FA' }, hex:'#60A5FA' },
+  ],
+  5: [
+    { label:'Blue',   vars:{ '--p':'#1D4ED8','--pk':'rgba(29,78,216,.07)' }, hex:'#1D4ED8' },
+    { label:'Green',  vars:{ '--p':'#065F46','--pk':'rgba(6,95,70,.07)' },   hex:'#065F46' },
+    { label:'Purple', vars:{ '--p':'#7C3AED','--pk':'rgba(124,58,237,.07)' },hex:'#7C3AED' },
+    { label:'Red',    vars:{ '--p':'#DC2626','--pk':'rgba(220,38,38,.07)' }, hex:'#DC2626' },
+    { label:'Amber',  vars:{ '--p':'#B45309','--pk':'rgba(180,83,9,.07)' },  hex:'#B45309' },
+    { label:'Teal',   vars:{ '--p':'#0E7490','--pk':'rgba(14,116,144,.07)' },hex:'#0E7490' },
+  ],
+  6: [
+    { label:'Orange', vars:{ '--a':'#C2410C' }, hex:'#C2410C' },
+    { label:'Black',  vars:{ '--a':'#111111' }, hex:'#111111' },
+    { label:'Blue',   vars:{ '--a':'#1E40AF' }, hex:'#1E40AF' },
+    { label:'Green',  vars:{ '--a':'#065F46' }, hex:'#065F46' },
+    { label:'Purple', vars:{ '--a':'#6D28D9' }, hex:'#6D28D9' },
+    { label:'Amber',  vars:{ '--a':'#92400E' }, hex:'#92400E' },
+  ],
+  7: [
+    { label:'Teal',   vars:{ '--h':'#0F766E','--hl':'rgba(15,118,110,.07)' },   hex:'#0F766E' },
+    { label:'Blue',   vars:{ '--h':'#1D4ED8','--hl':'rgba(29,78,216,.07)' },    hex:'#1D4ED8' },
+    { label:'Purple', vars:{ '--h':'#7C3AED','--hl':'rgba(124,58,237,.07)' },   hex:'#7C3AED' },
+    { label:'Red',    vars:{ '--h':'#B91C1C','--hl':'rgba(185,28,28,.07)' },    hex:'#B91C1C' },
+    { label:'Amber',  vars:{ '--h':'#92400E','--hl':'rgba(146,64,14,.07)' },    hex:'#92400E' },
+    { label:'Navy',   vars:{ '--h':'#1E3A5F','--hl':'rgba(30,58,95,.07)' },     hex:'#1E3A5F' },
+  ],
+  8: [
+    { label:'Purple', vars:{ '--p':'#6D28D9','--pl':'rgba(109,40,217,.07)' }, hex:'#6D28D9' },
+    { label:'Green',  vars:{ '--p':'#047857','--pl':'rgba(4,120,87,.07)' },   hex:'#047857' },
+    { label:'Blue',   vars:{ '--p':'#1E40AF','--pl':'rgba(30,64,175,.07)' },  hex:'#1E40AF' },
+    { label:'Pink',   vars:{ '--p':'#9D174D','--pl':'rgba(157,23,77,.07)' },  hex:'#9D174D' },
+    { label:'Amber',  vars:{ '--p':'#92400E','--pl':'rgba(146,64,14,.07)' },  hex:'#92400E' },
+    { label:'Slate',  vars:{ '--p':'#1E293B','--pl':'rgba(30,41,59,.07)' },   hex:'#1E293B' },
+  ],
+  9: [
+    { label:'Amber',  vars:{ '--a':'#D97706','--al':'rgba(217,119,6,.07)' },    hex:'#D97706' },
+    { label:'Red',    vars:{ '--a':'#DC2626','--al':'rgba(220,38,38,.07)' },    hex:'#DC2626' },
+    { label:'Green',  vars:{ '--a':'#059669','--al':'rgba(5,150,105,.07)' },    hex:'#059669' },
+    { label:'Blue',   vars:{ '--a':'#2563EB','--al':'rgba(37,99,235,.07)' },    hex:'#2563EB' },
+    { label:'Purple', vars:{ '--a':'#7C3AED','--al':'rgba(124,58,237,.07)' },  hex:'#7C3AED' },
+    { label:'Black',  vars:{ '--a':'#111827','--al':'rgba(17,24,39,.06)' },    hex:'#111827' },
+  ],
+  10:[
+    { label:'Amber',  vars:{ '--a':'#B45309','--al':'rgba(180,83,9,.06)','--side':'#F5F0E8' },     hex:'#B45309' },
+    { label:'Teal',   vars:{ '--a':'#0F766E','--al':'rgba(15,118,110,.06)','--side':'#EEF7F6' },   hex:'#0F766E' },
+    { label:'Blue',   vars:{ '--a':'#1E40AF','--al':'rgba(30,64,175,.06)','--side':'#EEF2FB' },    hex:'#1E40AF' },
+    { label:'Purple', vars:{ '--a':'#7C3AED','--al':'rgba(124,58,237,.06)','--side':'#F2EEFB' },   hex:'#7C3AED' },
+    { label:'Pink',   vars:{ '--a':'#9D174D','--al':'rgba(157,23,77,.06)','--side':'#FBEEEF' },    hex:'#9D174D' },
+    { label:'Slate',  vars:{ '--a':'#374151','--al':'rgba(55,65,81,.06)','--side':'#F3F4F6' },     hex:'#374151' },
+  ],
+};
+
+let activeTemplate = 1;
+
+/* ── SWITCH TEMPLATE ── */
+function switchTemplate(n, el) {
+  activeTemplate = n;
+  document.querySelectorAll('.resume-wrap').forEach(w => w.classList.remove('active'));
+  document.getElementById('wrap' + n).classList.add('active');
+  document.querySelectorAll('.tmpl-thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderSwatches(n);
+}
+
+/* ── RENDER COLOR SWATCHES ── */
+function renderSwatches(n) {
+  const row = document.getElementById('swatchRow');
+  const list = presets[n] || [];
+  row.innerHTML = '';
+  list.forEach((p, i) => {
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i === 0 ? ' active' : '');
+    s.style.background = p.hex;
+    s.title = p.label;
+    s.onclick = () => applyColor(n, p, s);
+    row.appendChild(s);
+  });
+}
+
+/* ── APPLY COLOR ── */
+function applyColor(n, preset, el) {
+  const resume = document.getElementById('t' + n);
+  Object.entries(preset.vars).forEach(([k,v]) => resume.style.setProperty(k, v));
+  document.querySelectorAll('#swatchRow .swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ═══════════════════════════════════════════════
+   PIXEL-PERFECT PDF DOWNLOAD
+   
+   THE FIX for both problems:
+   1. "Only one design downloads" — we target the
+      active resume div specifically (#t1..#t10),
+      not a generic selector that grabs a fixed element.
+   2. "Destroyed design" — we use html2canvas which
+      screenshots the live rendered DOM at 3× DPI,
+      then embeds that image into a PDF via jsPDF.
+      This captures CSS grid, custom fonts, gradients,
+      everything — exactly as you see it on screen.
+═══════════════════════════════════════════════ */
+async function downloadPDF() {
+  const btn = document.getElementById('btnDl');
+  const status = document.getElementById('statusBar');
+
+  btn.classList.add('loading');
+  btn.textContent = '⏳ Generating…';
+  status.textContent = 'Preparing…';
+
+  try {
+    await document.fonts.ready;
+    await sleep(150);
+
+    // ✅ KEY FIX 1: target exactly the ACTIVE template's div
+    const resumeEl = document.getElementById('t' + activeTemplate);
+    if (!resumeEl) throw new Error('Resume not found');
+
+    status.textContent = 'Capturing design at 3× resolution…';
+
+    // ✅ KEY FIX 2: html2canvas screenshots the live CSS — not print styles
+    const canvas = await html2canvas(resumeEl, {
+      scale: 3,           // 216 DPI — sharp text in PDF
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      logging: false,
+      imageTimeout: 15000,
+      onclone: (doc) => {
+        // Ensure clone has fixed dimensions so it captures correctly
+        const el = doc.getElementById('t' + activeTemplate);
+        if (el) {
+          el.style.width = '794px';
+          el.style.boxShadow = 'none';
+          el.style.minHeight = '1123px';
+        }
+      }
+    });
+
+    status.textContent = 'Building PDF…';
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ orientation:'portrait', unit:'mm', format:'a4', compress:true });
+
+    const pdfW = pdf.internal.pageSize.getWidth();   // 210mm
+    const pdfH = pdf.internal.pageSize.getHeight();  // 297mm
+
+    // Convert canvas to image
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    const imgH = pdfW * (canvas.height / canvas.width);
+
+    if (imgH <= pdfH) {
+      // Fits on one page — just embed
+      pdf.addImage(imgData, 'JPEG', 0, 0, pdfW, imgH, '', 'FAST');
+    } else {
+      // Multi-page: slice the canvas per page
+      const pageHeightPx = (pdfH / pdfW) * canvas.width;
+      let yOffset = 0;
+      while (yOffset < canvas.height) {
+        if (yOffset > 0) pdf.addPage();
+        const slice = document.createElement('canvas');
+        slice.width  = canvas.width;
+        slice.height = Math.min(pageHeightPx, canvas.height - yOffset);
+        slice.getContext('2d').drawImage(canvas, 0, -yOffset);
+        const sliceH = (slice.height / canvas.width) * pdfW;
+        pdf.addImage(slice.toDataURL('image/jpeg', 0.95), 'JPEG', 0, 0, pdfW, sliceH, '', 'FAST');
+        yOffset += pageHeightPx;
+      }
+    }
+
+    // Filename from template name
+    const names = {1:'Executive_Noir',2:'Swiss_Grid',3:'Architect',4:'Gradient_Modern',5:'Timeline_Pro',6:'Minimal_Ink',7:'Horizon',8:'Diamond_Cut',9:'Mono_Block',10:'Soft_Premium'};
+    pdf.save(`Resume_${names[activeTemplate] || activeTemplate}.pdf`);
+
+    status.textContent = '✓ Downloaded!';
+    setTimeout(() => { status.textContent = ''; }, 3000);
+
+  } catch(err) {
+    console.error(err);
+    status.textContent = '✕ Error — try again';
+    setTimeout(() => { status.textContent = ''; }, 4000);
+  } finally {
+    btn.classList.remove('loading');
+    btn.innerHTML = '⬇ &nbsp; Download PDF';
+  }
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+/* INIT */
+renderSwatches(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Timeline Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root { --p:#1D4ED8; --pk:rgba(29,78,216,.08); --ink:#111827; --bg:#FDFDFD; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#C8CDD6;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Epilogue',sans-serif;}
+
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:26px;height:26px;border-radius:5px;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 2px 5px rgba(0,0,0,.2);}
+.swatch:hover{transform:scale(1.1);}
+.swatch.active{border-color:#333;}
+
+.resume{
+  width:794px;min-height:1123px;
+  background:var(--bg);
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  display:grid;
+  grid-template-columns:240px 1fr;
+}
+
+/* SIDEBAR */
+.sidebar{
+  background:var(--ink);
+  padding:0;
+  display:flex;flex-direction:column;
+  position:relative;
+}
+/* big header area */
+.sb-top{
+  padding:40px 26px 30px;
+  background:var(--p);
+  position:relative;
+  overflow:hidden;
+}
+.sb-top::after{
+  content:'';
+  position:absolute;
+  bottom:-20px;left:-20px;
+  width:120px;height:120px;
+  border-radius:50%;
+  background:rgba(255,255,255,.06);
+}
+.sb-avatar{
+  width:80px;height:80px;border-radius:12px;
+  background:rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;
+  overflow:hidden;
+}
+.sb-avatar img{width:100%;height:100%;object-fit:cover;}
+.av-initials{font-family:'Fraunces',serif;font-size:28px;color:#fff;font-weight:700;}
+.sb-name{font-family:'Fraunces',serif;font-size:22px;color:#fff;font-weight:700;line-height:1.2;}
+.sb-role{font-size:10px;color:rgba(255,255,255,.65);letter-spacing:2px;text-transform:uppercase;margin-top:6px;}
+
+.sb-body{padding:24px 26px 30px;flex:1;display:flex;flex-direction:column;gap:22px;}
+
+.s-block{}
+.s-head{
+  font-size:8.5px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.35);
+  margin-bottom:11px;
+}
+
+.ci{font-size:11px;color:rgba(255,255,255,.65);margin-bottom:7px;display:flex;gap:8px;align-items:flex-start;}
+.ci-dot{width:4px;height:4px;background:var(--p);border-radius:50%;margin-top:4px;flex-shrink:0;}
+
+.prog-row{margin-bottom:9px;}
+.pr-top{display:flex;justify-content:space-between;font-size:10.5px;color:rgba(255,255,255,.65);margin-bottom:3px;}
+.pr-pct{font-size:9px;color:var(--p);}
+.pr-track{height:2px;background:rgba(255,255,255,.1);border-radius:1px;}
+.pr-fill{height:100%;background:var(--p);border-radius:1px;}
+
+.lang-item{display:flex;justify-content:space-between;margin-bottom:6px;}
+.li-n{font-size:11px;color:rgba(255,255,255,.65);}
+.li-l{font-size:10px;color:var(--p);}
+
+/* MAIN */
+.main{padding:40px 40px 36px 36px;}
+
+/* name at top of main */
+.m-head{margin-bottom:22px;}
+.m-name{font-family:'Fraunces',serif;font-size:36px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.5px;}
+.m-name em{color:var(--p);font-style:normal;}
+.m-title{font-size:11px;color:#888;letter-spacing:2.5px;text-transform:uppercase;margin-top:6px;}
+.m-summary{font-size:11.5px;line-height:1.75;color:#555;font-weight:300;margin-top:12px;padding:12px 14px;background:var(--pk);border-left:3px solid var(--p);border-radius:0 6px 6px 0;}
+
+/* section */
+.sec-label{
+  font-size:9px;font-weight:600;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--p);margin-bottom:14px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:#EEEEEE;}
+
+/* timeline */
+.tl{position:relative;padding-left:20px;}
+.tl::before{content:'';position:absolute;left:5px;top:5px;bottom:5px;width:1.5px;background:linear-gradient(180deg,var(--p),rgba(29,78,216,.1));}
+
+.tl-item{margin-bottom:16px;position:relative;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{
+  position:absolute;left:-20px;top:3px;
+  width:11px;height:11px;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid var(--p);
+  z-index:1;
+}
+.tl-dot.filled{background:var(--p);}
+.tl-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.tl-role{font-size:13px;font-weight:600;color:var(--ink);}
+.tl-date{font-size:10px;color:var(--p);font-weight:600;background:var(--pk);padding:2px 7px;border-radius:3px;}
+.tl-co{font-family:'Fraunces',serif;font-style:italic;font-size:12px;color:#888;margin:2px 0 5px;}
+.tl-pts li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;list-style:none;padding-left:10px;position:relative;}
+.tl-pts li::before{content:'·';position:absolute;left:0;color:var(--p);font-size:14px;line-height:1;}
+
+/* edu grid */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px;}
+.edu-card{padding:10px 12px;background:var(--pk);border-radius:6px;}
+.edu-d{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3;}
+.edu-s{font-size:10.5px;color:#777;margin-top:2px;}
+.edu-y{font-size:10px;color:var(--p);font-weight:600;margin-top:3px;}
+
+/* skills row */
+.sk-row{display:flex;flex-wrap:wrap;gap:5px;}
+.sk{font-size:10.5px;padding:4px 10px;border:1px solid var(--p);color:var(--p);border-radius:4px;font-weight:500;}
+</style>
+</head>
+<body>
+
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#1D4ED8" onclick="setP('#1D4ED8','rgba(29,78,216,.08)',this)"></div>
+  <div class="swatch" style="background:#065F46" onclick="setP('#065F46','rgba(6,95,70,.08)',this)"></div>
+  <div class="swatch" style="background:#7C3AED" onclick="setP('#7C3AED','rgba(124,58,237,.08)',this)"></div>
+  <div class="swatch" style="background:#DC2626" onclick="setP('#DC2626','rgba(220,38,38,.08)',this)"></div>
+  <div class="swatch" style="background:#B45309" onclick="setP('#B45309','rgba(180,83,9,.08)',this)"></div>
+  <div class="swatch" style="background:#0E7490" onclick="setP('#0E7490','rgba(14,116,144,.08)',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="sb-avatar"><span class="av-initials">MC</span></div>
+      <div class="sb-name">Marcus<br>Chen</div>
+      <div class="sb-role">Creative Director</div>
+    </div>
+
+    <div class="sb-body">
+      <div class="s-block">
+        <div class="s-head">Contact</div>
+        <div class="ci"><div class="ci-dot"></div>marcus@mchen.studio</div>
+        <div class="ci"><div class="ci-dot"></div>+1 (415) 987-6543</div>
+        <div class="ci"><div class="ci-dot"></div>Los Angeles, CA</div>
+        <div class="ci"><div class="ci-dot"></div>mchen.studio</div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-head">Design Skills</div>
+        <div class="prog-row"><div class="pr-top"><span>Brand Design</span><span class="pr-pct">98%</span></div><div class="pr-track"><div class="pr-fill" style="width:98%"></div></div></div>
+        <div class="prog-row"><div class="pr-top"><span>Motion / Animation</span><span class="pr-pct">90%</span></div><div class="pr-track"><div class="pr-fill" style="width:90%"></div></div></div>
+        <div class="prog-row"><div class="pr-top"><span>3D / Cinema4D</span><span class="pr-pct">80%</span></div><div class="pr-track"><div class="pr-fill" style="width:80%"></div></div></div>
+        <div class="prog-row"><div class="pr-top"><span>Photography</span><span class="pr-pct">85%</span></div><div class="pr-track"><div class="pr-fill" style="width:85%"></div></div></div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-head">Awards</div>
+        <div class="ci"><div class="ci-dot"></div>Cannes Lions Bronze 2022</div>
+        <div class="ci"><div class="ci-dot"></div>D&AD Wood Pencil 2021</div>
+        <div class="ci"><div class="ci-dot"></div>Red Dot Winner 2020</div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-head">Languages</div>
+        <div class="lang-item"><span class="li-n">English</span><span class="li-l">Native</span></div>
+        <div class="lang-item"><span class="li-n">Mandarin</span><span class="li-l">C2</span></div>
+        <div class="lang-item"><span class="li-n">Japanese</span><span class="li-l">B2</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="m-head">
+      <div class="m-name">Marcus <em>Chen</em></div>
+      <div class="m-title">Creative Director · Art Director · Brand Strategist</div>
+      <p class="m-summary">Award-winning creative director with 10 years shaping brand identities for global companies. Led campaigns for Nike, Apple, and luxury fashion houses. Known for translating complex briefs into iconic visual narratives.</p>
+    </div>
+
+    <div class="section" style="margin-bottom:20px;">
+      <div class="sec-label">Experience</div>
+      <div class="tl">
+        <div class="tl-item">
+          <div class="tl-dot filled"></div>
+          <div class="tl-top"><div class="tl-role">Executive Creative Director</div><div class="tl-date">2020 – Now</div></div>
+          <div class="tl-co">Wieden+Kennedy — Los Angeles</div>
+          <ul class="tl-pts">
+            <li>Led global creative strategy for Nike, Jordan Brand, and Amazon campaigns.</li>
+            <li>Grew studio team from 8 to 32 creatives; won 3 Cannes Lions in 2 years.</li>
+            <li>Directed award-winning "Just Do It" 2022 campaign viewed 200M+ times.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot filled"></div>
+          <div class="tl-top"><div class="tl-role">Senior Art Director</div><div class="tl-date">2017 – 2020</div></div>
+          <div class="tl-co">TBWA\Chiat\Day — New York</div>
+          <ul class="tl-pts">
+            <li>Art directed Apple and Nissan campaigns across 22 global markets.</li>
+            <li>Won D&AD Wood Pencil for Apple Watch launch creative.</li>
+          </ul>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-top"><div class="tl-role">Art Director</div><div class="tl-date">2014 – 2017</div></div>
+          <div class="tl-co">Droga5 — New York</div>
+          <ul class="tl-pts">
+            <li>Developed brand identity systems for luxury fashion clients.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" style="margin-bottom:18px;">
+      <div class="sec-label">Education</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-d">MFA Design</div>
+          <div class="edu-s">Yale School of Art</div>
+          <div class="edu-y">2012 – 2014</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-d">B.F.A. Graphic Design</div>
+          <div class="edu-s">Rhode Island School of Design</div>
+          <div class="edu-y">2008 – 2012</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-label">Core Skills</div>
+      <div class="sk-row">
+        <span class="sk">Brand Strategy</span>
+        <span class="sk">Creative Direction</span>
+        <span class="sk">Team Leadership</span>
+        <span class="sk">Campaign Management</span>
+        <span class="sk">Typography</span>
+        <span class="sk">Film Direction</span>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+function setP(p,pk,el){
+  const r=document.getElementById('resume');
+  r.style.setProperty('--p',p);
+  r.style.setProperty('--pk',pk);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

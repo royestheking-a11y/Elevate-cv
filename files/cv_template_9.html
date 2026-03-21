@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 9 - European Europass Format</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --blue: #003399;
+    --blue-mid: #0050A0;
+    --yellow: #FFCC00;
+    --bg: #F0F2F5;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-mid: #444;
+    --border: #C8D0DC;
+    --row-alt: #F7F9FB;
+  }
+  body { font-family: 'Noto Sans', sans-serif; background: var(--bg); display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 860px; }
+  .cv { background: var(--white); box-shadow: 0 10px 40px rgba(0,0,0,0.15); border-top: 4px solid var(--blue); }
+
+  /* EUROPASS HEADER */
+  .euro-header { display: grid; grid-template-columns: 1fr auto; border-bottom: 2px solid var(--blue); }
+  .euro-title { background: var(--blue); color: var(--white); padding: 18px 30px; }
+  .euro-cv-label { font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .euro-cv-sub { font-size: 11px; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .euro-flag { background: var(--blue); display: flex; align-items: center; padding-right: 20px; }
+  .eu-stars { display: grid; grid-template-columns: repeat(6, 12px); gap: 3px; }
+  .eu-star { width: 8px; height: 8px; background: var(--yellow); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+
+  /* PERSONAL INFO BOX */
+  .personal-box { display: grid; grid-template-columns: auto 1fr; border-bottom: 1px solid var(--border); }
+  .photo-cell { padding: 24px 24px; display: flex; align-items: flex-start; }
+  .photo-box { width: 100px; height: 120px; border: 2px solid var(--border); background: var(--row-alt); display: flex; align-items: center; justify-content: center; font-size: 36px; overflow: hidden; }
+  .photo-box img { width: 100%; height: 100%; object-fit: cover; }
+  .info-cell { padding: 20px 30px; }
+
+  .info-row { display: grid; grid-template-columns: 160px 1fr; gap: 4px; padding: 7px 0; border-bottom: 1px solid var(--row-alt); }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { font-size: 12px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; }
+  .info-value { font-size: 13px; color: var(--text); }
+
+  /* SECTION TABLE */
+  .cv-section { display: grid; grid-template-columns: 200px 1fr; border-bottom: 1px solid var(--border); }
+  .cv-section:last-child { border-bottom: none; }
+  .section-label { background: var(--blue); color: var(--white); padding: 20px 20px; display: flex; align-items: flex-start; }
+  .section-label-text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.4; }
+  .section-body { padding: 20px 30px; }
+
+  .entry { margin-bottom: 18px; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry-dates { font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 3px; }
+  .entry-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .entry-org { font-size: 13px; color: var(--text-mid); margin: 2px 0; }
+  .entry-location { font-size: 12px; color: var(--text-mid); margin-bottom: 6px; }
+  .entry-desc { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+  .entry-list { padding-left: 16px; }
+  .entry-list li { font-size: 13px; color: var(--text-mid); line-height: 1.65; margin-bottom: 3px; }
+  .entry-divider { border: none; border-top: 1px dashed var(--border); margin: 14px 0; }
+
+  .skill-table { width: 100%; border-collapse: collapse; }
+  .skill-table td { padding: 6px 0; font-size: 13px; vertical-align: top; }
+  .skill-cat { font-weight: 700; color: var(--blue); width: 140px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .skill-val { color: var(--text-mid); }
+
+  .lang-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 8px; }
+  .lang-head { font-size: 11px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+  .lang-val { font-size: 12px; color: var(--text-mid); text-align: center; background: var(--row-alt); padding: 4px; border-radius: 3px; }
+  .lang-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .lang-nm { font-size: 13.5px; font-weight: 700; color: var(--text); }
+  .lang-type { font-size: 11px; color: var(--text-mid); }
+
+  @media (max-width: 640px) {
+    .cv-section { grid-template-columns: 1fr; }
+    .section-label { padding: 12px 20px; }
+    .personal-box { grid-template-columns: 1fr; }
+    .photo-cell { justify-content: center; }
+    .euro-header { grid-template-columns: 1fr; }
+    .euro-flag { display: none; }
+    .section-body { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <!-- EUROPASS HEADER -->
+  <div class="euro-header">
+    <div class="euro-title">
+      <div class="euro-cv-label">Curriculum Vitae</div>
+      <div class="euro-cv-sub">Europass Format</div>
+    </div>
+    <div class="euro-flag">
+      <div class="eu-stars">
+        <div class="eu-star"></div><div class="eu-star"></div><div class="eu-star"></div>
+        <div class="eu-star"></div><div class="eu-star"></div><div class="eu-star"></div>
+        <div class="eu-star"></div><div class="eu-star"></div><div class="eu-star"></div>
+        <div class="eu-star"></div><div class="eu-star"></div><div class="eu-star"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL INFO -->
+  <div class="personal-box">
+    <div class="photo-cell">
+      <div class="photo-box">👤</div>
+    </div>
+    <div class="info-cell">
+      <div class="info-row">
+        <div class="info-label">Name</div>
+        <div class="info-value"><strong>Lorna Alvarado</strong></div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Address</div>
+        <div class="info-value">123 Anywhere Street, Any City, 10001, Country</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Telephone</div>
+        <div class="info-value">+00 123-456-7890</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Email</div>
+        <div class="info-value">lorna.alvarado@reallygreatsite.com</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Website</div>
+        <div class="info-value">www.reallygreatsite.com</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Nationality</div>
+        <div class="info-value">Spanish</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Date of Birth</div>
+        <div class="info-value">15 March 1990</div>
+      </div>
+      <div class="info-row">
+        <div class="info-label">Gender</div>
+        <div class="info-value">Female</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIRED POSITION -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Desired Position</div></div>
+    <div class="section-body">
+      <div style="font-size:14px; font-weight:600; color:var(--text);">Marketing Coordinator</div>
+      <div style="font-size:13px; color:var(--text-mid); margin-top:4px;">Open to full-time positions in digital marketing, brand management, and project coordination.</div>
+    </div>
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Work Experience</div></div>
+    <div class="section-body">
+      <div class="entry">
+        <div class="entry-dates">01/09/2021 – Present</div>
+        <div class="entry-title">Marketing Assistant</div>
+        <div class="entry-org">Horizon Media Group</div>
+        <div class="entry-location">Barcelona, Spain</div>
+        <ul class="entry-list">
+          <li>Managed social media calendars and coordinated campaign rollouts.</li>
+          <li>Helped increase engagement by 35% over six months.</li>
+          <li>Experienced in content creation, market research, and CRM management.</li>
+        </ul>
+      </div>
+      <hr class="entry-divider">
+      <div class="entry">
+        <div class="entry-dates">03/2019 – 08/2021</div>
+        <div class="entry-title">Junior Marketing Executive</div>
+        <div class="entry-org">Borcelle Company</div>
+        <div class="entry-location">Madrid, Spain</div>
+        <ul class="entry-list">
+          <li>Supported marketing campaigns for 6 major product lines.</li>
+          <li>Prepared weekly performance reports for the marketing director.</li>
+          <li>Coordinated with external agencies for event planning and promotion.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Education and Training</div></div>
+    <div class="section-body">
+      <div class="entry">
+        <div class="entry-dates">2016 – 2019</div>
+        <div class="entry-title">Bachelor's Degree in Marketing</div>
+        <div class="entry-org">Universidad Complutense de Madrid</div>
+        <div class="entry-location">Madrid, Spain</div>
+        <div class="entry-desc">Major in Digital Marketing and Consumer Behavior. Final GPA: 8.5/10. Erasmus exchange semester at University of Amsterdam (2018).</div>
+      </div>
+      <hr class="entry-divider">
+      <div class="entry">
+        <div class="entry-dates">2014 – 2016</div>
+        <div class="entry-title">Baccalaureate (Sciences)</div>
+        <div class="entry-org">IES Gran Capitán</div>
+        <div class="entry-location">Madrid, Spain</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANGUAGE SKILLS -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Language Skills</div></div>
+    <div class="section-body">
+      <div style="font-size:11px; color:var(--text-mid); margin-bottom:12px;">Mother tongue: <strong>Spanish</strong></div>
+
+      <div class="lang-name-row">
+        <span class="lang-nm">English</span>
+        <span class="lang-type">Foreign language</span>
+      </div>
+      <div class="lang-grid">
+        <div><div class="lang-head">Listening</div><div class="lang-val">C1</div></div>
+        <div><div class="lang-head">Reading</div><div class="lang-val">C1</div></div>
+        <div><div class="lang-head">Spoken Interaction</div><div class="lang-val">B2</div></div>
+        <div><div class="lang-head">Spoken Production</div><div class="lang-val">B2</div></div>
+        <div><div class="lang-head">Writing</div><div class="lang-val">C1</div></div>
+      </div>
+      <div style="margin-top:14px;" class="lang-name-row">
+        <span class="lang-nm">French</span>
+        <span class="lang-type">Foreign language</span>
+      </div>
+      <div class="lang-grid">
+        <div><div class="lang-head">Listening</div><div class="lang-val">B1</div></div>
+        <div><div class="lang-head">Reading</div><div class="lang-val">B1</div></div>
+        <div><div class="lang-head">Spoken Interaction</div><div class="lang-val">A2</div></div>
+        <div><div class="lang-head">Spoken Production</div><div class="lang-val">A2</div></div>
+        <div><div class="lang-head">Writing</div><div class="lang-val">B1</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIGITAL SKILLS -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Digital Skills</div></div>
+    <div class="section-body">
+      <table class="skill-table">
+        <tr><td class="skill-cat">Communication</td><td class="skill-val">Microsoft Teams, Slack, Zoom — Advanced</td></tr>
+        <tr><td class="skill-cat">Content Creation</td><td class="skill-val">Canva, Adobe Photoshop, Premiere — Intermediate</td></tr>
+        <tr><td class="skill-cat">CRM & Analytics</td><td class="skill-val">HubSpot, Google Analytics, Salesforce — Advanced</td></tr>
+        <tr><td class="skill-cat">Office Suite</td><td class="skill-val">MS Office 365, Google Workspace — Expert</td></tr>
+        <tr><td class="skill-cat">Social Media</td><td class="skill-val">Meta Business Suite, Hootsuite, Buffer — Advanced</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADDITIONAL INFORMATION -->
+  <div class="cv-section">
+    <div class="section-label"><div class="section-label-text">Additional Information</div></div>
+    <div class="section-body">
+      <div class="entry-desc">Volunteer coordinator at local environmental NGO (2020–present). Completed Google Digital Marketing certification (2021). Driving licence: B. Willing to relocate within the EU. References available upon request.</div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

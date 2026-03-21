@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 8 - Teal Modern Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --teal: #0A7075;
+    --teal-dark: #064E52;
+    --teal-light: #E0F5F5;
+    --teal-mid: #0D9BA3;
+    --white: #FFFFFF;
+    --off-white: #F8FAFB;
+    --text: #1C2B33;
+    --text-mid: #52697A;
+    --border: #DDE8EC;
+  }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #d5e0e2; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 880px; }
+  .cv { background: var(--white); box-shadow: 0 20px 55px rgba(0,0,0,0.18); }
+
+  /* HEADER */
+  .cv-header { background: var(--teal-dark); color: var(--white); padding: 0; display: grid; grid-template-columns: 1fr 220px; }
+  .header-main { padding: 40px 45px; }
+  .hm-name { font-size: 34px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+  .hm-title { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.65); margin-top: 5px; letter-spacing: 0.5px; }
+  .hm-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .hm-tag { background: rgba(255,255,255,0.12); font-size: 11px; padding: 3px 10px; border-radius: 20px; color: rgba(255,255,255,0.85); }
+  .header-side { background: rgba(0,0,0,0.2); padding: 30px 25px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+  .hs-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+  .hs-icon { width: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* BODY */
+  .cv-body { display: grid; grid-template-columns: 1fr 240px; }
+  .main-col { padding: 35px 40px; border-right: 1px solid var(--border); }
+  .side-col { padding: 30px 24px; background: var(--off-white); }
+
+  .section { margin-bottom: 28px; }
+  .sec-title { font-size: 11px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .sec-title::after { content: ''; flex: 1; height: 1px; background: var(--teal-light); }
+
+  .about-p { font-size: 13.5px; line-height: 1.75; color: var(--text-mid); }
+
+  .exp-card { margin-bottom: 20px; background: var(--off-white); border-radius: 6px; padding: 14px 16px; border-left: 3px solid var(--teal); }
+  .ec-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .ec-role { font-size: 14px; font-weight: 700; color: var(--text); }
+  .ec-date { font-size: 11.5px; background: var(--teal-light); color: var(--teal); padding: 2px 8px; border-radius: 3px; font-weight: 600; white-space: nowrap; }
+  .ec-co { font-size: 12.5px; color: var(--text-mid); margin: 3px 0 7px; }
+  .ec-pts { padding-left: 14px; }
+  .ec-pts li { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 3px; }
+
+  /* SIDEBAR */
+  .s-section { margin-bottom: 22px; }
+  .ss-title { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1.5px solid var(--border); }
+
+  .edu-blk { margin-bottom: 12px; }
+  .edu-d { font-size: 13px; font-weight: 700; color: var(--text); }
+  .edu-s { font-size: 12px; color: var(--teal-mid); font-weight: 500; }
+  .edu-y { font-size: 11px; color: var(--text-mid); }
+
+  .skill-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .skill-n { font-size: 12.5px; color: var(--text-mid); }
+  .skill-bar-wrap { width: 80px; height: 4px; background: var(--border); border-radius: 2px; }
+  .skill-bar-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+
+  .achievement-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .ach-icon { width: 22px; height: 22px; background: var(--teal-light); color: var(--teal); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .ach-text { font-size: 12px; color: var(--text-mid); line-height: 1.5; }
+
+  @media (max-width: 660px) {
+    .cv-header { grid-template-columns: 1fr; }
+    .cv-body { grid-template-columns: 1fr; }
+    .main-col { padding: 25px 20px; }
+    .side-col { padding: 20px; }
+    .header-main { padding: 25px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <header class="cv-header">
+    <div class="header-main">
+      <div class="hm-name">DIANA FOSTER</div>
+      <div class="hm-title">Financial Analyst · CPA</div>
+      <div class="hm-tags">
+        <span class="hm-tag">Financial Modeling</span>
+        <span class="hm-tag">Excel / Power BI</span>
+        <span class="hm-tag">IFRS</span>
+        <span class="hm-tag">Risk Analysis</span>
+      </div>
+    </div>
+    <div class="header-side">
+      <div class="hs-item"><span class="hs-icon">✉</span> diana.foster@finance.com</div>
+      <div class="hs-item"><span class="hs-icon">☎</span> +1 (212) 555-8800</div>
+      <div class="hs-item"><span class="hs-icon">📍</span> New York, NY 10001</div>
+      <div class="hs-item"><span class="hs-icon">🔗</span> linkedin.com/in/dfoster</div>
+    </div>
+  </header>
+
+  <div class="cv-body">
+    <main class="main-col">
+      <div class="section">
+        <div class="sec-title">Summary</div>
+        <p class="about-p">CPA-certified financial analyst with 7 years of experience in corporate finance, investment analysis, and strategic planning. Expert at transforming complex financial data into executive-ready insights. Proven track record of reducing costs, improving forecasting accuracy, and driving data-led decision-making.</p>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Work Experience</div>
+        <div class="exp-card">
+          <div class="ec-top">
+            <div class="ec-role">Senior Financial Analyst</div>
+            <div class="ec-date">2021 – Present</div>
+          </div>
+          <div class="ec-co">Goldman Sachs · New York, NY</div>
+          <ul class="ec-pts">
+            <li>Manage financial modeling and valuation for $500M+ portfolio of investments.</li>
+            <li>Produced weekly P&L reports and variance analysis for CFO-level review.</li>
+            <li>Identified $2.8M in cost savings through process optimization analysis.</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="ec-top">
+            <div class="ec-role">Financial Analyst</div>
+            <div class="ec-date">2018 – 2021</div>
+          </div>
+          <div class="ec-co">Deloitte · New York, NY</div>
+          <ul class="ec-pts">
+            <li>Prepared quarterly financial forecasts with 96% accuracy rate.</li>
+            <li>Supported audit engagements for Fortune 100 clients across 3 sectors.</li>
+            <li>Built automated Excel dashboards reducing reporting time by 35%.</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="ec-top">
+            <div class="ec-role">Junior Analyst</div>
+            <div class="ec-date">2016 – 2018</div>
+          </div>
+          <div class="ec-co">KPMG · New York, NY</div>
+          <ul class="ec-pts">
+            <li>Assisted in preparation of annual reports and regulatory filings.</li>
+            <li>Conducted peer benchmarking analysis for 12 client engagements.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side-col">
+      <div class="s-section">
+        <div class="ss-title">Education</div>
+        <div class="edu-blk">
+          <div class="edu-d">M.Sc. Finance</div>
+          <div class="edu-s">NYU Stern School</div>
+          <div class="edu-y">2014 – 2016</div>
+        </div>
+        <div class="edu-blk">
+          <div class="edu-d">B.Sc. Accounting</div>
+          <div class="edu-s">University of Michigan</div>
+          <div class="edu-y">2010 – 2014</div>
+        </div>
+      </div>
+
+      <div class="s-section">
+        <div class="ss-title">Skills</div>
+        <div class="skill-item">
+          <span class="skill-n">Financial Modeling</span>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-n">Excel / VBA</span>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-n">Power BI</span>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-n">Risk Analysis</span>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-n">SQL</span>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+
+      <div class="s-section">
+        <div class="ss-title">Certifications</div>
+        <div class="achievement-item">
+          <div class="ach-icon">✓</div>
+          <div class="ach-text">CPA — AICPA (2017)</div>
+        </div>
+        <div class="achievement-item">
+          <div class="ach-icon">✓</div>
+          <div class="ach-text">CFA Level II (2020)</div>
+        </div>
+        <div class="achievement-item">
+          <div class="ach-icon">✓</div>
+          <div class="ach-text">FRM — GARP (2019)</div>
+        </div>
+      </div>
+
+      <div class="s-section">
+        <div class="ss-title">Languages</div>
+        <div class="skill-item"><span class="skill-n">English</span><div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:100%"></div></div></div>
+        <div class="skill-item"><span class="skill-n">Mandarin</span><div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+        <div class="skill-item"><span class="skill-n">French</span><div class="skill-bar-wrap"><div class="skill-bar-fill" style="width:40%"></div></div></div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</body>
+</html>

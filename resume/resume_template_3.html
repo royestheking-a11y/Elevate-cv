@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --a: #C0392B;
+  --ink: #1C1C1C;
+  --bg: #FAFAFA;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#D8D8D8; display:flex; flex-direction:column; align-items:center; padding:20px; font-family:'DM Sans',sans-serif; }
+
+.color-bar { display:flex; gap:8px; margin-bottom:16px; align-items:center; justify-content:center; }
+.color-bar span { font-size:11px; color:#666; letter-spacing:1px; text-transform:uppercase; }
+.swatch { width:26px; height:26px; border-radius:50%; cursor:pointer; border:2px solid transparent; transition:.15s; box-shadow:0 2px 5px rgba(0,0,0,.2); }
+.swatch:hover { transform:scale(1.12); }
+.swatch.active { border-color:#333; }
+
+.resume {
+  width: 794px;
+  min-height: 1123px;
+  background: var(--bg);
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  display: grid;
+  grid-template-columns: 6px 210px 1fr;
+}
+
+/* left accent stripe */
+.stripe { background: var(--a); }
+
+/* SIDEBAR */
+.sidebar {
+  background: #F2F2F2;
+  padding: 44px 22px 40px 24px;
+  border-right: 1px solid #E5E5E5;
+}
+
+.photo-sq {
+  width: 100%; aspect-ratio: 1;
+  background: #E0E0E0;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.photo-sq::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 4px;
+  background: var(--a);
+}
+.photo-sq img { width:100%; height:100%; object-fit:cover; }
+.photo-letters {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; color: #BBB;
+  font-weight: 700;
+}
+
+.cv-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.cv-role {
+  font-size: 10px;
+  color: var(--a);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.s-block { margin-bottom: 20px; }
+.s-head {
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--a);
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #DDD;
+}
+
+.contact-r { display:flex; flex-direction:column; gap:6px; }
+.cr { font-size: 10.5px; color: #555; line-height: 1.4; display: flex; align-items: flex-start; gap: 6px; }
+.cr-label { font-size: 8.5px; font-weight: 600; color: var(--a); text-transform: uppercase; letter-spacing: .5px; min-width: 36px; }
+
+.edu-e { margin-bottom: 11px; }
+.edu-degree { font-size: 11px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.edu-school { font-size: 10px; color: #777; }
+.edu-year { font-size: 9.5px; color: var(--a); font-weight: 500; margin-top: 2px; }
+
+.skills-list { display: flex; flex-direction: column; gap: 6px; }
+.sl { display: flex; justify-content: space-between; align-items: center; }
+.sl-name { font-size: 10.5px; color: #555; }
+.sl-bar { width: 60px; height: 3px; background: #DDD; border-radius: 2px; }
+.sl-fill { height: 100%; background: var(--a); border-radius: 2px; }
+
+.lang-e { display: flex; justify-content: space-between; margin-bottom: 6px; }
+.lang-n { font-size: 10.5px; color: #444; }
+.lang-l { font-size: 10px; color: #999; }
+
+/* MAIN */
+.main {
+  padding: 44px 44px 36px 36px;
+}
+
+.section { margin-bottom: 22px; }
+
+.sh {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.sh::after { content:''; flex:1; height:1px; background:#E0E0E0; margin-left:4px; }
+.sh-accent { width: 24px; height: 2px; background: var(--a); margin-bottom: 14px; }
+
+.profile-p { font-size: 12px; line-height: 1.8; color: #555; font-weight: 300; }
+
+.job { margin-bottom: 16px; }
+.job:last-child { margin-bottom: 0; }
+.job-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+.job-title { font-size: 12.5px; font-weight: 500; color: var(--ink); }
+.job-date { font-size: 10px; color: var(--a); font-weight: 500; background: rgba(192,57,43,.07); padding: 2px 7px; border-radius: 2px; }
+.job-co { font-family: 'Playfair Display', serif; font-style: italic; font-size: 12px; color: #888; margin-bottom: 5px; }
+.job-pts { padding-left: 14px; }
+.job-pts li { font-size: 11px; color: #555; line-height: 1.6; margin-bottom: 2px; font-weight: 300; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-size: 10px; color: #555; background: #EFEFEF; border-radius: 2px; padding: 4px 9px; font-weight: 500; }
+
+.refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ref-name { font-size: 12px; font-weight: 500; color: var(--ink); }
+.ref-role { font-size: 10.5px; color: var(--a); margin: 1px 0; }
+.ref-contact { font-size: 10px; color: #888; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#C0392B" onclick="setA('#C0392B',this)"></div>
+  <div class="swatch" style="background:#1A1A1A" onclick="setA('#1A1A1A',this)"></div>
+  <div class="swatch" style="background:#1565C0" onclick="setA('#1565C0',this)"></div>
+  <div class="swatch" style="background:#1B5E20" onclick="setA('#1B5E20',this)"></div>
+  <div class="swatch" style="background:#6A1B9A" onclick="setA('#6A1B9A',this)"></div>
+  <div class="swatch" style="background:#E65100" onclick="setA('#E65100',this)"></div>
+  <div class="swatch" style="background:#00695C" onclick="setA('#00695C',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <div class="stripe"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="photo-sq"><span class="photo-letters">SD</span></div>
+    <div class="cv-name">Sophie<br>Dupont</div>
+    <div class="cv-role">UX Design Lead</div>
+
+    <div class="s-block">
+      <div class="s-head">Contact</div>
+      <div class="contact-r">
+        <div class="cr"><span class="cr-label">Email</span> sophie.dupont@ux.io</div>
+        <div class="cr"><span class="cr-label">Phone</span> +33 6 12 34 56 78</div>
+        <div class="cr"><span class="cr-label">City</span> Paris, France</div>
+        <div class="cr"><span class="cr-label">Web</span> sophiedupont.design</div>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-head">Education</div>
+      <div class="edu-e">
+        <div class="edu-degree">MA Interaction Design</div>
+        <div class="edu-school">Royal College of Art, London</div>
+        <div class="edu-year">2014 – 2016</div>
+      </div>
+      <div class="edu-e">
+        <div class="edu-degree">BA Visual Communication</div>
+        <div class="edu-school">École des Arts Décoratifs</div>
+        <div class="edu-year">2010 – 2014</div>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-head">Tools</div>
+      <div class="skills-list">
+        <div class="sl"><span class="sl-name">Figma</span><div class="sl-bar"><div class="sl-fill" style="width:100%"></div></div></div>
+        <div class="sl"><span class="sl-name">Sketch</span><div class="sl-bar"><div class="sl-fill" style="width:88%"></div></div></div>
+        <div class="sl"><span class="sl-name">Framer</span><div class="sl-bar"><div class="sl-fill" style="width:80%"></div></div></div>
+        <div class="sl"><span class="sl-name">Principle</span><div class="sl-bar"><div class="sl-fill" style="width:75%"></div></div></div>
+        <div class="sl"><span class="sl-name">After Effects</span><div class="sl-bar"><div class="sl-fill" style="width:65%"></div></div></div>
+      </div>
+    </div>
+
+    <div class="s-block">
+      <div class="s-head">Languages</div>
+      <div class="lang-e"><span class="lang-n">French</span><span class="lang-l">Native</span></div>
+      <div class="lang-e"><span class="lang-n">English</span><span class="lang-l">C2</span></div>
+      <div class="lang-e"><span class="lang-n">Dutch</span><span class="lang-l">B1</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="section">
+      <div class="sh">Profile</div>
+      <div class="sh-accent"></div>
+      <p class="profile-p">Product design lead with 8 years crafting user experiences for fintech, health tech, and consumer platforms. I bridge research and execution — transforming complex systems into products people find intuitive and beautiful. Led end-to-end design for three products that each reached 1M+ active users.</p>
+    </div>
+
+    <div class="section">
+      <div class="sh">Experience</div>
+      <div class="sh-accent"></div>
+
+      <div class="job">
+        <div class="job-top"><div class="job-title">Head of Product Design</div><div class="job-date">2021 – Present</div></div>
+        <div class="job-co">N26 Bank — Berlin / Remote</div>
+        <ul class="job-pts">
+          <li>Led design strategy for mobile banking app serving 8M customers across Europe.</li>
+          <li>Built and managed a 12-person design team across 4 countries.</li>
+          <li>Redesigned onboarding — reduced drop-off rate by 38%, won Red Dot Design Award 2023.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div class="job-title">Senior UX Designer</div><div class="job-date">2018 – 2021</div></div>
+        <div class="job-co">Doctolib — Paris, France</div>
+        <ul class="job-pts">
+          <li>Designed patient-facing booking system used by 60M+ patients.</li>
+          <li>Ran 40+ user research sessions that shaped 3 major feature roadmaps.</li>
+        </ul>
+      </div>
+
+      <div class="job">
+        <div class="job-top"><div class="job-title">UX/UI Designer</div><div class="job-date">2016 – 2018</div></div>
+        <div class="job-co">IDEO Paris Studio</div>
+        <ul class="job-pts">
+          <li>Delivered design sprints for Renault, Société Générale, and BNP Paribas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sh">Skills</div>
+      <div class="sh-accent"></div>
+      <div class="chips">
+        <div class="chip">User Research</div>
+        <div class="chip">Design Systems</div>
+        <div class="chip">Prototyping</div>
+        <div class="chip">Accessibility</div>
+        <div class="chip">Design Sprints</div>
+        <div class="chip">Motion Design</div>
+        <div class="chip">Data Analysis</div>
+        <div class="chip">Stakeholder Mgmt</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sh">References</div>
+      <div class="sh-accent"></div>
+      <div class="refs-grid">
+        <div>
+          <div class="ref-name">Marc Leblanc</div>
+          <div class="ref-role">CPO at N26 Bank</div>
+          <div class="ref-contact">m.leblanc@n26.com<br>+49 30 999 1234</div>
+        </div>
+        <div>
+          <div class="ref-name">Isabelle Renard</div>
+          <div class="ref-role">Design Director, Doctolib</div>
+          <div class="ref-contact">i.renard@doctolib.fr<br>+33 1 80 05 00 00</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+function setA(c, el) {
+  document.getElementById('resume').style.setProperty('--a', c);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

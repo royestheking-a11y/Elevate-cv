@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Gradient Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --g1: #0F2027;
+  --g2: #203A43;
+  --g3: #2C5364;
+  --acc: #00D4AA;
+  --ink: #1A1A2E;
+  --bg: #F7F8FC;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#CBD5E1;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Plus Jakarta Sans',sans-serif;}
+
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;flex-wrap:wrap;}
+.color-bar span{font-size:11px;color:#555;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:28px;height:28px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.swatch:hover{transform:scale(1.1);}
+.swatch.active{border-color:#fff;}
+
+.resume{
+  width:794px;min-height:1123px;
+  background:var(--bg);
+  box-shadow:0 25px 70px rgba(0,0,0,.3);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+}
+
+/* header */
+.cv-head{
+  background:linear-gradient(135deg, var(--g1), var(--g2), var(--g3));
+  padding:40px 50px 60px;
+  position:relative;
+  overflow:hidden;
+}
+.cv-head::before{
+  content:'';position:absolute;
+  top:-80px;right:-80px;
+  width:300px;height:300px;
+  border-radius:50%;
+  border:60px solid rgba(255,255,255,.04);
+}
+.cv-head::after{
+  content:'';position:absolute;
+  bottom:-60px;left:30%;
+  width:200px;height:200px;
+  border-radius:50%;
+  border:40px solid rgba(255,255,255,.03);
+}
+.head-inner{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:1;}
+.cv-name{
+  font-size:42px;font-weight:800;
+  color:#fff;
+  line-height:1;
+  letter-spacing:-1px;
+}
+.cv-name span{color:var(--acc);}
+.cv-sub{font-size:13px;font-weight:400;color:rgba(255,255,255,.6);letter-spacing:2px;text-transform:uppercase;margin-top:8px;}
+.head-right{display:flex;flex-direction:column;gap:6px;text-align:right;}
+.hc{font-size:11.5px;color:rgba(255,255,255,.65);}
+
+/* floating card */
+.float-card{
+  background:#fff;
+  margin:0 40px;
+  margin-top:-24px;
+  border-radius:12px;
+  padding:20px 28px;
+  box-shadow:0 8px 30px rgba(0,0,0,.1);
+  display:flex;gap:30px;
+  align-items:center;
+  position:relative;z-index:2;
+}
+.fc-stat{text-align:center;flex:1;}
+.fc-num{font-size:24px;font-weight:800;color:var(--ink);line-height:1;}
+.fc-num span{color:var(--acc);}
+.fc-label{font-size:9px;font-weight:600;color:#999;letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+.fc-div{width:1px;height:36px;background:#E8E8E8;flex-shrink:0;}
+
+/* body */
+.cv-body{display:grid;grid-template-columns:1fr 220px;flex:1;padding:28px 40px 36px;}
+
+/* main */
+.main{padding-right:32px;border-right:1px solid #EEEEEE;}
+.section{margin-bottom:22px;}
+.sec-title{
+  font-size:11px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--ink);
+  margin-bottom:13px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-title::before{content:'';width:16px;height:3px;background:var(--acc);border-radius:2px;flex-shrink:0;}
+
+.about-text{font-size:12px;line-height:1.78;color:#555;font-weight:400;}
+
+.job-card{
+  background:#FAFAFA;
+  border:1px solid #F0F0F0;
+  border-left:3px solid var(--acc);
+  border-radius:0 8px 8px 0;
+  padding:12px 14px;
+  margin-bottom:10px;
+}
+.job-card:last-child{margin-bottom:0;}
+.jc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px;}
+.jc-role{font-size:13px;font-weight:700;color:var(--ink);}
+.jc-date{
+  font-size:10px;font-weight:600;
+  background:rgba(0,212,170,.1);color:var(--acc);
+  padding:2px 8px;border-radius:20px;white-space:nowrap;
+}
+.jc-co{font-size:11px;color:#888;margin-bottom:6px;}
+.jc-pts li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;padding-left:12px;list-style:none;position:relative;}
+.jc-pts li::before{content:'›';position:absolute;left:0;color:var(--acc);font-weight:700;}
+
+/* sidebar */
+.side{padding-left:28px;}
+.s-sec{margin-bottom:20px;}
+.s-head{
+  font-size:10px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--acc);
+  margin-bottom:11px;
+  padding-bottom:6px;
+  border-bottom:1px solid #EEEEEE;
+}
+
+.edu-e{margin-bottom:12px;}
+.edu-deg{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3;}
+.edu-sch{font-size:11px;color:#777;}
+.edu-yr{font-size:10px;color:var(--acc);margin-top:2px;font-weight:500;}
+
+.skill-wrap{display:flex;flex-wrap:wrap;gap:5px;}
+.sk-pill{
+  font-size:10px;font-weight:500;
+  padding:3px 9px;
+  background:rgba(0,212,170,.08);
+  color:var(--ink);
+  border-radius:20px;
+  border:1px solid rgba(0,212,170,.25);
+}
+
+.lang-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.ln-name{font-size:11.5px;color:var(--ink);}
+.ln-pips{display:flex;gap:3px;}
+.lp{width:8px;height:8px;border-radius:50%;background:#E8E8E8;}
+.lp.on{background:var(--acc);}
+
+.cert-item{font-size:11px;color:#555;margin-bottom:6px;display:flex;gap:6px;align-items:flex-start;}
+.cert-item::before{content:'✓';color:var(--acc);font-weight:700;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:linear-gradient(135deg,#0F2027,#2C5364)" onclick="setTheme('#0F2027','#203A43','#2C5364','#00D4AA',this)"></div>
+  <div class="swatch" style="background:linear-gradient(135deg,#1A0533,#3D0F6E)" onclick="setTheme('#1A0533','#2D0A55','#3D0F6E','#B06EF5',this)"></div>
+  <div class="swatch" style="background:linear-gradient(135deg,#0D1F12,#1A4728)" onclick="setTheme('#0D1F12','#163520','#1A4728','#4ADE80',this)"></div>
+  <div class="swatch" style="background:linear-gradient(135deg,#1A0A0A,#3D1515)" onclick="setTheme('#1A0A0A','#2D1010','#3D1515','#FF6B6B',this)"></div>
+  <div class="swatch" style="background:linear-gradient(135deg,#0A0F1A,#1A2640)" onclick="setTheme('#0A0F1A','#12193A','#1A2640','#60A5FA',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <div class="cv-head">
+    <div class="head-inner">
+      <div>
+        <div class="cv-name">Diana <span>Foster</span></div>
+        <div class="cv-sub">Financial Analyst · CPA · FRM</div>
+      </div>
+      <div class="head-right">
+        <div class="hc">diana.foster@finance.com</div>
+        <div class="hc">+1 (212) 555-8800</div>
+        <div class="hc">New York, NY 10001</div>
+        <div class="hc">linkedin.com/in/dfoster</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="float-card">
+    <div class="fc-stat"><div class="fc-num">7<span>+</span></div><div class="fc-label">Years Experience</div></div>
+    <div class="fc-div"></div>
+    <div class="fc-stat"><div class="fc-num"><span>$</span>500<span>M</span></div><div class="fc-label">Portfolio Managed</div></div>
+    <div class="fc-div"></div>
+    <div class="fc-stat"><div class="fc-num">3</div><div class="fc-label">Certifications</div></div>
+    <div class="fc-div"></div>
+    <div class="fc-stat"><div class="fc-num">96<span>%</span></div><div class="fc-label">Forecast Accuracy</div></div>
+  </div>
+
+  <div class="cv-body">
+    <main class="main">
+      <div class="section">
+        <div class="sec-title">Professional Summary</div>
+        <p class="about-text">CPA and FRM certified analyst with 7 years in corporate finance and investment strategy at Goldman Sachs and Deloitte. Expert at building financial models, leading audit engagements, and translating complex data into board-level insights. Track record of identifying multi-million dollar cost savings.</p>
+      </div>
+
+      <div class="section">
+        <div class="sec-title">Work Experience</div>
+        <div class="job-card">
+          <div class="jc-top"><div class="jc-role">Senior Financial Analyst</div><div class="jc-date">2021 – Present</div></div>
+          <div class="jc-co">Goldman Sachs · New York, NY</div>
+          <ul class="jc-pts">
+            <li>Manage financial modeling for $500M+ investment portfolio across 12 sectors.</li>
+            <li>Produced weekly P&L reports and variance analysis for CFO-level review.</li>
+            <li>Identified $2.8M in cost savings through process optimisation analysis.</li>
+          </ul>
+        </div>
+        <div class="job-card">
+          <div class="jc-top"><div class="jc-role">Financial Analyst</div><div class="jc-date">2018 – 2021</div></div>
+          <div class="jc-co">Deloitte · New York, NY</div>
+          <ul class="jc-pts">
+            <li>Prepared quarterly forecasts with 96% accuracy; supported Fortune 100 audits.</li>
+            <li>Built Excel dashboards reducing reporting time by 35%.</li>
+          </ul>
+        </div>
+        <div class="job-card">
+          <div class="jc-top"><div class="jc-role">Junior Analyst</div><div class="jc-date">2016 – 2018</div></div>
+          <div class="jc-co">KPMG · New York, NY</div>
+          <ul class="jc-pts">
+            <li>Assisted with annual reports, regulatory filings, and peer benchmarking analysis.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side">
+      <div class="s-sec">
+        <div class="s-head">Education</div>
+        <div class="edu-e">
+          <div class="edu-deg">M.Sc. Finance</div>
+          <div class="edu-sch">NYU Stern School</div>
+          <div class="edu-yr">2014 – 2016</div>
+        </div>
+        <div class="edu-e">
+          <div class="edu-deg">B.Sc. Accounting</div>
+          <div class="edu-sch">Univ. of Michigan</div>
+          <div class="edu-yr">2010 – 2014</div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Certifications</div>
+        <div class="cert-item">CPA — AICPA (2017)</div>
+        <div class="cert-item">CFA Level II (2020)</div>
+        <div class="cert-item">FRM — GARP (2019)</div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Skills</div>
+        <div class="skill-wrap">
+          <span class="sk-pill">Excel/VBA</span>
+          <span class="sk-pill">Power BI</span>
+          <span class="sk-pill">SQL</span>
+          <span class="sk-pill">Bloomberg</span>
+          <span class="sk-pill">SAP</span>
+          <span class="sk-pill">IFRS</span>
+          <span class="sk-pill">Risk Analysis</span>
+          <span class="sk-pill">DCF Modeling</span>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-head">Languages</div>
+        <div class="lang-row"><span class="ln-name">English</span><div class="ln-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div></div></div>
+        <div class="lang-row"><span class="ln-name">Mandarin</span><div class="ln-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp on"></div><div class="lp"></div><div class="lp"></div></div></div>
+        <div class="lang-row"><span class="ln-name">French</span><div class="ln-pips"><div class="lp on"></div><div class="lp on"></div><div class="lp"></div><div class="lp"></div><div class="lp"></div></div></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+function setTheme(g1,g2,g3,acc,el){
+  const r=document.getElementById('resume');
+  r.style.setProperty('--g1',g1);
+  r.style.setProperty('--g2',g2);
+  r.style.setProperty('--g3',g3);
+  r.style.setProperty('--acc',acc);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

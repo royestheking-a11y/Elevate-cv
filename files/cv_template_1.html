@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 1 - Modern Maroon</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #8B1A2B;
+    --sidebar-bg: #8B1A2B;
+    --cream: #FAF8F5;
+    --text-dark: #1a1a1a;
+    --text-mid: #444;
+    --text-light: #fff;
+    --accent: #C9A96E;
+  }
+  body { font-family: 'Lato', sans-serif; background: #e8e4df; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 20px; }
+  .cv-wrapper { width: 100%; max-width: 900px; }
+  .cv { display: grid; grid-template-columns: 300px 1fr; min-height: 1100px; background: var(--cream); box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--sidebar-bg); color: var(--text-light); padding: 0; position: relative; overflow: hidden; }
+  .sidebar::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .photo-area { padding: 40px 30px 30px; display: flex; flex-direction: column; align-items: center; }
+  .photo-circle { width: 140px; height: 140px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); overflow: hidden; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+  .photo-placeholder { font-size: 48px; color: rgba(255,255,255,0.4); }
+  .name-area { text-align: center; }
+  .first-name { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; }
+  .last-name { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+  .job-title { font-size: 13px; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); margin-top: 6px; text-transform: uppercase; }
+
+  .sidebar-section { padding: 24px 30px; border-top: 1px solid rgba(255,255,255,0.15); }
+  .sidebar-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .sidebar-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.2); }
+
+  .contact-item { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; color: rgba(255,255,255,0.85); }
+  .contact-icon { width: 20px; text-align: center; font-size: 14px; }
+
+  .skill-item { margin-bottom: 10px; }
+  .skill-name { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 4px; }
+  .skill-bar { height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+  .lang-item { font-size: 13px; color: rgba(255,255,255,0.85); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .lang-level { font-size: 11px; color: var(--accent); }
+
+  /* MAIN CONTENT */
+  .main { padding: 50px 45px; }
+  .section { margin-bottom: 35px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 600; color: var(--primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--primary); }
+
+  .about-text { font-size: 13.5px; line-height: 1.7; color: var(--text-mid); }
+
+  .exp-item { margin-bottom: 22px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 3px; }
+  .exp-title { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+  .exp-date { font-size: 12px; color: var(--text-mid); white-space: nowrap; }
+  .exp-company { font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .exp-desc { font-size: 13px; line-height: 1.65; color: var(--text-mid); }
+
+  .edu-item { display: flex; justify-content: space-between; margin-bottom: 14px; align-items: flex-start; }
+  .edu-left .degree { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+  .edu-left .university { font-size: 13px; color: var(--primary); font-weight: 700; }
+  .edu-date { font-size: 12px; color: var(--text-mid); white-space: nowrap; }
+
+  .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .ref-item .ref-name { font-size: 14px; font-weight: 700; color: var(--text-dark); }
+  .ref-item .ref-role { font-size: 12px; color: var(--primary); margin-bottom: 5px; }
+  .ref-item .ref-contact { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+  .ref-label { font-weight: 700; }
+
+  @media (max-width: 700px) {
+    .cv { grid-template-columns: 1fr; }
+    .sidebar { order: -1; }
+    .refs-grid { grid-template-columns: 1fr; }
+    .main { padding: 30px 25px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="photo-area">
+      <div class="photo-circle">
+        <span class="photo-placeholder">👤</span>
+      </div>
+      <div class="name-area">
+        <div class="first-name">OLIVIA</div>
+        <div class="last-name">WILSON</div>
+        <div class="job-title">Marketing Manager</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Contact</div>
+      <div class="contact-item"><span class="contact-icon">📞</span> 123-456-7890</div>
+      <div class="contact-item"><span class="contact-icon">✉️</span> hello@reallygreatsite.com</div>
+      <div class="contact-item"><span class="contact-icon">📍</span> 123 Anywhere St., Any City</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Skills</div>
+      <div class="skill-item">
+        <div class="skill-name">Management Skills</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Negotiation</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Critical Thinking</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Leadership</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Digital Marketing</div>
+        <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Language</div>
+      <div class="lang-item"><span>English</span><span class="lang-level">Native</span></div>
+      <div class="lang-item"><span>Spanish</span><span class="lang-level">Fluent</span></div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="section">
+      <div class="section-title">About Me</div>
+      <p class="about-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra in lorem at laoreet. Donec hendrerit libero eget est tempor, quis tempus arcu elementum. In elementum elit at dui tristique feugiat.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Work Experience</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">Marketing Manager</div>
+          <div class="exp-date">2022 – 2023</div>
+        </div>
+        <div class="exp-company">Arowwai Industries</div>
+        <div class="exp-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra in lorem at laoreet. Donec hendrerit libero eget est tempor, quis tempus arcu elementum.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">Marketing Manager</div>
+          <div class="exp-date">2020 – 2021</div>
+        </div>
+        <div class="exp-company">Ginyard International Co.</div>
+        <div class="exp-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra in lorem at laoreet. Donec hendrerit libero eget est tempor, quis tempus arcu elementum.</div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div class="exp-title">Marketing Manager</div>
+          <div class="exp-date">2018 – 2019</div>
+        </div>
+        <div class="exp-company">Salford & Co.</div>
+        <div class="exp-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam pharetra in lorem at laoreet. Donec hendrerit libero eget est tempor, quis tempus arcu elementum.</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="edu-item">
+        <div class="edu-left">
+          <div class="degree">Bachelor of Business Management</div>
+          <div class="university">Rimberio University</div>
+        </div>
+        <div class="edu-date">2019 – 2023</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-left">
+          <div class="degree">Bachelor of Business Management</div>
+          <div class="university">Borcelle University</div>
+        </div>
+        <div class="edu-date">2014 – 2018</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">References</div>
+      <div class="refs-grid">
+        <div class="ref-item">
+          <div class="ref-name">Harumi Kobayashi</div>
+          <div class="ref-role">Salford & Co. / CEO</div>
+          <div class="ref-contact">
+            <span class="ref-label">Phone:</span> 123-456-7890<br>
+            <span class="ref-label">Email:</span> hello@reallygreatsite.com
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-name">Bailey Dupont</div>
+          <div class="ref-role">Arowwai Industries / CEO</div>
+          <div class="ref-contact">
+            <span class="ref-label">Phone:</span> 123-456-7890<br>
+            <span class="ref-label">Email:</span> hello@reallygreatsite.com
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

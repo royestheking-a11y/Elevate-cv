@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 2 - Dark Charcoal</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --dark: #2C2C2C;
+    --darker: #1E1E1E;
+    --white: #FFFFFF;
+    --light-gray: #F5F5F5;
+    --mid-gray: #888;
+    --accent: #E8C547;
+    --sidebar-width: 280px;
+  }
+  body { font-family: 'Raleway', sans-serif; background: #d0d0d0; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 900px; }
+  .cv { display: grid; grid-template-columns: var(--sidebar-width) 1fr; min-height: 1100px; background: var(--white); box-shadow: 0 25px 70px rgba(0,0,0,0.3); }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--darker); color: var(--white); display: flex; flex-direction: column; }
+  .sidebar-top { background: var(--dark); padding: 40px 25px; position: relative; }
+  .sidebar-top::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: var(--accent); }
+  .photo-circle { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--accent); overflow: hidden; background: #444; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+  .photo-placeholder { font-size: 44px; }
+  .cv-name { font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-align: center; line-height: 1.2; }
+  .cv-title { font-size: 12px; color: var(--accent); letter-spacing: 2px; text-align: center; margin-top: 6px; text-transform: uppercase; }
+
+  .sidebar-block { padding: 20px 25px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .s-heading { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+
+  .contact-line { display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.75); margin-bottom: 8px; }
+  .c-icon { width: 18px; height: 18px; background: var(--accent); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; }
+
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 4px 10px; border-radius: 3px; font-size: 11px; color: rgba(255,255,255,0.8); }
+
+  .prog-item { margin-bottom: 10px; }
+  .prog-top { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+  .prog-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .prog-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+  /* MAIN */
+  .main { padding: 45px 40px; background: var(--white); }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; color: var(--dark); margin-bottom: 14px; padding-left: 12px; border-left: 3px solid var(--accent); }
+
+  .summary-text { font-size: 13px; line-height: 1.75; color: #555; }
+
+  .timeline-item { display: grid; grid-template-columns: 90px 1fr; gap: 16px; margin-bottom: 22px; }
+  .timeline-date { font-size: 11px; color: var(--mid-gray); font-weight: 600; text-align: right; padding-top: 2px; line-height: 1.4; }
+  .timeline-content { position: relative; padding-left: 14px; }
+  .timeline-content::before { content: ''; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  .timeline-content::after { content: ''; position: absolute; left: 2px; top: 14px; width: 1px; bottom: -16px; background: rgba(0,0,0,0.1); }
+  .tl-title { font-size: 14px; font-weight: 700; color: var(--dark); }
+  .tl-company { font-size: 12px; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+  .tl-bullets { padding-left: 14px; }
+  .tl-bullets li { font-size: 12.5px; color: #555; line-height: 1.6; margin-bottom: 3px; }
+
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .edu-card { border: 1px solid #eee; padding: 14px; border-radius: 4px; }
+  .edu-degree { font-size: 13px; font-weight: 700; color: var(--dark); }
+  .edu-uni { font-size: 12px; color: var(--accent); font-weight: 600; margin: 3px 0; }
+  .edu-year { font-size: 11px; color: var(--mid-gray); }
+
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-badge { background: var(--light-gray); padding: 5px 12px; border-radius: 3px; font-size: 12px; color: var(--dark); font-weight: 600; }
+
+  @media (max-width: 700px) {
+    .cv { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-date { text-align: left; }
+    .main { padding: 25px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="photo-circle"><span class="photo-placeholder">👤</span></div>
+      <div class="cv-name">OLIVIA<br>WILSON</div>
+      <div class="cv-title">Product Design Manager</div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="s-heading">Contact</div>
+      <div class="contact-line"><div class="c-icon">📞</div> +123-456-7890</div>
+      <div class="contact-line"><div class="c-icon">✉</div> hello@reallygreatsite.com</div>
+      <div class="contact-line"><div class="c-icon">🌐</div> www.reallygreatsite.com</div>
+      <div class="contact-line"><div class="c-icon">📍</div> 123 Anywhere St., Any City</div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="s-heading">Expertise</div>
+      <div class="tag-list">
+        <span class="tag">Digital Marketing</span>
+        <span class="tag">Branding</span>
+        <span class="tag">Copywriting</span>
+        <span class="tag">SEO</span>
+        <span class="tag">UI/UX</span>
+        <span class="tag">Strategy</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="s-heading">Languages</div>
+      <div class="prog-item">
+        <div class="prog-top"><span>English</span><span>Native</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:100%"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-top"><span>French</span><span>Fluent</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:80%"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-top"><span>Spanish</span><span>Intermediate</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:55%"></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="s-heading">Education</div>
+      <div style="font-size:13px; font-weight:700; color:#fff;">Bachelor of Design</div>
+      <div style="font-size:11px; color:rgba(255,255,255,0.6); margin-top:2px;">Wardiere University</div>
+      <div style="font-size:11px; color:var(--accent); margin-top:2px;">2006 – 2008</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="section">
+      <div class="section-title">Profile</div>
+      <p class="summary-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Work Experience</div>
+      <div class="timeline-item">
+        <div class="timeline-date">2020 – 2023</div>
+        <div class="timeline-content">
+          <div class="tl-title">Product Design Manager</div>
+          <div class="tl-company">Ginyard International Co.</div>
+          <ul class="tl-bullets">
+            <li>Working with the wider development team on product strategy and execution.</li>
+            <li>Manage website design, content, and SEO Marketing, Branding and Logo Design.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2019 – 2020</div>
+        <div class="timeline-content">
+          <div class="tl-title">Product Design Manager</div>
+          <div class="tl-company">Arowwai Industries</div>
+          <ul class="tl-bullets">
+            <li>Working with the wider development team on product strategy and execution.</li>
+            <li>Manage website design, content, and SEO Marketing, Branding and Logo Design.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2017 – 2019</div>
+        <div class="timeline-content">
+          <div class="tl-title">Product Design Manager</div>
+          <div class="tl-company">Ginyard International Co.</div>
+          <ul class="tl-bullets">
+            <li>Working with the wider development team on product strategy and execution.</li>
+            <li>Manage website design, content, and SEO Marketing, Branding and Logo Design.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Key Skills</div>
+      <div class="skills-wrap">
+        <span class="skill-badge">Office Suite</span>
+        <span class="skill-badge">Data Entry</span>
+        <span class="skill-badge">Time Management</span>
+        <span class="skill-badge">Problem Solving</span>
+        <span class="skill-badge">Customer Service</span>
+        <span class="skill-badge">Attention to Detail</span>
+        <span class="skill-badge">Corporate Comms</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">References</div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-degree">Bailey Dupont</div>
+          <div class="edu-uni">Wardiere Inc. / CEO</div>
+          <div class="edu-year">Phone: 123-456-7890</div>
+          <div class="edu-year">Email: hello@reallygreatsite.com</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">Harumi Kobayashi</div>
+          <div class="edu-uni">Wardiere Inc. / CEO</div>
+          <div class="edu-year">Phone: 123-456-7890</div>
+          <div class="edu-year">Email: hello@reallygreatsite.com</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+</body>
+</html>

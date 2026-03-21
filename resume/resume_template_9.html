@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Mono Block</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--a:#D97706;--al:rgba(217,119,6,.08);--ink:#0C0C0C;--bg:#FEFEFE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#C8C2B8;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Space Grotesk',sans-serif;}
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:26px;height:26px;border-radius:4px;cursor:pointer;border:2px solid transparent;transition:.15s;}
+.swatch:hover{transform:scale(1.1);}
+.swatch.active{border-color:#444;}
+
+.resume{width:794px;min-height:1123px;background:var(--bg);box-shadow:0 20px 60px rgba(0,0,0,.25);}
+
+/* HEADER — full width bold block */
+.cv-head{
+  padding:36px 52px 28px;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;
+  border-bottom:3px solid var(--ink);
+}
+.cv-name{
+  font-family:'Playfair Display',serif;
+  font-size:52px;font-weight:700;color:var(--ink);
+  line-height:.95;letter-spacing:-1.5px;
+}
+.cv-name span{
+  display:block;
+  font-size:36px;
+  color:var(--a);
+  letter-spacing:-1px;
+}
+.cv-right{text-align:right;display:flex;flex-direction:column;gap:5px;}
+.cv-title{font-size:11px;font-weight:600;color:var(--a);letter-spacing:2.5px;text-transform:uppercase;}
+.cv-contact{font-size:11.5px;color:#666;}
+
+/* sub header strip */
+.sub-strip{
+  background:var(--ink);padding:11px 52px;
+  display:flex;gap:32px;align-items:center;
+}
+.stat{display:flex;align-items:center;gap:8px;}
+.stat-num{font-size:18px;font-weight:700;color:var(--a);line-height:1;}
+.stat-label{font-size:9.5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;line-height:1.3;}
+.stat-div{width:1px;height:24px;background:rgba(255,255,255,.15);}
+
+/* body */
+.cv-body{
+  display:grid;
+  grid-template-columns:1fr 230px;
+}
+
+/* main */
+.main{padding:28px 36px 32px 52px;border-right:1px solid #E8E8E8;}
+.section{margin-bottom:22px;}
+.sec-head{
+  display:flex;align-items:flex-end;gap:10px;
+  margin-bottom:13px;
+}
+.sec-n{font-size:32px;font-weight:700;color:#EEEEEE;line-height:1;flex-shrink:0;font-family:'Playfair Display',serif;}
+.sec-title{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;}
+.sec-rule{flex:1;height:1px;background:#E8E8E8;margin-bottom:4px;}
+
+.about{font-size:12px;line-height:1.78;color:#444;font-weight:400;}
+
+.job{margin-bottom:16px;padding:12px 14px;border:1px solid #F0F0F0;border-left:3px solid var(--a);background:var(--al);}
+.job:last-child{margin-bottom:0;}
+.jt{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px;}
+.jr{font-size:13px;font-weight:600;color:var(--ink);}
+.jdate{font-size:10px;font-weight:600;color:var(--a);}
+.jco{font-size:11.5px;color:#888;margin-bottom:5px;}
+.jpts li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;list-style:none;padding-left:11px;position:relative;}
+.jpts li::before{content:'→';position:absolute;left:0;color:var(--a);font-size:9px;top:1px;}
+
+/* sidebar */
+.side{padding:28px 28px 28px 24px;}
+.s-sec{margin-bottom:20px;}
+.s-title{
+  font-size:9px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--ink);
+  border-left:3px solid var(--a);
+  padding-left:8px;
+  margin-bottom:12px;
+}
+.edu-e{margin-bottom:12px;}
+.ed-deg{font-size:12px;font-weight:600;color:var(--ink);line-height:1.3;}
+.ed-s{font-size:11px;color:#888;}
+.ed-y{font-size:10px;color:var(--a);font-weight:600;margin-top:1px;}
+
+.sk-grid{display:flex;flex-wrap:wrap;gap:5px;}
+.sk{font-size:10px;font-weight:600;padding:3px 9px;border:1px solid #E0E0E0;color:#555;border-radius:3px;}
+
+.lang-r{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px;}
+.ln{font-size:11.5px;color:var(--ink);}
+.ll{font-size:10px;color:#BBB;}
+
+.cert{font-size:11px;color:#555;margin-bottom:6px;display:flex;align-items:flex-start;gap:6px;}
+.cert::before{content:'✦';color:var(--a);font-size:9px;flex-shrink:0;margin-top:1px;}
+
+.ref-e{margin-bottom:12px;}
+.rn{font-size:12px;font-weight:600;color:var(--ink);}
+.rr{font-size:10.5px;color:var(--a);}
+.rc{font-size:10px;color:#AAA;line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#D97706" onclick="setA('#D97706','rgba(217,119,6,.08)',this)"></div>
+  <div class="swatch" style="background:#DC2626" onclick="setA('#DC2626','rgba(220,38,38,.08)',this)"></div>
+  <div class="swatch" style="background:#059669" onclick="setA('#059669','rgba(5,150,105,.08)',this)"></div>
+  <div class="swatch" style="background:#2563EB" onclick="setA('#2563EB','rgba(37,99,235,.08)',this)"></div>
+  <div class="swatch" style="background:#7C3AED" onclick="setA('#7C3AED','rgba(124,58,237,.08)',this)"></div>
+  <div class="swatch" style="background:#0C0C0C" onclick="setA('#0C0C0C','rgba(12,12,12,.06)',this)"></div>
+</div>
+<div class="resume" id="resume">
+  <header class="cv-head">
+    <div>
+      <div class="cv-name">Carlos<span>Mendez</span></div>
+    </div>
+    <div class="cv-right">
+      <div class="cv-title">Operations Director</div>
+      <div class="cv-contact">carlos.mendez@ops.co</div>
+      <div class="cv-contact">+1 (646) 777-8899</div>
+      <div class="cv-contact">Miami, FL</div>
+      <div class="cv-contact">linkedin.com/in/cmendez</div>
+    </div>
+  </header>
+  <div class="sub-strip">
+    <div class="stat"><div class="stat-num">14</div><div class="stat-label">Years<br>Experience</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="stat-num">$40M</div><div class="stat-label">Budget<br>Managed</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="stat-num">350+</div><div class="stat-label">Team<br>Members Led</div></div>
+    <div class="stat-div"></div>
+    <div class="stat"><div class="stat-num">18%</div><div class="stat-label">Cost<br>Reduction</div></div>
+  </div>
+
+  <div class="cv-body">
+    <main class="main">
+      <div class="section">
+        <div class="sec-head"><div class="sec-n">01</div><div><div class="sec-title">Profile</div><div class="sec-rule"></div></div></div>
+        <p class="about">Senior operations executive with 14 years of experience leading global logistics, supply chain, and process optimisation at Fortune 500 companies. Built and scaled operations teams across Latin America, Europe, and Asia. Known for driving efficiency, reducing costs, and creating scalable operational frameworks.</p>
+      </div>
+      <div class="section">
+        <div class="sec-head"><div class="sec-n">02</div><div><div class="sec-title">Experience</div><div class="sec-rule"></div></div></div>
+        <div class="job"><div class="jt"><div class="jr">VP of Operations</div><div class="jdate">2020 – Present</div></div><div class="jco">Amazon Logistics — Miami, FL</div><ul class="jpts"><li>Oversee $40M regional budget for 350-person operations team across SE USA & LATAM.</li><li>Reduced delivery cost-per-unit by 18% through route optimisation programme.</li><li>Launched same-day delivery in 4 new cities; exceeded Q1 volume targets by 32%.</li></ul></div>
+        <div class="job"><div class="jt"><div class="jr">Director of Supply Chain</div><div class="jdate">2016 – 2020</div></div><div class="jco">Walmart International — Bentonville, AR</div><ul class="jpts"><li>Managed end-to-end supply chain for $1.2B LATAM business unit.</li><li>Implemented JIT inventory system reducing stockouts by 44%.</li></ul></div>
+        <div class="job"><div class="jt"><div class="jr">Operations Manager</div><div class="jdate">2010 – 2016</div></div><div class="jco">Procter & Gamble — Miami, FL</div><ul class="jpts"><li>Led 80-person manufacturing team; achieved 99.8% on-time delivery rate.</li></ul></div>
+      </div>
+      <div class="section">
+        <div class="sec-head"><div class="sec-n">03</div><div><div class="sec-title">Competencies</div><div class="sec-rule"></div></div></div>
+        <div class="sk-grid">
+          <span class="sk">Supply Chain</span><span class="sk">Lean / Six Sigma</span><span class="sk">P&L Management</span>
+          <span class="sk">ERP Systems</span><span class="sk">Team Leadership</span><span class="sk">Process Design</span>
+        </div>
+      </div>
+    </main>
+    <aside class="side">
+      <div class="s-sec"><div class="s-title">Education</div>
+        <div class="edu-e"><div class="ed-deg">MBA — Operations</div><div class="ed-s">University of Miami</div><div class="ed-y">2008–2010</div></div>
+        <div class="edu-e"><div class="ed-deg">B.Sc. Industrial Engineering</div><div class="ed-s">Florida International Univ.</div><div class="ed-y">2004–2008</div></div>
+      </div>
+      <div class="s-sec"><div class="s-title">Certifications</div>
+        <div class="cert">Six Sigma Black Belt</div>
+        <div class="cert">PMP — PMI (2014)</div>
+        <div class="cert">APICS CPIM (2016)</div>
+        <div class="cert">Lean Manufacturing</div>
+      </div>
+      <div class="s-sec"><div class="s-title">Languages</div>
+        <div class="lang-r"><span class="ln">English</span><span class="ll">Native</span></div>
+        <div class="lang-r"><span class="ln">Spanish</span><span class="ll">Native</span></div>
+        <div class="lang-r"><span class="ln">Portuguese</span><span class="ll">B2</span></div>
+      </div>
+      <div class="s-sec"><div class="s-title">References</div>
+        <div class="ref-e"><div class="rn">Jennifer Walsh</div><div class="rr">SVP Ops, Amazon</div><div class="rc">j.walsh@amazon.com</div></div>
+        <div class="ref-e"><div class="rn">Marco Reyes</div><div class="rr">VP, Walmart Intl</div><div class="rc">m.reyes@walmart.com</div></div>
+      </div>
+    </aside>
+  </div>
+</div>
+<script>
+function setA(a,al,el){const r=document.getElementById('resume');r.style.setProperty('--a',a);r.style.setProperty('--al',al);document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));el.classList.add('active');}
+</script>
+</body>
+</html>

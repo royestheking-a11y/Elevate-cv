@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Diamond Cut</title>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6D28D9;--pl:rgba(109,40,217,.07);--ink:#18181B;--bg:#FEFEFE;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#C4C4C8;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Raleway',sans-serif;}
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s;box-shadow:0 2px 6px rgba(0,0,0,.2);}
+.swatch:hover{transform:scale(1.12);}
+.swatch.active{border-color:#444;}
+
+.resume{width:794px;min-height:1123px;background:var(--bg);box-shadow:0 20px 60px rgba(0,0,0,.25);display:grid;grid-template-columns:256px 1fr;overflow:hidden;}
+
+/* SIDEBAR */
+.sb{background:var(--p);padding:44px 26px 40px;display:flex;flex-direction:column;gap:0;position:relative;overflow:hidden;}
+.sb::before{content:'';position:absolute;bottom:-60px;right:-60px;width:200px;height:200px;border-radius:50%;border:40px solid rgba(255,255,255,.05);}
+.sb::after{content:'';position:absolute;top:140px;left:-40px;width:120px;height:120px;transform:rotate(45deg);border:20px solid rgba(255,255,255,.04);}
+
+.sb-photo{width:100px;height:100px;border-radius:50%;border:3px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;}
+.sb-photo img{width:100%;height:100%;object-fit:cover;}
+.sb-init{font-family:'Lora',serif;font-size:36px;color:rgba(255,255,255,.5);font-weight:700;}
+.sb-name{text-align:center;margin-bottom:26px;}
+.sb-fn{font-size:22px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;line-height:1.1;}
+.sb-role{font-size:9.5px;color:rgba(255,255,255,.55);letter-spacing:3px;text-transform:uppercase;margin-top:7px;}
+.sb-div{width:30px;height:2px;background:rgba(255,255,255,.3);margin:0 auto 8px;}
+
+.sb-sec{margin-bottom:22px;}
+.sb-title{font-size:8.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:11px;display:flex;align-items:center;gap:6px;}
+.sb-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.12);}
+
+.ci{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:8px;display:flex;gap:8px;align-items:flex-start;}
+.ci-icon{width:16px;height:16px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;color:rgba(255,255,255,.4);}
+
+.edu-e{margin-bottom:12px;}
+.edu-d{font-size:11.5px;font-weight:600;color:#fff;line-height:1.3;}
+.edu-s{font-size:10.5px;color:rgba(255,255,255,.5);}
+.edu-y{font-size:10px;color:rgba(255,255,255,.35);margin-top:2px;}
+
+.skill-r{margin-bottom:8px;}
+.sk-top{display:flex;justify-content:space-between;font-size:10.5px;color:rgba(255,255,255,.65);margin-bottom:3px;}
+.sk-pct{font-size:9px;color:rgba(255,255,255,.35);}
+.sk-track{height:2px;background:rgba(255,255,255,.1);border-radius:1px;}
+.sk-fill{height:100%;background:rgba(255,255,255,.55);border-radius:1px;}
+
+.lang-r{display:flex;justify-content:space-between;margin-bottom:6px;}
+.l-n{font-size:11px;color:rgba(255,255,255,.65);}
+.l-l{font-size:10px;color:rgba(255,255,255,.35);}
+
+/* MAIN */
+.main{padding:40px 40px 36px 38px;}
+
+/* big name top */
+.m-top{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #EBEBEB;}
+.m-name{font-family:'Lora',serif;font-size:38px;font-weight:700;color:var(--ink);line-height:1;letter-spacing:-.5px;}
+.m-name em{color:var(--p);font-style:normal;}
+.m-title{font-size:11px;color:#888;letter-spacing:2.5px;text-transform:uppercase;margin-top:6px;}
+.m-summary{font-size:12px;line-height:1.75;color:#555;margin-top:10px;font-weight:400;}
+
+.section{margin-bottom:20px;}
+.sec-title{
+  font-size:9.5px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--p);
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:13px;
+}
+.sec-title::after{content:'';flex:1;height:1px;background:#EBEBEB;}
+
+.job{background:var(--pl);border-radius:8px;padding:12px 14px;margin-bottom:9px;}
+.job:last-child{margin-bottom:0;}
+.jt{display:flex;justify-content:space-between;margin-bottom:2px;}
+.jr{font-size:13px;font-weight:700;color:var(--ink);}
+.jd{font-size:10px;font-weight:600;color:var(--p);}
+.jc{font-size:11px;color:#888;margin-bottom:5px;font-style:italic;}
+.jp li{font-size:11px;color:#555;line-height:1.6;margin-bottom:2px;padding-left:10px;position:relative;list-style:none;}
+.jp li::before{content:'▸';position:absolute;left:0;color:var(--p);font-size:9px;}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;}
+.chip{font-size:10.5px;padding:4px 10px;background:#F4F4F5;border-radius:4px;color:#444;font-weight:500;}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#6D28D9" onclick="setP('#6D28D9','rgba(109,40,217,.07)',this)"></div>
+  <div class="swatch" style="background:#047857" onclick="setP('#047857','rgba(4,120,87,.07)',this)"></div>
+  <div class="swatch" style="background:#1E40AF" onclick="setP('#1E40AF','rgba(30,64,175,.07)',this)"></div>
+  <div class="swatch" style="background:#9D174D" onclick="setP('#9D174D','rgba(157,23,77,.07)',this)"></div>
+  <div class="swatch" style="background:#92400E" onclick="setP('#92400E','rgba(146,64,14,.07)',this)"></div>
+  <div class="swatch" style="background:#111827" onclick="setP('#111827','rgba(17,24,39,.07)',this)"></div>
+</div>
+<div class="resume" id="resume">
+  <aside class="sb">
+    <div class="sb-photo"><span class="sb-init">AR</span></div>
+    <div class="sb-name"><div class="sb-fn">Aisha<br>Rahman</div><div class="sb-div"></div><div class="sb-role">Data Scientist</div></div>
+    <div class="sb-sec"><div class="sb-title">Contact</div>
+      <div class="ci"><div class="ci-icon">✉</div>aisha.rahman@data.ai</div>
+      <div class="ci"><div class="ci-icon">☎</div>+44 7911 123 456</div>
+      <div class="ci"><div class="ci-icon">⌂</div>London, UK</div>
+      <div class="ci"><div class="ci-icon">gh</div>github.com/arahman</div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Education</div>
+      <div class="edu-e"><div class="edu-d">PhD Machine Learning</div><div class="edu-s">Imperial College London</div><div class="edu-y">2017–2021</div></div>
+      <div class="edu-e"><div class="edu-d">M.Sc. Statistics</div><div class="edu-s">UCL London</div><div class="edu-y">2015–2017</div></div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Skills</div>
+      <div class="skill-r"><div class="sk-top"><span>Python / R</span><span class="sk-pct">98%</span></div><div class="sk-track"><div class="sk-fill" style="width:98%"></div></div></div>
+      <div class="skill-r"><div class="sk-top"><span>PyTorch / TF</span><span class="sk-pct">92%</span></div><div class="sk-track"><div class="sk-fill" style="width:92%"></div></div></div>
+      <div class="skill-r"><div class="sk-top"><span>SQL & BigQuery</span><span class="sk-pct">88%</span></div><div class="sk-track"><div class="sk-fill" style="width:88%"></div></div></div>
+      <div class="skill-r"><div class="sk-top"><span>MLOps / Docker</span><span class="sk-pct">80%</span></div><div class="sk-track"><div class="sk-fill" style="width:80%"></div></div></div>
+    </div>
+    <div class="sb-sec"><div class="sb-title">Languages</div>
+      <div class="lang-r"><span class="l-n">English</span><span class="l-l">Native</span></div>
+      <div class="lang-r"><span class="l-n">Urdu</span><span class="l-l">Native</span></div>
+      <div class="lang-r"><span class="l-n">Arabic</span><span class="l-l">B2</span></div>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="m-top">
+      <div class="m-name">Aisha <em>Rahman</em></div>
+      <div class="m-title">Senior Data Scientist · ML Research · NLP</div>
+      <p class="m-summary">PhD-trained data scientist with 6 years applying machine learning to solve real-world problems at DeepMind and Deliveroo. Published 7 peer-reviewed papers; built production ML systems serving millions of users daily.</p>
+    </div>
+    <div class="section"><div class="sec-title">Experience</div>
+      <div class="job"><div class="jt"><div class="jr">Senior Data Scientist</div><div class="jd">2022 – Present</div></div><div class="jc">DeepMind · London</div><ul class="jp"><li>Led NLP research team; published 3 papers at NeurIPS and ICML.</li><li>Built production recommendation system serving 8M+ users; +15% engagement.</li><li>Developed internal ML platform reducing model deployment time from 2 weeks to 2 days.</li></ul></div>
+      <div class="job"><div class="jt"><div class="jr">Data Scientist</div><div class="jd">2019 – 2022</div></div><div class="jc">Deliveroo · London</div><ul class="jp"><li>Built ETA prediction model improving delivery accuracy by 23%.</li><li>Designed demand forecasting system saving £2M/year in food waste.</li></ul></div>
+      <div class="job"><div class="jt"><div class="jr">Research Scientist Intern</div><div class="jd">2018</div></div><div class="jc">Meta AI Research · London</div><ul class="jp"><li>Contributed to conversational AI research; co-authored 1 NeurIPS paper.</li></ul></div>
+    </div>
+    <div class="section"><div class="sec-title">Core Skills</div>
+      <div class="chips">
+        <div class="chip">Machine Learning</div><div class="chip">NLP & LLMs</div><div class="chip">Computer Vision</div>
+        <div class="chip">A/B Testing</div><div class="chip">Data Engineering</div><div class="chip">Research Methods</div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+function setP(p,pl,el){const r=document.getElementById('resume');r.style.setProperty('--p',p);r.style.setProperty('--pl',pl);document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));el.classList.add('active');}
+</script>
+</body>
+</html>

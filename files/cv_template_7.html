@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 7 - Bold Orange Creative</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --orange: #E85D04;
+    --orange-dark: #9D0208;
+    --off-white: #FDFCFB;
+    --light-orange: #FFF3E0;
+    --text: #1A1A1A;
+    --text-mid: #555;
+    --border: #F0E8E0;
+  }
+  body { font-family: 'Space Grotesk', sans-serif; background: #e0d8d0; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 880px; }
+  .cv { background: var(--off-white); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+
+  /* HEADER */
+  .cv-head { position: relative; padding: 45px 55px 35px; overflow: hidden; }
+  .cv-head::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--orange); }
+  .cv-head::after { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: var(--light-orange); clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%); z-index: 0; }
+  .head-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; }
+  .hl-block {}
+  .hl-name { font-family: 'Syne', sans-serif; font-size: 40px; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -1px; }
+  .hl-name span { color: var(--orange); }
+  .hl-title { font-size: 14px; font-weight: 500; color: var(--text-mid); margin-top: 6px; letter-spacing: 0.5px; }
+  .hr-block { text-align: right; }
+  .hr-block .ci { font-size: 12.5px; color: var(--text-mid); line-height: 1.8; }
+
+  /* MAIN */
+  .cv-layout { display: grid; grid-template-columns: 1fr 260px; }
+  .main-col { padding: 35px 40px 45px; border-right: 2px solid var(--border); }
+
+  .section { margin-bottom: 30px; }
+  .sec-head { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .sec-num { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; color: var(--orange); background: var(--light-orange); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 4px; flex-shrink: 0; }
+  .sec-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text); }
+
+  .profile-p { font-size: 13.5px; line-height: 1.75; color: var(--text-mid); }
+
+  .job-block { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .job-block:last-child { border-bottom: none; }
+  .jb-top { display: flex; justify-content: space-between; }
+  .jb-role { font-size: 14px; font-weight: 600; color: var(--text); }
+  .jb-date { font-size: 12px; color: var(--orange); font-weight: 700; }
+  .jb-co { font-size: 13px; color: var(--text-mid); margin: 3px 0 7px; }
+  .jb-pts { padding-left: 14px; }
+  .jb-pts li { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 3px; }
+
+  /* SIDEBAR */
+  .side-col { padding: 35px 28px; }
+  .s-sec { margin-bottom: 24px; }
+  .s-sec-head { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--orange); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid var(--light-orange); }
+
+  .edu-block { margin-bottom: 14px; }
+  .edu-deg { font-size: 13px; font-weight: 600; color: var(--text); }
+  .edu-sch { font-size: 12px; color: var(--text-mid); }
+  .edu-yr { font-size: 11px; color: var(--orange); margin-top: 2px; }
+
+  .skill-chip { display: inline-block; background: var(--light-orange); border: 1px solid #FBC4A3; color: var(--orange-dark); font-size: 11.5px; font-weight: 500; padding: 4px 10px; border-radius: 4px; margin: 3px 4px 3px 0; }
+
+  .contact-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: var(--text-mid); margin-bottom: 8px; line-height: 1.4; }
+  .c-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+
+  .ref-block { margin-bottom: 14px; }
+  .ref-nm { font-size: 13px; font-weight: 600; color: var(--text); }
+  .ref-ro { font-size: 11.5px; color: var(--orange); margin: 2px 0; }
+  .ref-ct { font-size: 11.5px; color: var(--text-mid); line-height: 1.6; }
+
+  @media (max-width: 660px) {
+    .cv-layout { grid-template-columns: 1fr; }
+    .head-inner { flex-direction: column; gap: 16px; }
+    .hr-block { text-align: left; }
+    .main-col { padding: 25px 20px; }
+    .side-col { padding: 20px; }
+    .cv-head { padding: 30px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <div class="cv-head">
+    <div class="head-inner">
+      <div class="hl-block">
+        <div class="hl-name">MARCUS <span>CHEN</span></div>
+        <div class="hl-title">UX/UI Designer · Creative Director</div>
+      </div>
+      <div class="hr-block">
+        <div class="ci">marcus.chen@studio.io</div>
+        <div class="ci">+1 (415) 987-6543</div>
+        <div class="ci">Los Angeles, CA</div>
+        <div class="ci">marcuschen.design</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-layout">
+    <main class="main-col">
+      <div class="section">
+        <div class="sec-head"><div class="sec-num">01</div><div class="sec-title">Profile</div></div>
+        <p class="profile-p">Creative director and UX designer with 8 years of experience crafting digital products for Fortune 500 companies and startups alike. Obsessed with the intersection of form and function — believing great design is invisible but unforgettable.</p>
+      </div>
+
+      <div class="section">
+        <div class="sec-head"><div class="sec-num">02</div><div class="sec-title">Experience</div></div>
+        <div class="job-block">
+          <div class="jb-top">
+            <div class="jb-role">Creative Director</div>
+            <div class="jb-date">2021 – Present</div>
+          </div>
+          <div class="jb-co">IDEO · Los Angeles, CA</div>
+          <ul class="jb-pts">
+            <li>Led a 12-person creative team across brand, product, and motion design.</li>
+            <li>Directed end-to-end design for 3 flagship product launches with $50M+ revenue impact.</li>
+            <li>Established design system adopted across 20 internal product teams.</li>
+          </ul>
+        </div>
+        <div class="job-block">
+          <div class="jb-top">
+            <div class="jb-role">Senior UX Designer</div>
+            <div class="jb-date">2018 – 2021</div>
+          </div>
+          <div class="jb-co">Apple · Cupertino, CA</div>
+          <ul class="jb-pts">
+            <li>Redesigned onboarding flows for iCloud, increasing activation rates by 28%.</li>
+            <li>Contributed to iOS Human Interface Guidelines updates.</li>
+            <li>Ran weekly design critique sessions with 40+ designers globally.</li>
+          </ul>
+        </div>
+        <div class="job-block">
+          <div class="jb-top">
+            <div class="jb-role">UI Designer</div>
+            <div class="jb-date">2016 – 2018</div>
+          </div>
+          <div class="jb-co">Dribbble Agency · Remote</div>
+          <ul class="jb-pts">
+            <li>Designed mobile-first interfaces for 15+ client apps across healthcare, fintech, and e-commerce.</li>
+            <li>Produced brand identities, icon systems, and motion guidelines.</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side-col">
+      <div class="s-sec">
+        <div class="s-sec-head">Education</div>
+        <div class="edu-block">
+          <div class="edu-deg">B.F.A. Interaction Design</div>
+          <div class="edu-sch">ArtCenter College of Design</div>
+          <div class="edu-yr">2012 – 2016</div>
+        </div>
+        <div class="edu-block">
+          <div class="edu-deg">Typography Workshop</div>
+          <div class="edu-sch">School of Visual Arts, NY</div>
+          <div class="edu-yr">2015</div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-sec-head">Tools & Skills</div>
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Sketch</span>
+        <span class="skill-chip">After Effects</span>
+        <span class="skill-chip">Framer</span>
+        <span class="skill-chip">Prototyping</span>
+        <span class="skill-chip">User Research</span>
+        <span class="skill-chip">Design Systems</span>
+        <span class="skill-chip">HTML/CSS</span>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-sec-head">Contact</div>
+        <div class="contact-item"><div class="c-dot"></div> marcus.chen@studio.io</div>
+        <div class="contact-item"><div class="c-dot"></div> +1 (415) 987-6543</div>
+        <div class="contact-item"><div class="c-dot"></div> Los Angeles, CA 90001</div>
+        <div class="contact-item"><div class="c-dot"></div> marcuschen.design</div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-sec-head">References</div>
+        <div class="ref-block">
+          <div class="ref-nm">Sarah Kim</div>
+          <div class="ref-ro">IDEO / VP Design</div>
+          <div class="ref-ct">s.kim@ideo.com</div>
+        </div>
+        <div class="ref-block">
+          <div class="ref-nm">Tom Bradley</div>
+          <div class="ref-ro">Apple / Design Lead</div>
+          <div class="ref-ct">t.bradley@apple.com</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+</div>
+</body>
+</html>

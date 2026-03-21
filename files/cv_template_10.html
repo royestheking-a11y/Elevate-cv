@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Template 10 - European Modern French</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --deep-red: #8C1A3C;
+    --warm-gray: #E8E2DA;
+    --warm-bg: #F5F1EB;
+    --text: #1E1B18;
+    --text-mid: #5C5752;
+    --cream: #FAF8F4;
+    --border: #D5CDC2;
+    --accent: #C4956A;
+  }
+  body { font-family: 'Mulish', sans-serif; background: #DDD8D0; display: flex; justify-content: center; padding: 20px; min-height: 100vh; }
+  .cv-wrapper { width: 100%; max-width: 880px; }
+  .cv { background: var(--cream); box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
+
+  /* HEADER */
+  .cv-header { display: grid; grid-template-columns: 220px 1fr; }
+  .h-photo { background: var(--deep-red); display: flex; align-items: center; justify-content: center; padding: 35px 25px; }
+  .photo-frame { width: 130px; height: 160px; border: 3px solid rgba(255,255,255,0.25); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 50px; background: rgba(255,255,255,0.08); }
+  .h-info { background: var(--warm-bg); padding: 30px 40px; border-bottom: 3px solid var(--deep-red); display: flex; flex-direction: column; justify-content: center; }
+  .h-name { font-family: 'EB Garamond', serif; font-size: 36px; font-weight: 500; color: var(--text); line-height: 1.1; }
+  .h-name em { font-style: italic; color: var(--deep-red); }
+  .h-profession { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; }
+  .h-contact-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; }
+  .hc { font-size: 12px; color: var(--text-mid); display: flex; align-items: center; gap: 5px; }
+  .hc-dot { width: 5px; height: 5px; background: var(--deep-red); border-radius: 50%; }
+
+  /* BODY */
+  .cv-body { display: grid; grid-template-columns: 220px 1fr; }
+  .side-col { background: var(--warm-bg); padding: 30px 22px; border-right: 1px solid var(--border); }
+  .main-col { padding: 30px 38px; }
+
+  /* SIDEBAR */
+  .s-block { margin-bottom: 26px; }
+  .s-title { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--deep-red); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1.5px solid var(--accent); }
+
+  .personal-item { display: grid; grid-template-columns: 1fr; margin-bottom: 8px; }
+  .pi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-mid); }
+  .pi-value { font-size: 12.5px; color: var(--text); margin-top: 1px; }
+
+  .edu-entry { margin-bottom: 14px; }
+  .ee-year { font-size: 11px; font-weight: 700; color: var(--accent); }
+  .ee-deg { font-family: 'EB Garamond', serif; font-size: 14px; color: var(--text); font-style: italic; }
+  .ee-school { font-size: 12px; color: var(--text-mid); }
+  .ee-grade { font-size: 11px; color: var(--text-mid); }
+
+  .skill-entry { margin-bottom: 8px; }
+  .se-name { font-size: 12.5px; color: var(--text-mid); margin-bottom: 3px; }
+  .se-bar { height: 2px; background: var(--border); border-radius: 1px; }
+  .se-fill { height: 100%; background: var(--deep-red); border-radius: 1px; }
+
+  .hobby-list { display: flex; flex-wrap: wrap; gap: 5px; }
+  .hobby { font-size: 11px; background: var(--cream); border: 1px solid var(--border); padding: 3px 8px; border-radius: 3px; color: var(--text-mid); }
+
+  /* MAIN */
+  .m-section { margin-bottom: 28px; }
+  .m-title { font-family: 'EB Garamond', serif; font-size: 20px; font-weight: 500; color: var(--text); margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .m-title::before { content: ''; width: 4px; height: 20px; background: var(--deep-red); border-radius: 2px; }
+
+  .profile-p { font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+
+  .exp-entry { margin-bottom: 20px; }
+  .ee-head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .ee-position { font-size: 14px; font-weight: 700; color: var(--text); }
+  .ee-period { font-size: 11.5px; color: var(--cream); background: var(--deep-red); padding: 2px 8px; border-radius: 2px; font-weight: 600; white-space: nowrap; }
+  .ee-company { font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic; color: var(--accent); margin: 3px 0 6px; }
+  .ee-place { font-size: 11.5px; color: var(--text-mid); margin-bottom: 6px; }
+  .ee-pts { padding-left: 14px; }
+  .ee-pts li { font-size: 13px; color: var(--text-mid); line-height: 1.65; margin-bottom: 3px; }
+
+  .cert-entry { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .cert-dot { width: 6px; height: 6px; background: var(--deep-red); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .cert-text { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+  .cert-date { font-size: 11px; color: var(--accent); }
+
+  @media (max-width: 660px) {
+    .cv-header { grid-template-columns: 1fr; }
+    .h-photo { padding: 25px; }
+    .cv-body { grid-template-columns: 1fr; }
+    .main-col { padding: 20px; }
+    .side-col { padding: 20px; }
+    .h-info { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="cv-wrapper">
+<div class="cv">
+  <header class="cv-header">
+    <div class="h-photo">
+      <div class="photo-frame">👤</div>
+    </div>
+    <div class="h-info">
+      <div class="h-name">Lorna <em>Alvarado</em></div>
+      <div class="h-profession">Marketing Coordinator</div>
+      <div class="h-contact-row">
+        <span class="hc"><span class="hc-dot"></span> hello@reallygreatsite.com</span>
+        <span class="hc"><span class="hc-dot"></span> +34 123-456-789</span>
+        <span class="hc"><span class="hc-dot"></span> Barcelona, Spain</span>
+        <span class="hc"><span class="hc-dot"></span> reallygreatsite.com</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="cv-body">
+    <aside class="side-col">
+      <div class="s-block">
+        <div class="s-title">Personal Info</div>
+        <div class="personal-item">
+          <div class="pi-label">Date of Birth</div>
+          <div class="pi-value">15 March 1990</div>
+        </div>
+        <div class="personal-item">
+          <div class="pi-label">Nationality</div>
+          <div class="pi-value">Spanish / EU</div>
+        </div>
+        <div class="personal-item">
+          <div class="pi-label">Driver's Licence</div>
+          <div class="pi-value">Category B</div>
+        </div>
+        <div class="personal-item">
+          <div class="pi-label">LinkedIn</div>
+          <div class="pi-value">in/lornaalvarado</div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Education</div>
+        <div class="edu-entry">
+          <div class="ee-year">2016 – 2019</div>
+          <div class="ee-deg">Bachelor in Marketing</div>
+          <div class="ee-school">Univ. Complutense, Madrid</div>
+          <div class="ee-grade">Grade: 8.5 / 10</div>
+        </div>
+        <div class="edu-entry">
+          <div class="ee-year">2018</div>
+          <div class="ee-deg">Erasmus Exchange</div>
+          <div class="ee-school">Univ. of Amsterdam, NL</div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Languages</div>
+        <div class="skill-entry">
+          <div class="se-name">Spanish (Native)</div>
+          <div class="se-bar"><div class="se-fill" style="width:100%"></div></div>
+        </div>
+        <div class="skill-entry">
+          <div class="se-name">English (C1)</div>
+          <div class="se-bar"><div class="se-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-entry">
+          <div class="se-name">French (B1)</div>
+          <div class="se-bar"><div class="se-fill" style="width:55%"></div></div>
+        </div>
+        <div class="skill-entry">
+          <div class="se-name">German (A2)</div>
+          <div class="se-bar"><div class="se-fill" style="width:30%"></div></div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Interests</div>
+        <div class="hobby-list">
+          <span class="hobby">Photography</span>
+          <span class="hobby">Running</span>
+          <span class="hobby">Podcasting</span>
+          <span class="hobby">Travelling</span>
+          <span class="hobby">Cooking</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-col">
+      <div class="m-section">
+        <div class="m-title">Profile</div>
+        <p class="profile-p">I am writing to express my strong interest in the Marketing Coordinator position at Borcelle Company. With a solid background in digital marketing and project coordination, I am confident in my ability to support your team and contribute to ongoing growth and innovation. I am particularly drawn to mission-driven organizations and data-informed creative strategies.</p>
+      </div>
+
+      <div class="m-section">
+        <div class="m-title">Professional Experience</div>
+        <div class="exp-entry">
+          <div class="ee-head">
+            <div class="ee-position">Marketing Assistant</div>
+            <div class="ee-period">Sep 2021 – Present</div>
+          </div>
+          <div class="ee-company">Horizon Media Group</div>
+          <div class="ee-place">Barcelona, Spain · Full-time</div>
+          <ul class="ee-pts">
+            <li>Managed social media calendars for 5 brand accounts; increased engagement by 35%.</li>
+            <li>Coordinated campaign rollouts with creative and sales departments.</li>
+            <li>Handled CRM data entry, segmentation, and weekly reporting via HubSpot.</li>
+            <li>Supported content creation strategy for blog and email newsletter channels.</li>
+          </ul>
+        </div>
+        <div class="exp-entry">
+          <div class="ee-head">
+            <div class="ee-position">Junior Marketing Executive</div>
+            <div class="ee-period">Mar 2019 – Aug 2021</div>
+          </div>
+          <div class="ee-company">Borcelle Company</div>
+          <div class="ee-place">Madrid, Spain · Full-time</div>
+          <ul class="ee-pts">
+            <li>Supported marketing campaigns for 6 product lines including seasonal launches.</li>
+            <li>Prepared weekly performance reports presented to the marketing director.</li>
+            <li>Coordinated with external agencies for event planning and promotional material.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-title">Digital Skills</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0; border-bottom:1px solid var(--border);">Google Analytics · Advanced</div>
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0; border-bottom:1px solid var(--border);">HubSpot CRM · Advanced</div>
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0; border-bottom:1px solid var(--border);">Canva / Adobe Suite · Intermediate</div>
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0; border-bottom:1px solid var(--border);">MS Office 365 · Expert</div>
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0;">Meta Ads Manager · Intermediate</div>
+          <div style="font-size:13px; color:var(--text-mid); padding:6px 0;">WordPress · Intermediate</div>
+        </div>
+      </div>
+
+      <div class="m-section">
+        <div class="m-title">Certifications</div>
+        <div class="cert-entry"><div class="cert-dot"></div><div class="cert-text">Google Digital Marketing Certification <span class="cert-date">(2021)</span></div></div>
+        <div class="cert-entry"><div class="cert-dot"></div><div class="cert-text">HubSpot Inbound Marketing Certified <span class="cert-date">(2022)</span></div></div>
+        <div class="cert-entry"><div class="cert-dot"></div><div class="cert-text">Meta Certified Digital Marketing Associate <span class="cert-date">(2023)</span></div></div>
+      </div>
+    </main>
+  </div>
+</div>
+</div>
+</body>
+</html>

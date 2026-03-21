@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>European CV — French / Belgian Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink:      #1C1C1C;
+  --body:     #3D3D3D;
+  --muted:    #6A6A6A;
+  --faint:    #9E9E9E;
+  --line:     #E0E0E0;
+  --bg-page:  #E4E1DC;
+  --bg-cv:    #FFFFFF;
+  --rule-col: #1C3A5E;    /* single restrained colour — header rule + section marks */
+  --tag-bg:   #F2F4F7;
+}
+
+body {
+  font-family: 'Hind', sans-serif;
+  background: var(--bg-page);
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+  min-height: 100vh;
+  color: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  width: 100%;
+  max-width: 840px;
+  background: var(--bg-cv);
+  box-shadow: 0 6px 36px rgba(0,0,0,0.12);
+}
+
+/* ══ HEADER ═══════════════════════════════════════════ */
+.cv-head {
+  padding: 46px 52px 36px;
+  border-bottom: 3px solid var(--rule-col);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 36px;
+  align-items: start;
+}
+
+.head-left {}
+
+.person-name {
+  font-family: 'Lora', serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.2px;
+  line-height: 1.1;
+}
+
+.person-title {
+  font-family: 'Hind', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--rule-col);
+  margin-top: 6px;
+  letter-spacing: 0.2px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 14px;
+  margin-top: 18px;
+}
+
+.cg-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--faint);
+  padding-top: 1px;
+  white-space: nowrap;
+}
+
+.cg-val {
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.55;
+}
+
+/* Photo — right column, bordered, professional */
+.head-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.cv-photo {
+  width: 100px;
+  height: 124px;
+  border: 1.5px solid var(--line);
+  overflow: hidden;
+  background: #F9F9F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cv-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder shows outline of a person silhouette using CSS */
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.ph-head {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #D5D5D5;
+  margin-bottom: 0;
+  flex-shrink: 0;
+  position: absolute;
+  top: 18px;
+}
+
+.ph-body {
+  width: 80px;
+  height: 60px;
+  border-radius: 50% 50% 0 0;
+  background: #D5D5D5;
+  position: absolute;
+  bottom: 0;
+}
+
+/* ══ BODY ═══════════════════════════════════════════════ */
+.cv-body {
+  display: grid;
+  grid-template-columns: 1fr 230px;
+  align-items: start;
+}
+
+.main-col {
+  padding: 34px 40px 46px 52px;
+  border-right: 1px solid var(--line);
+}
+
+.side-col {
+  padding: 34px 28px 46px;
+}
+
+/* ── Section ────────────────────────────────────────── */
+.sec {
+  margin-bottom: 28px;
+}
+
+.sec-title {
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.1px;
+  margin-bottom: 14px;
+  padding-bottom: 7px;
+  border-bottom: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sec-title::before {
+  content: '';
+  display: block;
+  width: 3px;
+  height: 14px;
+  background: var(--rule-col);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+/* Profile */
+.profile-p {
+  font-size: 13.5px;
+  line-height: 1.78;
+  color: var(--body);
+  font-weight: 400;
+}
+
+/* Work entries */
+.work-entry {
+  margin-bottom: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px dashed var(--line);
+}
+.work-entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.we-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 2px;
+  flex-wrap: wrap;
+}
+
+.we-role {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.we-period {
+  font-size: 11.5px;
+  color: var(--faint);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.we-employer {
+  font-family: 'Lora', serif;
+  font-size: 13.5px;
+  font-style: italic;
+  color: var(--rule-col);
+  margin-bottom: 3px;
+}
+
+.we-location {
+  font-size: 12px;
+  color: var(--faint);
+  margin-bottom: 7px;
+}
+
+.we-list {
+  padding-left: 15px;
+}
+.we-list li {
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.65;
+  margin-bottom: 3px;
+}
+
+/* ── Sidebar ────────────────────────────────────────── */
+.s-sec {
+  margin-bottom: 22px;
+}
+
+.s-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--rule-col);
+  margin-bottom: 11px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Personal details */
+.pd-row {
+  margin-bottom: 7px;
+}
+.pd-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--faint);
+}
+.pd-val {
+  font-size: 12.5px;
+  color: var(--body);
+  margin-top: 1px;
+}
+
+/* Education */
+.edu-entry {
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #F5F5F5;
+}
+.edu-entry:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+
+.edu-deg {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.edu-school {
+  font-size: 12px;
+  color: var(--body);
+  margin-top: 2px;
+}
+
+.edu-dates {
+  font-size: 11px;
+  color: var(--faint);
+  margin-top: 2px;
+}
+
+.edu-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Languages */
+.lang-entry {
+  margin-bottom: 10px;
+}
+
+.lang-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.lang-name {
+  font-size: 13px;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.lang-level {
+  font-size: 11px;
+  color: var(--faint);
+}
+
+.lang-track {
+  height: 3px;
+  background: #EBEBEB;
+  border-radius: 2px;
+}
+
+.lang-fill {
+  height: 100%;
+  background: var(--rule-col);
+  border-radius: 2px;
+}
+
+/* Skills tags */
+.skills-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.skill-tag {
+  background: var(--tag-bg);
+  border: 1px solid var(--line);
+  font-size: 11.5px;
+  color: var(--body);
+  padding: 3px 9px;
+  border-radius: 3px;
+}
+
+/* Interests */
+.interest-list {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 660px) {
+  .cv-head { grid-template-columns: 1fr; }
+  .head-right { align-items: flex-start; }
+  .cv-body { grid-template-columns: 1fr; }
+  .main-col { border-right: none; border-bottom: 1px solid var(--line); padding: 24px 20px; }
+  .side-col { padding: 24px 20px 32px; }
+  .cv-head { padding: 28px 20px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="cv-head">
+    <div class="head-left">
+      <div class="person-name">Sophie Moreau</div>
+      <div class="person-title">Marketing &amp; Communications Manager · 8 years experience</div>
+
+      <div class="contact-grid">
+        <span class="cg-label">Email</span>     <span class="cg-val">sophie.moreau@mail.fr</span>
+        <span class="cg-label">Mobile</span>    <span class="cg-val">+33 6 12 34 56 78</span>
+        <span class="cg-label">Address</span>   <span class="cg-val">14 Rue de Rivoli, 75001 Paris, France</span>
+        <span class="cg-label">LinkedIn</span>  <span class="cg-val">linkedin.com/in/sophiemoreau</span>
+        <span class="cg-label">Portfolio</span> <span class="cg-val">sophiemoreau.com</span>
+      </div>
+    </div>
+
+    <div class="head-right">
+      <div class="cv-photo">
+        <!-- Replace with: <img src="photo.jpg" alt="Sophie Moreau"> -->
+        <div class="photo-placeholder">
+          <div class="ph-head"></div>
+          <div class="ph-body"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="cv-body">
+
+    <!-- MAIN COLUMN -->
+    <main class="main-col">
+
+      <div class="sec">
+        <div class="sec-title">Professional Summary</div>
+        <p class="profile-p">Communications and marketing professional with 8 years of experience across agency and in-house environments in France and Belgium. Specialised in brand strategy, integrated campaigns, and corporate communications. Fluent in French, English, and Dutch. Known for bridging creative teams and analytical stakeholders to deliver measurable results.</p>
+      </div>
+
+      <div class="sec">
+        <div class="sec-title">Professional Experience</div>
+
+        <div class="work-entry">
+          <div class="we-top">
+            <div class="we-role">Head of Marketing Communications</div>
+            <div class="we-period">Jan 2021 – Present</div>
+          </div>
+          <div class="we-employer">L'Oréal Paris</div>
+          <div class="we-location">Paris, France · Permanent contract (CDI)</div>
+          <ul class="we-list">
+            <li>Oversaw integrated campaigns for 4 product lines across Europe; annual budget €3.5M.</li>
+            <li>Managed team of 9 covering PR, social, content, and partnerships.</li>
+            <li>Increased brand awareness index by 18 points in France (Kantar BrandZ, 2023).</li>
+            <li>Established agency roster and centralised briefing process, cutting turnaround by 30%.</li>
+          </ul>
+        </div>
+
+        <div class="work-entry">
+          <div class="we-top">
+            <div class="we-role">Senior Marketing Manager</div>
+            <div class="we-period">May 2018 – Dec 2020</div>
+          </div>
+          <div class="we-employer">Publicis Groupe</div>
+          <div class="we-location">Brussels, Belgium · CDI</div>
+          <ul class="we-list">
+            <li>Led accounts for Renault, AXA, and a major FMCG client across FR/BE/LU markets.</li>
+            <li>Delivered 12 campaign launches; 3 recognised at Cannes Lions (shortlist, 2019).</li>
+            <li>Mentored 4 junior account managers in a 25-person team.</li>
+          </ul>
+        </div>
+
+        <div class="work-entry">
+          <div class="we-top">
+            <div class="we-role">Marketing Coordinator</div>
+            <div class="we-period">Sep 2016 – Apr 2018</div>
+          </div>
+          <div class="we-employer">LVMH — Moët Hennessy</div>
+          <div class="we-location">Paris, France · CDI</div>
+          <ul class="we-list">
+            <li>Coordinated digital and event marketing for champagne division across 8 European markets.</li>
+            <li>Managed influencer programme (50+ creators); grew brand Instagram following by 65%.</li>
+          </ul>
+        </div>
+
+        <div class="work-entry">
+          <div class="we-top">
+            <div class="we-role">Junior Communications Officer</div>
+            <div class="we-period">2014 – 2016</div>
+          </div>
+          <div class="we-employer">Agence Wellcom</div>
+          <div class="we-location">Paris, France · CDD puis CDI</div>
+          <ul class="we-list">
+            <li>Supported press relations, social content, and event coordination for 6 clients.</li>
+          </ul>
+        </div>
+      </div>
+
+    </main><!-- /main-col -->
+
+    <!-- SIDE COLUMN -->
+    <aside class="side-col">
+
+      <div class="s-sec">
+        <div class="s-title">Personal Details</div>
+        <div class="pd-row"><div class="pd-label">Date of birth</div><div class="pd-val">7 September 1992</div></div>
+        <div class="pd-row"><div class="pd-label">Nationality</div><div class="pd-val">French / Belgian</div></div>
+        <div class="pd-row"><div class="pd-label">Driver's licence</div><div class="pd-val">Category B</div></div>
+        <div class="pd-row"><div class="pd-label">Availability</div><div class="pd-val">2 months notice</div></div>
+        <div class="pd-row"><div class="pd-label">Work permit</div><div class="pd-val">EU citizen</div></div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-title">Education</div>
+        <div class="edu-entry">
+          <div class="edu-deg">Master 2 in Brand Strategy &amp; Communications</div>
+          <div class="edu-school">Sciences Po Paris</div>
+          <div class="edu-dates">2012 – 2014</div>
+          <div class="edu-note">Mention Très Bien · Thesis awarded</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-deg">Licence in Information &amp; Communication</div>
+          <div class="edu-school">Université Paris-Dauphine</div>
+          <div class="edu-dates">2009 – 2012</div>
+          <div class="edu-note">Major: Media &amp; Digital</div>
+        </div>
+        <div class="edu-entry">
+          <div class="edu-deg">Erasmus Exchange — Marketing</div>
+          <div class="edu-school">KU Leuven, Belgium</div>
+          <div class="edu-dates">Spring 2013</div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-title">Languages</div>
+        <div class="lang-entry">
+          <div class="lang-top"><span class="lang-name">French</span><span class="lang-level">Mother tongue</span></div>
+          <div class="lang-track"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-entry">
+          <div class="lang-top"><span class="lang-name">English</span><span class="lang-level">C2 — TOEFL 112</span></div>
+          <div class="lang-track"><div class="lang-fill" style="width:94%"></div></div>
+        </div>
+        <div class="lang-entry">
+          <div class="lang-top"><span class="lang-name">Dutch</span><span class="lang-level">B2</span></div>
+          <div class="lang-track"><div class="lang-fill" style="width:65%"></div></div>
+        </div>
+        <div class="lang-entry">
+          <div class="lang-top"><span class="lang-name">Spanish</span><span class="lang-level">B1</span></div>
+          <div class="lang-track"><div class="lang-fill" style="width:45%"></div></div>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-title">Key Skills</div>
+        <div class="skills-wrap">
+          <span class="skill-tag">Brand Strategy</span>
+          <span class="skill-tag">Integrated Campaigns</span>
+          <span class="skill-tag">PR &amp; Media</span>
+          <span class="skill-tag">Social Media</span>
+          <span class="skill-tag">Google Analytics</span>
+          <span class="skill-tag">HubSpot</span>
+          <span class="skill-tag">Salesforce</span>
+          <span class="skill-tag">Adobe Creative</span>
+          <span class="skill-tag">Budget Management</span>
+          <span class="skill-tag">Team Leadership</span>
+        </div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-title">Certifications</div>
+        <div class="pd-row"><div class="pd-val">Google Ads Certified (2023)</div></div>
+        <div class="pd-row"><div class="pd-val">Meta Blueprint Certified (2022)</div></div>
+        <div class="pd-row"><div class="pd-val">HubSpot Content Marketing (2021)</div></div>
+      </div>
+
+      <div class="s-sec">
+        <div class="s-title">Interests</div>
+        <div class="interest-list">Documentary photography, contemporary art, running (semi-marathon 2023), volunteer communications advisor — Médecins Sans Frontières France.</div>
+      </div>
+
+    </aside><!-- /side-col -->
+
+  </div><!-- /cv-body -->
+
+</div><!-- /page -->
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Minimal Ink</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--a:#C2410C;--ink:#111;--bg:#FFFEF9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#E0DDD8;display:flex;flex-direction:column;align-items:center;padding:20px;font-family:'Work Sans',sans-serif;}
+
+.color-bar{display:flex;gap:8px;margin-bottom:16px;align-items:center;justify-content:center;}
+.color-bar span{font-size:11px;color:#666;letter-spacing:1px;text-transform:uppercase;}
+.swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:.15s;}
+.swatch:hover{transform:scale(1.12);}
+.swatch.active{border-color:#555;}
+
+.resume{
+  width:794px;min-height:1123px;
+  background:var(--bg);
+  box-shadow:0 15px 50px rgba(0,0,0,.2);
+  padding:60px 70px 55px;
+}
+
+/* HEADER */
+.cv-head{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:24px;}
+.head-top{display:flex;justify-content:space-between;align-items:flex-end;}
+.cv-name{
+  font-family:'Libre Baskerville',serif;
+  font-size:46px;font-weight:700;
+  color:var(--ink);line-height:1;
+  letter-spacing:-1px;
+}
+.cv-name span{color:var(--a);}
+.head-right{text-align:right;}
+.cv-title{font-size:12px;font-weight:500;color:var(--a);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px;}
+.contact-line{font-size:11.5px;color:#666;margin-bottom:3px;}
+
+/* BODY */
+.cv-body{display:grid;grid-template-columns:1fr 190px;gap:40px;}
+
+/* MAIN */
+.main{}
+.section{margin-bottom:22px;}
+.sh{
+  font-family:'Libre Baskerville',serif;
+  font-size:13px;font-weight:700;
+  color:var(--ink);
+  letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.sh span{color:var(--a);}
+.sh::after{content:'';flex:1;height:1px;background:#DDD;margin-left:4px;}
+
+.profile-p{font-size:12px;line-height:1.82;color:#444;font-weight:300;}
+
+.job{margin-bottom:15px;padding-bottom:15px;border-bottom:1px dotted #DDD;}
+.job:last-child{border-bottom:none;padding-bottom:0;}
+.jt{display:flex;justify-content:space-between;align-items:baseline;}
+.j-role{font-size:13px;font-weight:600;color:var(--ink);}
+.j-date{font-size:10.5px;color:var(--a);font-weight:600;letter-spacing:.5px;}
+.j-co{font-family:'Libre Baskerville',serif;font-style:italic;font-size:12px;color:#888;margin:1px 0 5px;}
+.j-pts li{font-size:11px;color:#555;line-height:1.65;margin-bottom:2px;padding-left:12px;position:relative;list-style:none;font-weight:300;}
+.j-pts li::before{content:'—';position:absolute;left:0;color:var(--a);font-size:9px;top:1px;}
+
+/* SIDEBAR */
+.side{}
+.s-block{margin-bottom:20px;}
+.s-title{
+  font-size:9px;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--ink);
+  border-bottom:1px solid var(--ink);
+  padding-bottom:5px;margin-bottom:11px;
+}
+.edu-e{margin-bottom:11px;}
+.edu-d{font-size:12px;font-weight:500;color:var(--ink);line-height:1.3;}
+.edu-s{font-size:10.5px;color:#888;font-style:italic;}
+.edu-y{font-size:10px;color:var(--a);margin-top:1px;font-weight:500;}
+
+.sk-item{font-size:11px;color:#555;margin-bottom:5px;display:flex;align-items:center;gap:7px;}
+.sk-item::before{content:'';width:4px;height:4px;background:var(--a);border-radius:50%;flex-shrink:0;}
+
+.lang-r{display:flex;justify-content:space-between;margin-bottom:6px;}
+.ln{font-size:11px;color:#444;}
+.ll{font-size:10px;color:#AAA;}
+
+.cert-item{font-size:10.5px;color:#555;margin-bottom:5px;padding-left:10px;position:relative;}
+.cert-item::before{content:'✓';position:absolute;left:0;color:var(--a);}
+</style>
+</head>
+<body>
+<div class="color-bar">
+  <span>Color</span>
+  <div class="swatch active" style="background:#C2410C" onclick="setA('#C2410C',this)"></div>
+  <div class="swatch" style="background:#111111" onclick="setA('#111111',this)"></div>
+  <div class="swatch" style="background:#1E40AF" onclick="setA('#1E40AF',this)"></div>
+  <div class="swatch" style="background:#065F46" onclick="setA('#065F46',this)"></div>
+  <div class="swatch" style="background:#6D28D9" onclick="setA('#6D28D9',this)"></div>
+  <div class="swatch" style="background:#92400E" onclick="setA('#92400E',this)"></div>
+</div>
+
+<div class="resume" id="resume">
+  <header class="cv-head">
+    <div class="head-top">
+      <div class="cv-name">Elena <span>Vasquez</span></div>
+      <div class="head-right">
+        <div class="cv-title">HR Director</div>
+        <div class="contact-line">elena.vasquez@people.co</div>
+        <div class="contact-line">+1 (212) 345-6789</div>
+        <div class="contact-line">New York, NY</div>
+        <div class="contact-line">linkedin.com/in/evasquez</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="cv-body">
+    <main class="main">
+      <div class="section">
+        <div class="sh"><span>§</span> Profile</div>
+        <p class="profile-p">Strategic HR leader with 12 years of experience building people-first cultures at high-growth technology companies. Deep expertise in talent acquisition, organisational design, and change management. Known for aligning people strategy with business objectives to scale teams from 50 to 1,000+.</p>
+      </div>
+
+      <div class="section">
+        <div class="sh"><span>§</span> Experience</div>
+        <div class="job">
+          <div class="jt"><div class="j-role">Chief People Officer</div><div class="j-date">2020 – Present</div></div>
+          <div class="j-co">TechNova Inc. — New York</div>
+          <ul class="j-pts">
+            <li>Scaled team from 200 to 850 employees across 4 countries in 3 years.</li>
+            <li>Reduced annualised attrition from 28% to 12% through new retention programmes.</li>
+            <li>Designed DEI strategy; increased underrepresented groups in leadership by 40%.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jt"><div class="j-role">VP of People</div><div class="j-date">2017 – 2020</div></div>
+          <div class="j-co">Relay Financial — San Francisco</div>
+          <ul class="j-pts">
+            <li>Built HR function from scratch at Series B; established performance review process.</li>
+            <li>Led successful acquisition integration absorbing 120-person team.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="jt"><div class="j-role">HR Business Partner</div><div class="j-date">2013 – 2017</div></div>
+          <div class="j-co">Salesforce — San Francisco</div>
+          <ul class="j-pts">
+            <li>Supported 600-person Engineering org; ran quarterly calibration cycles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sh"><span>§</span> Core Competencies</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;">
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">Talent Strategy</span>
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">OKR Design</span>
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">Compensation</span>
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">L&D Programs</span>
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">HRIS Systems</span>
+          <span style="font-size:11px;color:#555;border:1px solid #DDD;padding:3px 9px;border-radius:2px;">ER & Employment Law</span>
+        </div>
+      </div>
+    </main>
+
+    <aside class="side">
+      <div class="s-block">
+        <div class="s-title">Education</div>
+        <div class="edu-e">
+          <div class="edu-d">MBA — Organisational Behavior</div>
+          <div class="edu-s">Columbia Business School</div>
+          <div class="edu-y">2011 – 2013</div>
+        </div>
+        <div class="edu-e">
+          <div class="edu-d">B.A. Psychology</div>
+          <div class="edu-s">University of Michigan</div>
+          <div class="edu-y">2007 – 2011</div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Certifications</div>
+        <div class="cert-item">SHRM-SCP (2016)</div>
+        <div class="cert-item">PHR — HRCI (2014)</div>
+        <div class="cert-item">ICF Coaching (2019)</div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Skills</div>
+        <div class="sk-item">Workday & BambooHR</div>
+        <div class="sk-item">Greenhouse ATS</div>
+        <div class="sk-item">Lattice Performance</div>
+        <div class="sk-item">People Analytics</div>
+        <div class="sk-item">Employment Law</div>
+        <div class="sk-item">Executive Coaching</div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-title">Languages</div>
+        <div class="lang-r"><span class="ln">English</span><span class="ll">Native</span></div>
+        <div class="lang-r"><span class="ln">Spanish</span><span class="ll">C1</span></div>
+        <div class="lang-r"><span class="ln">Portuguese</span><span class="ll">B2</span></div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+function setA(c,el){
+  document.getElementById('resume').style.setProperty('--a',c);
+  document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>
