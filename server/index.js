@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import https from 'https';
 import connectDB from './config/db.js';
 
 import authRoutes from './routes/auth.js';
@@ -39,6 +40,18 @@ const startServer = async () => {
   await connectDB();
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
+    
+    // Native self-ping to prevent Render Free Tier from going to sleep (triggers every 14 minutes)
+    if (process.env.RENDER_EXTERNAL_URL) {
+      setInterval(() => {
+        https.get(`${process.env.RENDER_EXTERNAL_URL}/api/health`, (res) => {
+          console.log(`[Self-Ping] Keep-Alive Status: ${res.statusCode}`);
+        }).on('error', (err) => {
+          console.error(`[Self-Ping] Error: ${err.message}`);
+        });
+      }, 14 * 60 * 1000); // 14 minutes
+      console.log('⏰ Inner self-ping mechanism initialized for Render');
+    }
   });
 };
 
