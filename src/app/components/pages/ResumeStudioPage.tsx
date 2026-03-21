@@ -40,12 +40,12 @@ export default function ResumeStudioPage() {
 
   return (
     <div className="resume-studio-container h-[100dvh] flex flex-col bg-[#131111] text-[#E8E8F0] overflow-hidden select-none">
-      <div className={`flex flex-col flex-1 overflow-hidden ${mobileView !== 'canvas' ? 'hidden lg:flex' : 'flex'}`}>
+      <div className={`flex-shrink-0 flex flex-col ${mobileView !== 'canvas' ? 'hidden lg:flex' : 'flex'}`}>
         <StudioTopbar />
       </div>
 
       <div className="flex-1 flex overflow-hidden relative">
-        <div className={`studio-controls flex-shrink-0 absolute lg:relative inset-0 z-40 bg-[#131111] ${mobileView === 'sidebar' ? 'block' : 'hidden lg:block'}`}>
+        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static z-40 bg-[#131111] ${mobileView === 'sidebar' ? 'block' : 'hidden lg:block'}`}>
           <StudioSidebar />
         </div>
         
@@ -53,7 +53,7 @@ export default function ResumeStudioPage() {
           <StudioCanvas />
         </div>
         
-        <div className={`studio-controls flex-shrink-0 absolute lg:relative inset-0 z-40 bg-[#131111] ${mobileView === 'props' ? 'block' : 'hidden lg:block'}`}>
+        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static z-40 bg-[#131111] ${mobileView === 'props' ? 'block' : 'hidden lg:block'}`}>
           <StudioPropsPanel />
         </div>
       </div>
