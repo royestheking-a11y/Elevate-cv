@@ -17,7 +17,7 @@ export const StudioPropsPanel: React.FC = () => {
 
   if (!element) {
     return (
-      <div className="w-72 bg-[#3B2F2F] border-l border-white/5 flex flex-col items-center justify-center p-8 text-center gap-4">
+      <div className="w-full lg:w-72 h-full z-40 bg-[#3B2F2F] border-l border-white/5 flex flex-col items-center justify-center p-8 text-center gap-4 pb-safe">
         <div className="size-12 rounded-full bg-white/5 flex items-center justify-center text-white/20">
           <MousePointer2 size={24} />
         </div>

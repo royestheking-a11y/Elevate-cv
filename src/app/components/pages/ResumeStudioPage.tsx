@@ -45,15 +45,15 @@ export default function ResumeStudioPage() {
       </div>
 
       <div className="flex-1 flex overflow-hidden relative">
-        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static z-40 bg-[#131111] ${mobileView === 'sidebar' ? 'block' : 'hidden lg:block'}`}>
+        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static lg:h-full z-40 bg-[#131111] ${mobileView === 'sidebar' ? 'block' : 'hidden lg:block'}`}>
           <StudioSidebar />
         </div>
         
-        <div className={`w-full lg:flex-1 h-full flex flex-col ${mobileView === 'canvas' ? 'flex' : 'hidden lg:flex'}`}>
+        <div className={`w-full lg:w-auto lg:flex-1 h-full min-w-0 flex flex-col ${mobileView === 'canvas' ? 'flex' : 'hidden lg:flex'}`}>
           <StudioCanvas />
         </div>
         
-        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static z-40 bg-[#131111] ${mobileView === 'props' ? 'block' : 'hidden lg:block'}`}>
+        <div className={`studio-controls flex-shrink-0 absolute inset-0 lg:static lg:h-full z-40 bg-[#131111] ${mobileView === 'props' ? 'block' : 'hidden lg:block'}`}>
           <StudioPropsPanel />
         </div>
       </div>
