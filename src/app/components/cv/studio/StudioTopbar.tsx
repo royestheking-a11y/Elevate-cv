@@ -7,7 +7,6 @@ import { useEditorStore } from '../../../store/useEditorStore';
 import * as htmlToImage from 'html-to-image';
 import { jsPDF } from 'jspdf';
 import { toast } from 'sonner';
-import { ImportWizard } from './ImportWizard';
 
 export const StudioTopbar: React.FC = () => {
   const { 
@@ -169,8 +168,6 @@ export const StudioTopbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Import Wizard Modal */}
-      <ImportWizard />
     </div>
   );
 };

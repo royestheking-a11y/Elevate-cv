@@ -6,6 +6,7 @@ import { StudioPropsPanel } from "../cv/studio/StudioPropsPanel";
 import { StudioTopbar } from "../cv/studio/StudioTopbar";
 import { useKeyboardShortcuts } from "../../hooks/useKeyboardShortcuts";
 import { Menu, SlidersHorizontal } from "lucide-react";
+import { ImportWizard } from "../cv/studio/ImportWizard";
 
 export default function ResumeStudioPage() {
   const { saveHistory, setSelectedId } = useEditorStore();
@@ -70,6 +71,9 @@ export default function ResumeStudioPage() {
           <SlidersHorizontal size={20} />
         </button>
       </div>
+
+      {/* Global Modals */}
+      <ImportWizard />
     </div>
   );
 }
