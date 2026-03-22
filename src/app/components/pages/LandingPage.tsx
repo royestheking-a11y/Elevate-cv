@@ -412,9 +412,9 @@ export default function LandingPage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-[#FDFBF7] border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+      <section id="contact" className="py-16 md:py-24 bg-[#FDFBF7] border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -427,29 +427,29 @@ export default function LandingPage() {
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-5 p-6 rounded-2xl bg-white border border-[#D6A85F]/20 shadow-sm hover:shadow-md transition-shadow group">
+                <div className="flex items-start space-x-4 sm:space-x-5 p-4 sm:p-6 rounded-2xl bg-white border border-[#D6A85F]/20 shadow-sm hover:shadow-md transition-shadow group">
                   <div className="size-14 bg-[#FDFBF7] rounded-xl flex items-center justify-center shrink-0 text-[#D6A85F] group-hover:scale-110 transition-transform">
                     <Mail size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-xl text-[#3B2F2F]">Email us</h4>
                     <p className="text-gray-500 text-sm mb-2">We'll respond within 24 hours.</p>
-                    <a href="mailto:support@elevatecv.com" className="text-[#D6A85F] font-semibold hover:underline text-lg">support@elevatecv.com</a>
+                    <a href="mailto:support@elevatecv.com" className="text-[#D6A85F] font-semibold hover:underline text-lg break-all">support@elevatecv.com</a>
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-5 p-6 rounded-2xl bg-white border border-[#D6A85F]/20 shadow-sm hover:shadow-md transition-shadow group">
+                <div className="flex items-start space-x-4 sm:space-x-5 p-4 sm:p-6 rounded-2xl bg-white border border-[#D6A85F]/20 shadow-sm hover:shadow-md transition-shadow group">
                   <div className="size-14 bg-[#FDFBF7] rounded-xl flex items-center justify-center shrink-0 text-[#D6A85F] group-hover:scale-110 transition-transform">
                     <Phone size={24} />
                   </div>
                   <div>
                     <h4 className="font-bold text-xl text-[#3B2F2F]">Call us</h4>
                     <p className="text-gray-500 text-sm mb-2">Mon-Fri from 9am to 6pm EST.</p>
-                    <a href="tel:01343042761" className="text-[#D6A85F] font-semibold hover:underline text-lg">01343042761</a>
+                    <a href="tel:01343042761" className="text-[#D6A85F] font-semibold hover:underline text-lg break-all">01343042761</a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-5 p-6 rounded-2xl bg-[#3B2F2F] shadow-xl group overflow-hidden relative">
+                <div className="flex items-start space-x-4 sm:space-x-5 p-4 sm:p-6 rounded-2xl bg-[#3B2F2F] shadow-xl group overflow-hidden relative">
                   <div className="absolute -right-8 -top-8 size-32 bg-[#D6A85F]/20 rounded-full blur-2xl pointer-events-none" />
                   <div className="size-14 bg-[#4A3D3D] rounded-xl flex items-center justify-center shrink-0 text-[#D6A85F] group-hover:scale-110 transition-transform relative z-10">
                     <MapPin size={24} />
@@ -465,13 +465,13 @@ export default function LandingPage() {
               </div>
             </motion.div>
             
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-[#3B2F2F] rounded-3xl p-8 md:p-10 shadow-2xl shadow-[#3B2F2F]/20 relative overflow-hidden"
-            >
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#3B2F2F] rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl shadow-[#3B2F2F]/20 relative overflow-hidden"
+              >
               <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#D6A85F] rounded-full mix-blend-multiply filter blur-3xl opacity-20 pointer-events-none" />
               <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-white rounded-full mix-blend-overlay filter blur-3xl opacity-10 pointer-events-none" />
               
