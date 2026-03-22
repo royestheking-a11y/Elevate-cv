@@ -6,12 +6,14 @@ import { CookieBanner } from "./CookieBanner";
 import { AnimatePresence, motion } from "motion/react";
 import { useAuth } from "../../context/AuthContext";
 import { LayoutDashboard } from "lucide-react";
+import { toast } from "sonner";
 
 export function PublicLayout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [subscribeEmail, setSubscribeEmail] = useState("");
 
   // Force scroll to top on mount and path change
   useEffect(() => {
@@ -25,6 +27,13 @@ export function PublicLayout() {
     { name: "How it Works", path: "/how-it-works" },
     { name: "Tutorials", path: "/tutorials" },
   ];
+  
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!subscribeEmail) return;
+    toast.success("Subscribed successfully! Welcome to ElevateCV.");
+    setSubscribeEmail("");
+  };
 
   return (
     <div className="min-h-screen w-full overflow-x-hidden flex flex-col bg-[#FDFBF7] text-[#3B2F2F] font-sans selection:bg-[#D6A85F] selection:text-white">
@@ -218,13 +227,16 @@ export function PublicLayout() {
             <div>
               <h4 className="text-white font-semibold mb-6">Stay Updated</h4>
               <p className="text-sm text-white/60 mb-4">Get the latest career advice and feature updates directly to your inbox.</p>
-              <form className="flex" onSubmit={(e) => e.preventDefault()}>
+              <form className="flex" onSubmit={handleSubscribe}>
                 <div className="relative flex-1">
                   <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-white/40" />
                   <input 
                     type="email" 
+                    value={subscribeEmail}
+                    onChange={(e) => setSubscribeEmail(e.target.value)}
                     placeholder="Enter your email" 
                     className="w-full bg-white/5 border border-white/10 rounded-l-lg py-2.5 pl-10 pr-4 text-sm text-white focus:outline-none focus:border-[#D6A85F] transition-colors"
+                    required
                   />
                 </div>
                 <button type="submit" className="bg-[#D6A85F] text-white px-4 py-2.5 rounded-r-lg text-sm font-medium hover:bg-yellow-600 transition-colors">
