@@ -27,13 +27,20 @@ export default function LoginPage() {
   const from = location.state?.from?.pathname || "/dashboard";
 
   useEffect(() => {
+    // Priority 1: Email passed from Signup page
+    if (location.state?.email) {
+      setEmail(location.state.email);
+      return;
+    }
+
+    // Priority 2: Remember me logic
     const savedEmail = localStorage.getItem("elevate_saved_email");
     const savedRemember = localStorage.getItem("elevate_remember_me") === "true";
     if (savedEmail && savedRemember) {
       setEmail(savedEmail);
       setRememberMe(true);
     }
-  }, []);
+  }, [location.state]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

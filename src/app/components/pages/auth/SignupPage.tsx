@@ -32,7 +32,10 @@ export default function SignupPage() {
 
     setIsLoading(false);
     if (result.success) {
-      navigate("/dashboard");
+      import("sonner").then(({ toast }) => {
+        toast.success("Account created successfully! Please log in.");
+      });
+      navigate("/login", { state: { email } });
     } else {
       setError(result.message || "Signup failed");
     }
@@ -77,8 +80,8 @@ export default function SignupPage() {
 
             <ul className="space-y-6">
               {[
-                "10+ ATS-Optimized Resume Templates",
-                "6 Professional Cover Letter Designs",
+                "22+ ATS-Optimized Resume Templates",
+                "10 Professional Cover Letter Designs",
                 "AI-Powered Resume Repair Parsing",
                 "Context-Aware Email Writer"
               ].map((benefit, i) => (

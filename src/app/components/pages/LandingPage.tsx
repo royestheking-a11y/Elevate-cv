@@ -477,7 +477,7 @@ export default function LandingPage() {
               
               <h3 className="text-2xl font-bold mb-6 text-white relative z-10">Send us a message</h3>
               <form className="space-y-5 relative z-10" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-white/80">First Name</label>
                     <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-[#D6A85F] focus:border-transparent transition-all" placeholder="Sunny" />

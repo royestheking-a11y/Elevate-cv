@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { Twitter, Linkedin, Github, Mail, Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CookieBanner } from "./CookieBanner";
 import { AnimatePresence, motion } from "motion/react";
+import { useAuth } from "../../context/AuthContext";
+import { LogOut, LayoutDashboard } from "lucide-react";
 
 export function PublicLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Force scroll to top on mount and path change
@@ -27,7 +31,7 @@ export function PublicLayout() {
       {/* Navigation */}
       <nav className="fixed top-0 inset-x-0 z-50 bg-white/70 backdrop-blur-xl border-b border-[#3B2F2F]/10 px-6 py-4">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 text-xl font-bold tracking-tight">
+          <Link to={user ? "/dashboard" : "/"} className="flex items-center space-x-2 text-xl font-bold tracking-tight">
             <Logo className="size-8" />
             <span>ElevateCV</span>
           </Link>
@@ -50,18 +54,41 @@ export function PublicLayout() {
             })}
           </div>
           <div className="flex items-center space-x-3">
-            <Link 
-              to="/login" 
-              className="hidden sm:block px-5 py-2.5 text-sm font-medium text-[#3B2F2F] bg-white/50 hover:bg-white border border-[#3B2F2F]/10 rounded-full transition-all shadow-sm hover:shadow-md"
-            >
-              Log in
-            </Link>
-            <Link
-              to="/signup"
-              className="px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#3B2F2F] to-[#2B2222] rounded-full hover:shadow-lg hover:shadow-[#3B2F2F]/20 transition-all active:scale-95 border border-[#3B2F2F]"
-            >
-              Sign up
-            </Link>
+            {user ? (
+              <>
+                 <Link 
+                  to="/dashboard" 
+                  className="hidden sm:flex items-center space-x-2 px-5 py-2.5 text-sm font-medium text-[#3B2F2F] bg-white/50 hover:bg-white border border-[#3B2F2F]/10 rounded-full transition-all shadow-sm hover:shadow-md"
+                >
+                  <LayoutDashboard className="size-4" />
+                  <span>Dashboard</span>
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    navigate("/");
+                  }}
+                  className="px-5 py-2.5 text-sm font-medium text-white bg-red-600 rounded-full hover:bg-red-700 transition-all active:scale-95 border border-red-700 shadow-sm"
+                >
+                  Log out
+                </button>
+              </>
+            ) : (
+              <>
+                <Link 
+                  to="/login" 
+                  className="hidden sm:block px-5 py-2.5 text-sm font-medium text-[#3B2F2F] bg-white/50 hover:bg-white border border-[#3B2F2F]/10 rounded-full transition-all shadow-sm hover:shadow-md"
+                >
+                  Log in
+                </Link>
+                <Link
+                  to="/signup"
+                  className="px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[#3B2F2F] to-[#2B2222] rounded-full hover:shadow-lg hover:shadow-[#3B2F2F]/20 transition-all active:scale-95 border border-[#3B2F2F]"
+                >
+                  Sign up
+                </Link>
+              </>
+            )}
             <button 
               onClick={() => setIsMobileMenuOpen(true)}
               className="md:hidden p-2 text-gray-600 hover:text-[#3B2F2F] hover:bg-black/5 rounded-full transition-colors"
@@ -118,20 +145,45 @@ export function PublicLayout() {
               </div>
               
               <div className="border-t border-gray-100 pt-6 flex flex-col space-y-3">
-                <Link 
-                  to="/login"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl font-medium text-[#3B2F2F] bg-gray-50 hover:bg-gray-100 transition-colors"
-                >
-                  Log in
-                </Link>
-                <Link 
-                  to="/signup"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full text-center py-3 rounded-xl font-medium text-white bg-[#3B2F2F] shadow-md hover:bg-[#2B2222] transition-colors"
-                >
-                  Sign up free
-                </Link>
+                {user ? (
+                  <>
+                    <Link 
+                      to="/dashboard"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full flex items-center justify-center space-x-2 py-3 rounded-xl font-medium text-[#3B2F2F] bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                      <LayoutDashboard className="size-5" />
+                      <span>Dashboard</span>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setIsMobileMenuOpen(false);
+                        navigate("/");
+                      }}
+                      className="w-full text-center py-3 rounded-xl font-medium text-white bg-red-600 shadow-md hover:bg-red-700 transition-colors"
+                    >
+                      Log out
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link 
+                      to="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full text-center py-3 rounded-xl font-medium text-[#3B2F2F] bg-gray-50 hover:bg-gray-100 transition-colors"
+                    >
+                      Log in
+                    </Link>
+                    <Link 
+                      to="/signup"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full text-center py-3 rounded-xl font-medium text-white bg-[#3B2F2F] shadow-md hover:bg-[#2B2222] transition-colors"
+                    >
+                      Sign up free
+                    </Link>
+                  </>
+                )}
               </div>
             </motion.div>
           </>
@@ -148,7 +200,7 @@ export function PublicLayout() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
-              <Link to="/" className="flex items-center space-x-2 text-2xl font-bold text-white tracking-tight mb-6">
+              <Link to={user ? "/dashboard" : "/"} className="flex items-center space-x-2 text-2xl font-bold text-white tracking-tight mb-6">
                 <Logo className="size-8" />
                 <span>ElevateCV</span>
               </Link>

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { 
   Undo2, Redo2, Grid3X3, ZoomIn, ZoomOut, 
-  FileJson, Download, FileUp, Sparkles
+  Download, FileUp, Sparkles
 } from 'lucide-react';
 import { useEditorStore } from '../../../store/useEditorStore';
 import * as htmlToImage from 'html-to-image';
@@ -18,17 +18,6 @@ export const StudioTopbar: React.FC = () => {
   
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleExportJSON = () => {
-    const { numPages } = useEditorStore.getState();
-    const data = { elements, pageBg, numPages, version: 1 };
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `cv_studio_design_${Date.now()}.json`;
-    a.click();
-    toast.success('Design exported successfully');
-  };
 
   const handleImportJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -170,13 +159,6 @@ export const StudioTopbar: React.FC = () => {
         >
           <FileUp size={16} />
           <span>JSON Import</span>
-        </button>
-        <button 
-          onClick={handleExportJSON}
-          className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-white/5 text-[#8888A0] hover:text-white text-sm transition-colors"
-        >
-          <FileJson size={16} />
-          <span>Export</span>
         </button>
         <button 
           onClick={handleDownloadPDF}

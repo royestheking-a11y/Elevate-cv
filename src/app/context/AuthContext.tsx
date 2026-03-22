@@ -60,9 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signup = async (email: string, name: string, password: string): Promise<{ success: boolean; message?: string }> => {
     try {
-      const res = await authAPI.signup({ name, email, password });
-      localStorage.setItem("elevate_token", res.data.token);
-      setUser({ _id: res.data._id, email: res.data.email, name: res.data.name, role: res.data.role });
+      await authAPI.signup({ name, email, password });
       return { success: true };
     } catch (error: any) {
       return { success: false, message: error.response?.data?.message || "Signup failed" };

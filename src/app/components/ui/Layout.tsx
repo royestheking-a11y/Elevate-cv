@@ -39,7 +39,7 @@ export function DashboardLayout() {
         isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-100">
-          <Link to="/" className="flex items-center space-x-2 text-xl font-bold">
+          <Link to="/dashboard" className="flex items-center space-x-2 text-xl font-bold">
             <Logo className="size-8" />
             <span>ElevateCV</span>
           </Link>
@@ -106,7 +106,7 @@ export function DashboardLayout() {
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Mobile Header */}
         <header className="flex items-center justify-between h-16 px-4 bg-white border-b border-gray-100 md:hidden z-40">
-          <Link to="/" className="flex items-center space-x-2 text-lg font-bold">
+          <Link to="/dashboard" className="flex items-center space-x-2 text-lg font-bold">
             <Logo className="size-6" />
             <span>ElevateCV</span>
           </Link>
