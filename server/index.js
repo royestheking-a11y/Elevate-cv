@@ -2,7 +2,12 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import https from 'https';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 import authRoutes from './routes/auth.js';
 import cvRoutes from './routes/cv.js';
@@ -30,9 +35,17 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/templates', templatesRoutes);
 app.use('/api/ai', aiRoutes);
 
+// Serving static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, '../dist')));
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// All other requests should serve the frontend's index.html
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 // Start server
