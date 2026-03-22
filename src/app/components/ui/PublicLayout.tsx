@@ -5,7 +5,7 @@ import { Logo } from "./Logo";
 import { CookieBanner } from "./CookieBanner";
 import { AnimatePresence, motion } from "motion/react";
 import { useAuth } from "../../context/AuthContext";
-import { LogOut, LayoutDashboard } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 
 export function PublicLayout() {
   const location = useLocation();
@@ -63,15 +63,6 @@ export function PublicLayout() {
                   <LayoutDashboard className="size-4" />
                   <span>Dashboard</span>
                 </Link>
-                <button
-                  onClick={() => {
-                    logout();
-                    navigate("/");
-                  }}
-                  className="px-5 py-2.5 text-sm font-medium text-white bg-red-600 rounded-full hover:bg-red-700 transition-all active:scale-95 border border-red-700 shadow-sm"
-                >
-                  Log out
-                </button>
               </>
             ) : (
               <>
@@ -155,16 +146,6 @@ export function PublicLayout() {
                       <LayoutDashboard className="size-5" />
                       <span>Dashboard</span>
                     </Link>
-                    <button
-                      onClick={() => {
-                        logout();
-                        setIsMobileMenuOpen(false);
-                        navigate("/");
-                      }}
-                      className="w-full text-center py-3 rounded-xl font-medium text-white bg-red-600 shadow-md hover:bg-red-700 transition-colors"
-                    >
-                      Log out
-                    </button>
                   </>
                 ) : (
                   <>
