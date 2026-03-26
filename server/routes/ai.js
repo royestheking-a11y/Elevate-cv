@@ -41,7 +41,7 @@ router.post('/parse-resume', protect, checkAILimit('resume'), async (req, res) =
     }
   } catch (error) {
     console.error("AI Parse Error:", error);
-    res.status(500).json({ message: "Failed to parse resume with AI" });
+    res.status(500).json({ message: "AI parsing error. This usually happens when the document format is complex. Please try again or edit manually." });
   }
 });
 
@@ -64,7 +64,8 @@ router.post('/enhance', protect, checkAILimit('resume'), async (req, res) => {
     await incrementAIUsage(req.user._id, 'resume');
     res.json({ enhanced: enhanced.trim() });
   } catch (error) {
-    res.status(500).json({ message: "Failed to enhance content" });
+    console.error("AI Enhance Error:", error);
+    res.status(500).json({ message: "AI enhancement is currently busy. Please try again in a few moments." });
   }
 });
 

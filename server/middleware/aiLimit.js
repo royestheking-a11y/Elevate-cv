@@ -1,20 +1,21 @@
 import User from '../models/User.js';
 
 const LIMITS = {
-  resume: 2,
-  coverLetter: 2,
-  email: 5
+  resume: 20, // Increased from 2
+  coverLetter: 15, // Increased from 2
+  email: 20 // Increased from 5
 };
 
 export const checkAILimit = (type) => async (req, res, next) => {
   if (req.user.role === 'admin') return next();
 
-  const user = await User.findById(req.user._id);
-  if (!user) return res.status(404).json({ message: "User not found" });
+  // Safety check for missing aiUsage structure (for older docs)
+  if (!user.aiUsage) user.aiUsage = { resume: { count: 0 }, email: { count: 0 }, coverLetter: { count: 0 } };
+  if (!user.aiUsage[type]) user.aiUsage[type] = { count: 0, lastReset: new Date() };
 
   const usage = user.aiUsage[type];
   const now = new Date();
-  const lastReset = new Date(usage.lastReset);
+  const lastReset = usage.lastReset ? new Date(usage.lastReset) : new Date(0);
 
   // Reset if more than 24 hours have passed
   if (now - lastReset > 24 * 60 * 60 * 1000) {
@@ -23,10 +24,11 @@ export const checkAILimit = (type) => async (req, res, next) => {
     await user.save();
   }
 
-  if (usage.count >= LIMITS[type]) {
+  if ((usage.count || 0) >= LIMITS[type]) {
     return res.status(403).json({ 
-      message: `Today's limit for ${type} is done. Back again tomorrow for another build!`,
-      limitReached: true
+      message: `You've reached your daily limit for ${type} (${LIMITS[type]}). Please come back tomorrow for more!`,
+      limitReached: true,
+      limit: LIMITS[type]
     });
   }
 
@@ -39,8 +41,12 @@ export const checkAILimit = (type) => async (req, res, next) => {
 export const incrementAIUsage = async (userId, type) => {
   const user = await User.findById(userId);
   if (user) {
-    user.aiUsage[type].count += 1;
-    user.totalAiUsage[type] += 1;
+    if (!user.aiUsage) user.aiUsage = { resume: { count: 0 }, email: { count: 0 }, coverLetter: { count: 0 } };
+    if (!user.aiUsage[type]) user.aiUsage[type] = { count: 0, lastReset: new Date() };
+    if (!user.totalAiUsage) user.totalAiUsage = { resume: 0, email: 0, coverLetter: 0 };
+    
+    user.aiUsage[type].count = (user.aiUsage[type].count || 0) + 1;
+    user.totalAiUsage[type] = (user.totalAiUsage[type] || 0) + 1;
     await user.save();
   }
 };
