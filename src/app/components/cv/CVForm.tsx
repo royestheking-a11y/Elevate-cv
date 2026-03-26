@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronDown, Plus, Trash2, GripVertical, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import { ImageUpload } from "./ImageUpload";
+import { aiAPI } from "../../lib/api";
 
 interface AccordionSectionProps {
   title: string;
@@ -68,32 +69,24 @@ export default function CVForm() {
     if (!content) return;
     setIsEnhancing(id || type);
     try {
-      const response = await fetch('/api/ai/enhance', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('elevate_token')}`
-        },
-        body: JSON.stringify({ type, content })
-      });
-      if (response.status === 403) {
-        const data = await response.json();
-        toast.error(data.message);
-        return;
-      }
-      if (!response.ok) throw new Error("Enhancement failed");
-
-      const remaining = response.headers.get('X-AI-Limit-Remaining');
-      if (remaining !== null) {
+      const response = await aiAPI.enhance(type, content);
+      
+      const remaining = response.headers['x-ai-limit-remaining'];
+      if (remaining !== undefined) {
         toast.info(`Enhancement successful! ${remaining} left today.`);
       } else {
         toast.success("Content enhanced with AI!");
       }
 
-      const { enhanced } = await response.json();
+      const { enhanced } = response.data;
       onUpdate(enhanced);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Enhancement failed:", err);
+      if (err.response?.status === 403) {
+        toast.error(err.response.data.message || "AI Limit reached");
+      } else {
+        toast.error("Enhancement failed. Please try again later.");
+      }
     } finally {
       setIsEnhancing(null);
     }

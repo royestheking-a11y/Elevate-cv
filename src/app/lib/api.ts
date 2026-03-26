@@ -86,4 +86,12 @@ export const contactAPI = {
     api.post('/admin/messages', data),
 };
 
+// ─── AI ─────────────────────────────────────────
+export const aiAPI = {
+  enhance: (type: string, content: string) => api.post('/ai/enhance', { type, content }),
+  parseResume: (text: string) => api.post('/ai/parse-resume', { text }),
+  generateCoverLetter: (data: any) => api.post('/ai/generate-cover-letter', data),
+  generateEmail: (data: any) => api.post('/ai/generate-email', data),
+};
+
 export default api;

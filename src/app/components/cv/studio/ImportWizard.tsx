@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import CVPreview from "../CVPreview";
 import { DUMMY_CV_DATA } from "../../../lib/dummyData";
 import { memo } from "react";
+import { aiAPI } from "../../../lib/api";
 
 const TemplatePreviewMini = memo(({ templateId }: { templateId: string }) => {
   return (
@@ -55,18 +56,8 @@ export const ImportWizard: React.FC = () => {
 
       // 2. Try Gemini AI Parsing
       try {
-        const response = await fetch('/api/ai/parse-resume', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('elevate_token')}`
-          },
-          body: JSON.stringify({ text: rawText })
-        });
-
-        if (!response.ok) throw new Error("AI parsing failed");
-        
-        const ai = await response.json();
+        const response = await aiAPI.parseResume(rawText);
+        const ai = response.data;
         
         // 3. Map AI result to CVData format
         const mappedData: CVData = {

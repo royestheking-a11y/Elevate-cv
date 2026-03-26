@@ -4,6 +4,7 @@ import { Download, Sparkles, Wand2, CheckCircle2 } from "lucide-react";
 import { DownloadCLModal } from "../cv/DownloadCLModal";
 import { motion } from "motion/react";
 import { toast } from "sonner";
+import { aiAPI } from "../../lib/api";
 
 import imgBlackAndWhiteClassicProfessionalJobCoverLetter1 from "figma:asset/af0877775499e60889fbbe26670465895d5dd19d.png";
 import imgBlackWhiteSimpleModernCoverLetter1 from "figma:asset/aa4c3adcafef56d2035efd6126b7327ccee544b4.png";
@@ -43,29 +44,19 @@ export default function CoverLetterPage() {
     }
     setIsGenerating(true);
     try {
-      const response = await fetch('/api/ai/generate-cover-letter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('elevate_token')}`
-        },
-        body: JSON.stringify({ cvData, jobDescription: `${coverLetterData.jobTitle} at ${coverLetterData.companyName}` })
+      const response = await aiAPI.generateCoverLetter({ 
+        cvData, 
+        jobDescription: `${coverLetterData.jobTitle} at ${coverLetterData.companyName}` 
       });
-      if (response.status === 403) {
-        const data = await response.json();
-        toast.error(data.message);
-        return;
-      }
-      if (!response.ok) throw new Error("Generation failed");
-
-      const remaining = response.headers.get('X-AI-Limit-Remaining');
-      if (remaining !== null) {
+      
+      const remaining = response.headers['x-ai-limit-remaining'];
+      if (remaining !== undefined) {
         toast.info(`Cover letter generated! ${remaining} left today.`);
       } else {
         toast.success("Cover letter generated with AI!");
       }
 
-      const { content } = await response.json();
+      const { content } = response.data;
       updateCoverLetter({ body: content });
     } catch (err) {
       console.error("AI Generation failed:", err);

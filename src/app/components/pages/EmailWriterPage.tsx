@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import { Copy, Sparkles, Wand2, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
+import { aiAPI } from "../../lib/api";
 
 export default function EmailWriterPage() {
   const [cvContent, setCvContent] = useState("");
@@ -18,32 +19,19 @@ export default function EmailWriterPage() {
     }
     setIsGenerating(true);
     try {
-      const response = await fetch('/api/ai/generate-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('elevate_token')}`
-        },
-        body: JSON.stringify({ 
-          type: emailTone, 
-          details: `CV Content: ${cvContent}\nJob Description: ${jobDescription}` 
-        })
+      const response = await aiAPI.generateEmail({ 
+        type: emailTone, 
+        details: `CV Content: ${cvContent}\nJob Description: ${jobDescription}` 
       });
-      if (response.status === 403) {
-        const data = await response.json();
-        toast.error(data.message);
-        return;
-      }
-      if (!response.ok) throw new Error("Generation failed");
-
-      const remaining = response.headers.get('X-AI-Limit-Remaining');
-      if (remaining !== null) {
+      
+      const remaining = response.headers['x-ai-limit-remaining'];
+      if (remaining !== undefined) {
         toast.info(`Email generated! ${remaining} left today.`);
       } else {
         toast.success("Email generated with AI!");
       }
 
-      const { content } = await response.json();
+      const { content } = response.data;
       setGeneratedEmail(content);
     } catch (err) {
       console.error("AI Generation failed:", err);

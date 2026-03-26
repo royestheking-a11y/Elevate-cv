@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { useStore } from "../../store";
+import { aiAPI } from "../../lib/api";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 
@@ -356,33 +357,18 @@ export default function ResumeRepairPage() {
       console.log("First 30 lines:", lines.slice(0, 30));
       console.groupEnd();
 
-      // 2. Try AI Parsing first, fallback to regex
       let parsed;
       try {
-        const response = await fetch('/api/ai/parse-resume', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('elevate_token')}` // Ensure token is sent
-          },
-          body: JSON.stringify({ text: lines.join('\n') })
-        });
+        const response = await aiAPI.parseResume(lines.join('\n'));
         
-        if (response.status === 403) {
-          const data = await response.json();
-          toast.error(data.message);
-          return;
-        }
-        if (!response.ok) throw new Error("AI parsing failed");
-        
-        const remaining = response.headers.get('X-AI-Limit-Remaining');
-        if (remaining !== null) {
+        const remaining = response.headers['x-ai-limit-remaining'];
+        if (remaining !== undefined) {
           toast.info(`${remaining} repairs left today`);
         } else {
           toast.success("Resume repaired successfully!");
         }
 
-        parsed = await response.json();
+        parsed = response.data;
         console.log("🤖 AI Parsed result:", parsed);
       } catch (aiErr) {
         console.error("AI Parsing failed, falling back to Regex:", aiErr);
